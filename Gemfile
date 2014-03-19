@@ -32,6 +32,11 @@ gem 'devise'
 
 gem 'annotate'
 
+gem 'unicorn'
+
+# To enable features such as static asset serving and logging on Heroku
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'pry'
@@ -62,3 +67,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+ruby "2.0.0"
