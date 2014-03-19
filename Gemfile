@@ -56,6 +56,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'angularjs-rails'
+
+gem "underscore-rails", "~> 1.6.0"
+
+gem 'foundation-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

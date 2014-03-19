@@ -10,7 +10,15 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require angular 
+//= require angular-resource 
+//= require main.js
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require underscore
+//= require foundation/foundation
+//= requrie_tree ./angular 
 //= require_tree .
+
+
+$(document).foundation();
