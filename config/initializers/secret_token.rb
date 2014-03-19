@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-WdiFinalProject::Application.config.secret_key_base = 'd5978c6802c9678635a24a8df74133e6293f5e7bb6c57a3c584e66c5c24e4d826978566f410dd240ba6e02ed5bc3deca02430f227b419c500ce7ab77b395f8d6'
+WdiFinalProject::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
