@@ -114,6 +114,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.0)
+    ng-rails-csrf (0.1.0)
     nio4r (1.0.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
@@ -240,6 +241,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   meta_request
+  ng-rails-csrf
   pg
   pry
   pry-byebug

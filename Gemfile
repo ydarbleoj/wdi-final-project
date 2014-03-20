@@ -62,6 +62,8 @@ gem "underscore-rails", "~> 1.6.0"
 
 gem 'foundation-rails'
 
+gem 'ng-rails-csrf'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
