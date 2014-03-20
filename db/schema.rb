@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(version: 20140320221427) do
     t.datetime "updated_at"
   end
 
-  create_table "friends", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "friends", ["friend_id"], name: "index_friends_on_friend_id", using: :btree
-  add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
-
   create_table "journeys", force: true do |t|
     t.text     "title"
     t.integer  "user_id"
