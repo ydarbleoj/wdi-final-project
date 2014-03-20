@@ -10,16 +10,8 @@
 #  updated_at       :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+require 'spec_helper'
 
-one:
-  body: MyText
-  user_id: 
-  post_id: 
-  journey_id: 
-
-two:
-  body: MyText
-  user_id: 
-  post_id: 
-  journey_id: 
+describe Comment do
+  pending "add some examples to (or delete) #{__FILE__}"
+end
