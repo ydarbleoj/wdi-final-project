@@ -11,16 +11,8 @@
 #  updated_at   :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+require 'spec_helper'
 
-one:
-  subject: MyText
-  body: MyText
-  user_id: 
-  recipient_id: 
-
-two:
-  subject: MyText
-  body: MyText
-  user_id: 
-  recipient_id: 
+describe Message do
+  pending "add some examples to (or delete) #{__FILE__}"
+end

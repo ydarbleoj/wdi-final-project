@@ -11,23 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320162838) do
+ActiveRecord::Schema.define(version: 20140320221427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
-    t.text     "body"
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.integer  "journey_id"
+    t.string   "body"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "comments", ["journey_id"], name: "index_comments_on_journey_id", using: :btree
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "friends", force: true do |t|
     t.integer  "user_id"
@@ -51,16 +46,16 @@ ActiveRecord::Schema.define(version: 20140320162838) do
   add_index "journeys", ["user_id"], name: "index_journeys_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
-    t.text     "subject"
-    t.text     "body"
-    t.integer  "user_id"
+    t.integer  "sender_id"
     t.integer  "recipient_id"
+    t.string   "subject"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "video"
