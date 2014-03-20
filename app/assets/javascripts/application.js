@@ -10,14 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular 
-//= require angular-resource 
-//= require main.js
 //= require jquery
 //= require jquery_ujs
+//= require angular-1.2.14/angular.min
+//= require angular-1.2.14/angular-route.min
+//= require angular-resource 
 //= require underscore
+//= require main
 //= require foundation/foundation
-//= requrie_tree ./angular 
 //= require_tree .
 
 
