@@ -13,3 +13,100 @@
  *= style
  *= require_tree .
  */
+
+body {
+	background-color: rgba(253,246,231, 1);
+}
+
+/* ///////NAVIGATION/////// */
+.nav {
+	width: 115px;
+	height: 100%;
+	margin-top: -20px;
+	margin-left: 0;
+	position: fixed;
+	background-color: rgba(44,57,73, 1);
+	border-top: 10px solid rgba(255,127,102, 1);
+}
+
+/*li#userImage {
+	margin-top: 10px;
+}
+
+li#userImage img {
+	border-radius: 50%;
+	width: 75px;
+	height:75px;
+}
+*/
+li {
+	width: 100%;
+	height: 60px;
+	list-style-type: none;
+	text-align: center;
+}
+
+a {
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin: 0;
+}
+
+li img {
+	margin-top: 15px;
+}
+
+li#newPost { 
+	margin-top: 40px;
+}
+
+li#newPost:hover {
+	box-shadow: 10px 9px 53px #000000;
+}
+
+li#profile:hover {
+	box-shadow: 10px 9px 53px #000000;
+}
+
+li#postPicture:hover {
+	box-shadow: 10px 9px 53px #000000;
+}
+
+li#postVideo:hover {
+	box-shadow: 10px 9px 53px #000000;
+}
+
+li#postText:hover {
+	box-shadow: 10px 9px 53px #000000;
+}
+
+/*//////PROFILE PAGE//////*/
+
+.profilePage { 
+	text-align: center;
+}
+
+
+
+/*//////NEWS FEED//////*/
+
+.newsFeed {
+	width: 90%;
+	height: 100%;
+	margin-top: 0px;
+	margin-left: 200px;
+
+}
+
+.journey {
+	width: 80%;
+	height: 300px;
+	margin-bottom: 2em;
+	background-color: rgba(44,57,73, .5);
+}
+
+
+
+
+

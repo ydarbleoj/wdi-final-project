@@ -9,9 +9,19 @@ journeyRouter = angular.module("journeyRouter", [
 ]);
 
 journeyRouter.config(['$routeProvider', function($routeProvider){
-	$routeProvider.
-		otherwise({
-			templateUrl: '../templates/index.html',
-			controller: 'journeyCtrl'
+	$routeProvider
+		.when('/home', {
+			templateUrl: '../templates/journeys.html', 
+			controller: 'newsfeedCtrl'
+		})
+		.when('/profile', {
+			templateUrl: '../templates/profile.html', 
+			controller: 'profileCtrl'
+		})
+		.otherwise({
+			templateUrl: '../templates/nav.html',
+			controller: 'navCtrl'
 		});
 }]);
+
+
