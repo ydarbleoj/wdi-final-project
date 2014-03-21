@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html ng-app="journeyApp">
-<head>
-  <title>WdiFinalProject</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  
-  <%= csrf_meta_tags %>
-
-</head>
-<body>
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-	
-	<div ng-controller="navCtrl">
+<div ng-controller="navCtrl">
 	  <ul class="nav nav-list">
 	  		<!-- <li id="userImage"><img src="/assets/james.jpg" alt=""></li> -->
 	      <li id="newPost" ng-class="navClass('home')"><a href='#/home'><img src="/assets/square32.png" alt=""></a></li>
@@ -22,15 +8,3 @@
         <li id="postText" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/text32.png" alt=""></a></li>
 	  </ul>
 </div>
-
-	
-
-	<div ng-view></div>
-
-  
-  
-  
-  <%= javascript_include_tag "application" %>
-
-</body>
-</html>
