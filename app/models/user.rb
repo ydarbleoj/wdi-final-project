@@ -26,10 +26,34 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :journies
-  has_many :comments, as: :commentable
-  has_many :sent_messages, class_name: 'Message', foreign_key: :sender_id
-  has_many :received_messages, class_name: 'Message', foreign_key: :recipient_id
+  has_many :journeys, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
+  has_many :sent_messages, class_name: 'Message', foreign_key: :sender_id
+  has_many :received_messages, class_name: 'Message',
+            foreign_key: :recipient_id, dependent: :destroy
+
+  has_many :follows, foreign_key: :follower_id, dependent: :destroy
+  has_many :followed_users, through: :follows, source: :followed
+
+  has_many :reverse_follows, foreign_key: :followed_id,
+            class_name: 'Follow', dependent: :destroy
+  has_many :followers, through: :reverse_follows
+
+  def following?(other_user)
+    follows.find_by(followed_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    follows.create!(followed_id: other_user.id)
+  end
+
+  def follow(other_user)
+    follows.create(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    follows.find_by(followed_id: other_user.id).destroy
+  end
 
 end
