@@ -1,4 +1,4 @@
-journeyAppCtrls.controller('newsfeedCtrl', ['$scope', function($scope){
+journeyAppCtrls.controller('NewsFeedCtrl', ['$scope', function($scope){
 
 	$scope.journeys = [
 		{
