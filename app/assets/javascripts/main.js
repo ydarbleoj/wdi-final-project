@@ -1,7 +1,10 @@
 var journeyApp = angular.module('journeyApp', [
 	'journeyRouter', 
 	'journeyAppCtrls'
+	// 'navCtrl'
 	]);
+
+journeyAppCtrls = angular.module('journeyAppCtrls', []);
 
 
 journeyRouter = angular.module("journeyRouter", [
