@@ -39,7 +39,7 @@ body {
   font-size: 100%; }
 
 body {
-  background: white;
+  background: rgba(239,240,242, 1);
   color: #222222;
   padding: 0;
   margin: 0;
