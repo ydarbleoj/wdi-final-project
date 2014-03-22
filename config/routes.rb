@@ -2,7 +2,9 @@ WdiFinalProject::Application.routes.draw do
   devise_for :users
   root to: 'posts#index'
 
-  resources :journies do
+  resources :journeys, except: [:new, :edit] do
     resources :posts
   end
+
+  resources :messages
 end
