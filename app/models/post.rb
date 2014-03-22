@@ -16,6 +16,6 @@
 
 class Post < ActiveRecord::Base
   belongs_to :journey
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   validates :type, presence: true, inclusion: { in: ["photo", "text", "video"] }
 end

@@ -5,4 +5,6 @@ WdiFinalProject::Application.routes.draw do
   resources :journeys do
     resources :posts
   end
+
+  resources :messages
 end
