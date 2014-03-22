@@ -22,67 +22,105 @@
 
 require 'spec_helper'
 
-def dummy_user(*rm_attribute)
-  user = {
-    f_name: "bob",
-    l_name: "smith",
-    email: "bob.smith@gmail.com",
-    username: "bobsmith",
-    password: "password",
-    password_confirmation: "password"}
-
-    unless rm_attribute == []
-      rm_attribute.each { |attrib| user.delete(attrib.to_sym) }
-    end
-
-end
-
 describe User do
 
   it "is valid with a first name, last name, email, username, and password" do
-    user = User.new(dummy_user)
+    user = User.new({
+      f_name: "bob",
+      l_name: "smith",
+      email: "bob.smith@gmail.com",
+      username: "bobsmith",
+      password: "password",
+      password_confirmation: "password"
+    })
     expect(user).to be_valid
   end
 
   it "is valid without a first or last name" do
-    user = User.new(dummy_user("f_name", "l_name"))
+    user = User.new({
+      f_name: "bob",
+      l_name: "smith",
+      email: "bob.smith@gmail.com",
+      username: "bobsmith",
+      password: "password",
+      password_confirmation: "password"
+    })
     expect(user).to be_valid
   end
 
   it "is invalid without an email address" do
-    user = User.new(dummy_user(:email))
+    user = User.new({
+      f_name: "bob",
+      l_name: "smith",
+      username: "bobsmith",
+      password: "password",
+      password_confirmation: "password"
+    })
     expect(user).to have(1).errors_on(:email)
   end
 
   it "is invalid without a username" do
-    user = User.new(dummy_user(:username))
+    user = User.new({
+      f_name: "bob",
+      l_name: "smith",
+      email: "bob.smith@gmail.com",
+      password: "password",
+      password_confirmation: "password"
+    })
     expect(user).to have(1).errors_on(:username)
   end
 
   it "is invalid without a password" do
-    user = User.new(dummy_user(:password, :password_confirmation))
+    user = User.new({
+      f_name: "bob",
+      l_name: "smith",
+      email: "bob.smith@gmail.com",
+      username: "bobsmith"
+    })
     expect(user).to have(1).errors_on(:password)
   end
 
   it "is invalid with a duplicate email address" do
-    saved_user = User.create(dummy_user)
-    new_user = User.new(dummy_user)
+    saved_user = User.create({
+      f_name: "bob",
+      l_name: "smith",
+      email: "bob.smith@gmail.com",
+      username: "bobsmith",
+      password: "password",
+      password_confirmation: "password"
+    })
+    new_user = User.new({
+      f_name: "kate",
+      l_name: "james",
+      email: "bob.smith@gmail.com",
+      username: "katiej",
+      password: "password",
+      password_confirmation: "password"
+    })
+
     expect(new_user).to have(1).errors_on(:email)
   end
 
   it "is invalid with a duplicate username" do
+    saved_user = User.create({
+      f_name: "bob",
+      l_name: "smith",
+      email: "bob.smith@gmail.com",
+      username: "bobsmith",
+      password: "password",
+      password_confirmation: "password"
+    })
+    new_user = User.new({
+      f_name: "kate",
+      l_name: "james",
+      email: "kate.james@gmail.com",
+      username: "bobsmith",
+      password: "password",
+      password_confirmation: "password"
+    })
+
+    expect(new_user).to have(1).errors_on(:username)
 
   end
 
-  it "returns a user's full name as a string"
 end
-
-# def dummy_user
-#   user = {
-#     f_name: "bob#{rand(0..100)}",
-#     l_name: "smith",
-#     email: "mailer#{rand(0..100)}@gmail.com",
-#     username: "username#{rand(0..100)}",
-#     password: "password",
-#     password_confirmation: "password"}
-# end

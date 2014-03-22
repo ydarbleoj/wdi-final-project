@@ -40,6 +40,11 @@ class User < ActiveRecord::Base
             class_name: 'Follow', dependent: :destroy
   has_many :followers, through: :reverse_follows
 
+  accepts_nested_attributes_for :journeys, :comments, :messages
+
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+
+
   def following?(other_user)
     follows.find_by(followed_id: other_user.id)
   end
