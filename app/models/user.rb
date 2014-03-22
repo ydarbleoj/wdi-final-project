@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
             class_name: 'Follow', dependent: :destroy
   has_many :followers, through: :reverse_follows
 
-  accepts_nested_attributes_for :journeys, :comments, :messages
+  accepts_nested_attributes_for :journeys, :comments, :sent_messages, :received_messages
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
