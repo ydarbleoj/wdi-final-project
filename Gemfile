@@ -39,6 +39,7 @@ gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "factory_girl_rails", "~> 4.2.1"
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -49,6 +50,14 @@ group :development, :test do
   gem 'awesome_print'
   gem 'dotenv-rails'
   gem 'guard-rspec'
+end
+
+group :test do
+  gem "faker", "~> 1.1.2"
+  gem "capybara", "~> 2.2.0"
+  gem "database_cleaner", "~> 1.0.1"
+  gem "launchy", "~> 2.3.0"
+  gem "selenium-webdriver", "~> 2.35.1"
 end
 
 group :doc do
@@ -63,6 +72,7 @@ gem "underscore-rails", "~> 1.6.0"
 gem 'foundation-rails'
 
 gem 'ng-rails-csrf'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

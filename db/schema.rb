@@ -71,12 +71,6 @@ ActiveRecord::Schema.define(version: 20140321001020) do
 
   add_index "posts", ["journey_id"], name: "index_posts_on_journey_id", using: :btree
 
-  create_table "tags", force: true do |t|
-    t.string   "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
