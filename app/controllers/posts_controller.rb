@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   def index
+    @journey = Journey.find(params[:journey_id])
+    @posts = @journey.posts
   end
 
   def new
@@ -14,7 +16,7 @@ class PostsController < ApplicationController
 
     post = journey.posts.create(post_params)
 
-    redirect_to journey_post_path(journey, post)
+    redirect_to journey_post_path(journey.id, post.id)
   end
 
   def show
@@ -39,6 +41,8 @@ class PostsController < ApplicationController
     redirect_to journey_post_path(journey, post)
   end
 
-  def delete
+  def destroy
+    Post.find(params[:id]).destroy
+    redirect_to journey_posts_path(params[:journey_id])
   end
 end

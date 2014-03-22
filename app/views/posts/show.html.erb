@@ -1,4 +1,5 @@
 <h1><%= @post.title %></h1>
+<p>delete this post: <%=button_to "delete", journey_post_path(@journey, @post), method: :delete%>
 
 <ul>
   <li>Type: <%= @post.post_type %></li>
