@@ -1,8 +1,22 @@
-class JourneyController < ApplicationController 
+class JourneysController < ApplicationController
 
-  def index 
+  def index
+    # @journeys = Journey.all
+  end
 
-  end 
+  def new
+    @journey = Journey.new
+  end
 
-  
-end 
+  def create
+    new_journey = params.require(:journey).permit(:title, :start_date, :end_date)
+
+    journey = Journey.create(new_journey)
+
+    redirect_to journey
+  end
+
+  def show
+    @journey = Journey.find(params[:id])
+  end
+end

@@ -11,9 +11,11 @@
 #  title      :text
 #  created_at :datetime
 #  updated_at :datetime
+#  type       :string(255)
 #
 
 class Post < ActiveRecord::Base
   belongs_to :journey
   has_many :comments, as: :commentable
+  validates :type, presence: true, inclusion: { in: ["photo", "text", "video"] }
 end

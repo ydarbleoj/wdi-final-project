@@ -3,7 +3,7 @@
 <head>
   <title>WdiFinalProject</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  
+
   <%= csrf_meta_tags %>
 
 </head>
@@ -11,25 +11,25 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-	
-	<div ng-controller="NavCtrl">
+
+	<!-- <div ng-controller="NavCtrl">
 	  <ul class="nav nav-list">
-	  		<!-- <li id="userImage"><img src="/assets/james.jpg" alt=""></li> -->
+	  		<!-- <li id="userImage"><img src="/assets/james.jpg" alt=""></li>
 	      <li id="newPost" ng-class="navClass('home')"><a href='#/home'><img src="/assets/square32.png" alt=""></a></li>
 	      <li id="profile" ng-class="navClass('profile')"><a href='#/profile'><img src="/assets/user32.png" alt=""></a></li>
 	      <li id="postPicture" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/camera32.png" alt=""></a></li>
 	      <li id="postVideo" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/video32.png" alt=""></a></li>
         <li id="postText" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/text32.png" alt=""></a></li>
 	  </ul>
-	</div>
+	</div> -->
 
-	
 
-	<div ng-view></div>
 
-  
-  
-  
+	<!-- <div ng-view></div>
+ -->  <%= yield %>
+
+
+
   <%= javascript_include_tag "application" %>
 
 </body>
