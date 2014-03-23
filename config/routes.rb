@@ -6,5 +6,5 @@ WdiFinalProject::Application.routes.draw do
     resources :posts, except: [:index]
   end
 
-  # resources :messages
+  resources :messages
 end
