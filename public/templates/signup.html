@@ -5,7 +5,7 @@
 
 		  <div ng-class="{error: register_error.errors.username}">
 		  	Username: <br>
-		  	<input type="text" ng-model="register_user.username" />
+		  	<input type="text" ng-model="register_user.username" ng-minlength="2" ng-maxlength="15" />
 		    <div ng-show="register_error.errors.username">
 		      <div ng-repeat="field_error in register_error.errors.username">
 		      	{{field_error}}
