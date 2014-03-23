@@ -18,7 +18,6 @@
 //= require underscore
 //= require main
 //= require foundation/foundation
-//= require ./main.js
 //= require_tree ./angular/controllers
 
 
