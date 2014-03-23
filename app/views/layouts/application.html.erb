@@ -3,7 +3,6 @@
 <head>
   <title>WdiFinalProject</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  
   <%= csrf_meta_tags %>
 
 </head>
@@ -14,15 +13,17 @@
 	
 	<div ng-controller="NavCtrl">
 	  <ul class="nav nav-list">
-	  		<!-- <li id="userImage"><img src="/assets/james.jpg" alt=""></li> -->
 	      <li id="newPost" ng-class="navClass('home')"><a href='#/home'><img src="/assets/square32.png" alt=""></a></li>
 	      <li id="profile" ng-class="navClass('profile')"><a href='#/profile'><img src="/assets/user32.png" alt=""></a></li>
 	      <li id="postPicture" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/camera32.png" alt=""></a></li>
 	      <li id="postVideo" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/video32.png" alt=""></a></li>
         <li id="postText" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/text32.png" alt=""></a></li>
+        <li id="signup" ng-class="navClass('signup')"><a href='#/signup'><img src="/assets/arrow24.png" alt=""></a></li>
+        <li id="login" ng-class="navClass('login')"><a href='#/login'><img src="/assets/login24.png" alt=""></a></li>
+        <li id="logout" ng-class="navClass('logout')"><a href='#/logout'><img src="/assets/logout16.png" alt=""></a></li>
 	  </ul>
 	</div>
-
+	
 	
 
 	<div ng-view></div>
@@ -34,3 +35,4 @@
 
 </body>
 </html>
+<!-- ng-hide="location = '/home'"  -->
