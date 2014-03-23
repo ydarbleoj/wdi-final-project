@@ -1,12 +1,7 @@
 class PostsController < ApplicationController
-  def index
-    @journey = Journey.find(params[:journey_id])
-    @posts = @journey.posts
-  end
-
   def new
     @journey = Journey.find(params[:journey_id])
-    @post = Post.new
+    @post = @journey.posts.build
   end
 
   def create
@@ -26,7 +21,7 @@ class PostsController < ApplicationController
 
   def edit
     @journey = Journey.find(params[:journey_id])
-    @post = Post.find(params[:id])
+    @post = @journey.posts.find(params[:id])
     render :new
   end
 
