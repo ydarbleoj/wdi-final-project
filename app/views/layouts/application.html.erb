@@ -3,7 +3,7 @@
 <head>
   <title>WdiFinalProject</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  
+
   <%= csrf_meta_tags %>
 
 </head>
@@ -11,7 +11,7 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-	
+
 	<div ng-controller="NavCtrl">
 	  <ul class="nav nav-list">
 	  		<!-- <li id="userImage"><img src="/assets/james.jpg" alt=""></li> -->
@@ -23,13 +23,12 @@
 	  </ul>
 	</div>
 
-	
+
 
 	<div ng-view></div>
 
-  
-  
-  
+
+
   <%= javascript_include_tag "application" %>
 
 </body>

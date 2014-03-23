@@ -50,13 +50,14 @@ group :development, :test do
   gem 'awesome_print'
   gem 'dotenv-rails'
   gem 'guard-rspec'
+  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
+  gem "launchy", "~> 2.3.0"
 end
 
 group :test do
   gem "faker", "~> 1.1.2"
   gem "capybara", "~> 2.2.0"
   gem "database_cleaner", "~> 1.0.1"
-  gem "launchy", "~> 2.3.0"
   gem "selenium-webdriver", "~> 2.35.1"
 end
 
