@@ -1,0 +1,10 @@
+<h1><%= @journey.title %></h1>
+<h3><%= @journey.start_date %>
+<%= button_to "delete", journey_path(@journey), method: :delete %>
+<% if @journey.end_date %>
+ to <%= @journey.end_date %>
+<%end%></h3>
+
+<% @journey.posts.each do |post| %>
+  <%= link_to post.title, journey_post_path(@journey, post) %>
+<% end %>

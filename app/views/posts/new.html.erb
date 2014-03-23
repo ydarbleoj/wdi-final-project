@@ -1,44 +1,30 @@
-    <!-- 1. The 'widget' div element will contain the upload widget.
-         The 'player' div element will contain the player IFrame. -->
-    <div id="widget"></div>
-    <div id="player"></div>
+<%= form_for [@journey, @post] do |f| %>
+  <%= f.label :post_type %><br>
+  <%= f.text_field :post_type, placeholder: "text, photo or video" %><br>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+  <div>
+    <h3>If text:</h3>
+    <%= f.label :text, "post content" %><br>
+    <%= f.text_area :text %>
+  </div>
 
-    <script>
-      // 2. Asynchronously load the Upload Widget and Player API code.
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  <div>
+    <h3>If photo</h3>
+    <%=f.label :photo, "photo" %><br>
+    <%#=f.file_field :photo %>
+    <%=f.text_field :photo, placeholder: "photo url"%><br>
+    <%=f.text_field :caption, placeholder: "caption"%><br>
+  </div>
 
-      // 3. Define global variables for the widget and the player.
-      //    The function loads the widget after the JavaScript code
-      //    has downloaded and defines event handlers for callback
-      //    notifications related to the widget.
-      var widget;
-      var player;
-      function onYouTubeIframeAPIReady() {
-        widget = new YT.UploadWidget('widget', {
-          width: 500,
-          events: {
-            'onUploadSuccess': onUploadSuccess,
-            'onProcessingComplete': onProcessingComplete
-          }
-        });
-      }
+  <div>
+    <h3>If video</h3>
+    <%=f.label :video, "video" %><br>
+    <%=f.text_field :video, placeholder: "video url" %><br>
+    <%=f.text_field :caption, placeholder: "caption" %><br>
 
-      // 4. This function is called when a video has been successfully uploaded.
-      function onUploadSuccess(event) {
-        alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
-      }
+  </div>
 
-      // 5. This function is called when a video has been successfully
-      //    processed.
-      function onProcessingComplete(event) {
-        player = new YT.Player('player', {
-          height: 390,
-          width: 640,
-          videoId: event.data.videoId,
-          events: {}
-        });
-      }
-    </script>
+  <%= f.submit %>
+
+<% end %>

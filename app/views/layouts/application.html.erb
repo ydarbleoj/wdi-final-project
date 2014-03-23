@@ -10,7 +10,7 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-	
+
 	<div ng-controller="NavCtrl">
 	  <ul class="nav nav-list">
 	      <li id="newPost" ng-class="navClass('home')"><a href='#/home'><img src="/assets/square32.png" alt=""></a></li>
@@ -23,14 +23,11 @@
         <li id="logout" ng-class="navClass('logout')"><a href='#/logout'><img src="/assets/logout16.png" alt=""></a></li>
 	  </ul>
 	</div>
-	
-	
 
 	<div ng-view></div>
 
-  
-  
-  
+
+
   <%= javascript_include_tag "application" %>
 
 </body>
