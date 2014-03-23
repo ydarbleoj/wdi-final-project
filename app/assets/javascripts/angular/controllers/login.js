@@ -1,4 +1,4 @@
-journeyAppCtrls.controller('LoginCtrl', ['$scope', function($scope, $http){
+journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', function($scope, $http){
 
 	$scope.login_user = {
 		email: null,
@@ -6,50 +6,52 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', function($scope, $http){
 	};
 
 	$scope.login_error = {
-		message: null, 
+		message: null,
 		errors: {}
 	};
 
 	$scope.register_user = {
-		email: null, 
-		password: null, 
+		username: null,
+		email: null,
+		password: null,
 		password_confirmation: null
 	};
 
 	$scope.register_error = {
-		email: null, 
+		username: null,
+		email: null,
 		errors: {}
 	};
 
-	// when we call submit we are first reseting any messages from a previous all. 
+	// when we call submit we are first reseting any messages from a previous all.
 
 	$scope.login = function() {
 		$scope.submit({
-			method: 'POST', 
+			method: 'POST',
 			url: '../users/sign_in.json',
-			data: { 
-				user: { email: $scope.login_user.email, 
+			data: {
+				user: { email: $scope.login_user.email,
 				password: $scope.login_user.password
 				}
-			}, 
-			success_message: "You have been logged in.", 
+			},
+			success_message: "You have been logged in.",
 			error_entity: $scope.login_error
 		});
 	};
 
 	$scope.logout = function() {
 		$scope.submit({
-			method: 'DELETE', 
-			url: '../users/sign_out.json', 
-			success_message: 'You have been logged out.', 
+			method: 'DELETE',
+			url: '../users/sign_out.json',
+			success_message: 'You have been logged out.',
 			error_entity: $scope.login_error
 		});
 	};
 
 	$scope.password_reset = function() {
 		$scope.submit({
-			method: 'POST', 
-			url: '../users/password.json', 
+			method: 'POST',
+			url: '../users/password.json',
 			data: {
 				user: { email: $scope.login_user.email
 				}
@@ -61,10 +63,10 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', function($scope, $http){
 
 	$scope.unlock = function() {
 		$scope.submit({
-			method: 'POST', 
-			url: '../users/unlock.json', 
+			method: 'POST',
+			url: '../users/unlock.json',
 			data: {
-				user: { email: $scope.login_user.email 
+				user: { email: $scope.login_user.email
 				}
 			},
 			success_message: "An unlock e-mail has been sent to your e-mail address.",
@@ -74,12 +76,12 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', function($scope, $http){
 
 	$scope.confirm = function() {
 		$scope.submit({
-			method: 'POST', 
-			url: '../users/confirmation.json', 
+			method: 'POST',
+			url: '../users/confirmation.json',
 			data: {
-				user: { email: $scope.login_user.email 
+				user: { email: $scope.login_user.email
 				}
-			}, 
+			},
 			success_message: "A new confirmation link has been sent to your e-mail address.",
 			error_entity: $scope.login_error
 		});
@@ -87,14 +89,15 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', function($scope, $http){
 
 	$scope.register = function() {
 		$scope.submit({
-			method: 'POST', 
-			url: '../users.json', 
-			data: { 
-				user: { email: $scope.register_user.email, 
-								password: $scope.register_user.password, 
+			method: 'POST',
+			url: '../users.json',
+			data: {
+				user: { username: $scope.register_user.username,
+								email: $scope.register_user.email,
+								password: $scope.register_user.password,
 								password_confirmation: $scope.register_user.password_confirmation
 				}
-			}, 
+			},
 			success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail.",
 			error_entity: $scope.register_error
 		});
@@ -102,16 +105,16 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', function($scope, $http){
 
 	$scope.change_password = function() {
 		$scope.submit({
-			method: "POST", 
-			url: '../users/password.json', 
-			data: { 
-				user: { email: $scope.register_user.email, 
-					password: $scope.register_user.password, 
+			method: "POST",
+			url: '../users/password.json',
+			data: {
+				user: { email: $scope.register_user.email,
+					password: $scope.register_user.password,
 					password_confirmation: $scope.register_user.password_confirmation
 				}
-			}, 
-		  success_message: "Your password has been updated.",
-     error_entity: $scope.register_error
+			},
+			success_message: "Your password has been updated.",
+			error_entity: $scope.register_error
 		});
 	};
 
@@ -119,8 +122,8 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', function($scope, $http){
 		$scope.reset_messages();
 
 		$http({
-			method: parameters.method, 
-			url: parameters.url, 
+			method: parameters.method,
+			url: parameters.url,
 			data: parameters.data
 		})
 		.success(function(data, status){

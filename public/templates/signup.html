@@ -1,12 +1,23 @@
 <div class="container">
 	<div class="row">
-	<div class="small-4 small-centered medium-8 medium-centered large-6 large-centered columns">	
+	<div class="small-4 small-centered medium-8 medium-centered large-6 large-centered columns">
 		<div class="body">
+
+		  <div ng-class="{error: register_error.errors.username}">
+		  	Username: <br>
+		  	<input type="text" ng-model="register_user.username" />
+		    <div ng-show="register_error.errors.username">
+		      <div ng-repeat="field_error in register_error.errors.username">
+		      	{{field_error}}
+		      </div>
+		    </div>
+		  </div>
+
 		  <div ng-class="{error: register_error.errors.email}">
 		  	Email: <br>
 		  	<input ng-model="register_user.email" />
 		    <div ng-show="register_error.errors.email">
-		      <div ng-repeat="field_error in register_error.errors.email">								
+		      <div ng-repeat="field_error in register_error.errors.email">
 		      	{{field_error}}
 		      </div>
 		    </div>
@@ -16,7 +27,7 @@
 		  	Password: <br>
 		  	<input type="password" ng-model="register_user.password" />
 		    <div ng-show="register_error.errors.password">
-		      <div ng-repeat="field_error in register_error.errors.password">							
+		      <div ng-repeat="field_error in register_error.errors.password">
 		      	{{field_error}}
 		      </div>
 		    </div>
