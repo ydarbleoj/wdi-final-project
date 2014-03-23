@@ -1,9 +1,11 @@
 var journeyApp = angular.module('journeyApp', [
-	'journeyRouter', 
+	'journeyRouter',
 	'journeyAppCtrls'
 	]);
 
-journeyAppCtrls = angular.module('journeyAppCtrls', []);
+var journeyAppCtrls = angular.module('journeyAppCtrls', []);
+
+
 
 
 journeyRouter = angular.module("journeyRouter", [
@@ -23,6 +25,14 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 		.when('/profile', {
 			templateUrl: '../templates/profile.html', 
 			controller: 'ProfileCtrl'
+		})
+		.when('/login', {
+			templateUrl: '../templates/login.html', 
+			controller: 'LoginCtrl'
+		})
+		.when('/signup', {
+			templateUrl: '../templates/signup.html', 
+			controller: 'SignupFormCtrl'
 		})
 		.otherwise({
 			templateUrl: '../templates/nav.html',

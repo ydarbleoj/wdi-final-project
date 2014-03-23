@@ -3,4 +3,7 @@
         var currentRoute = $location.path().substring(1) || 'home';
         return page === currentRoute ? 'active' : '';
     };      
+
+     //$scope.showPageHero = $location.path() === '/';
+
 }]);

@@ -1,0 +1,10 @@
+<h1><%= @post.title %></h1>
+<p>delete this post: <%=button_to "delete", journey_post_path(@journey, @post), method: :delete%>
+
+<ul>
+  <li>Type: <%= @post.post_type %></li>
+  <li>If text: <%= @post.text %></li>
+  <li>If photo: <%= @post.photo%></li>
+  <li>If video: <%= @post.video%></li>
+  <li>If not text: <%= @post.caption %></li>
+</ul>
