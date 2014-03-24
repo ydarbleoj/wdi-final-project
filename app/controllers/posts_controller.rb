@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  respond_to :json
+
   def new
     @journey = Journey.find(params[:journey_id])
     @post = @journey.posts.build
@@ -9,14 +11,15 @@ class PostsController < ApplicationController
     post_params = params.require(:post).permit(
       :post_type, :title, :text, :photo, :video, :caption)
 
-    post = journey.posts.create(post_params)
+    respond_with journey.posts.create(post_params)
 
-    redirect_to journey_post_path(journey.id, post.id)
   end
 
   def show
     @journey = Journey.find(params[:journey_id])
     @post = Post.find(params[:id])
+
+    respond_with journey: @journey, post: @post
   end
 
   def edit
@@ -31,13 +34,13 @@ class PostsController < ApplicationController
     updated_params = params.require(:post).permit(
       :post_type, :title, :text, :photo, :video, :caption)
 
-    post.update_attributes(updated_params)
+    respond_with post.update_attributes(updated_params)
 
-    redirect_to journey_post_path(journey, post)
+    # redirect_to journey_post_path(journey, post)
   end
 
   def destroy
-    Post.find(params[:id]).destroy
-    redirect_to journey_posts_path(params[:journey_id])
+    respond_with Post.find(params[:id]).destroy
+    # redirect_to journey_posts_path(params[:journey_id])
   end
 end

@@ -38,6 +38,10 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 			templateUrl: '../templates/signup.html',
 			controller: 'LoginCtrl'
 		})
+		.when('/new-post', {
+			templateUrl: '../templates/new_post.html',
+			controller: 'PostCtrl'
+		})
 		.otherwise({
 			templateUrl: '../templates/nav.html',
 			controller: 'NavCtrl'
