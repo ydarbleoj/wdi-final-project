@@ -30,6 +30,10 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 			templateUrl: '../templates/login.html',
 			controller: 'LoginCtrl'
 		})
+		.when('/logout', {
+			templateUrl: '../templates/index.html',
+			controller: 'LoginCtrl'
+		})
 		.when('/signup', {
 			templateUrl: '../templates/signup.html',
 			controller: 'LoginCtrl'
@@ -43,5 +47,4 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 			controller: 'NavCtrl'
 		});
 }]);
-
 

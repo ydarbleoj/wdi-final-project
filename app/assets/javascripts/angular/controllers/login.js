@@ -1,4 +1,4 @@
-journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', function($scope, $http){
+journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
 
 	$scope.login_user = {
 		email: null,
@@ -23,7 +23,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', function($scope, $ht
 		errors: {}
 	};
 
-	// when we call submit we are first reseting any messages from a previous all.
+	// when we call submit we are first reseting any messages from a previous call.
 
 	$scope.login = function() {
 		$scope.submit({
@@ -101,6 +101,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', function($scope, $ht
 			success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail.",
 			error_entity: $scope.register_error
 		});
+		$location.href = "#/home";
 	};
 
 	$scope.change_password = function() {
