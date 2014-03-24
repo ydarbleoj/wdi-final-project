@@ -2,31 +2,44 @@
   <div class="row">
 
     <div ng-controller="PostCtrl">
+        <div ng>
+          <h3 ng-click="getUserJourneys()">journey (click me)</h3>
+          <select
+            ng-model="currentJourneyId"
+            ng-options="journey as journey.title for journey in journeys">
+            <option>--</option>
+          </select>
+          {{newPost.post_type}}
+        </div>
       <form>
 
         <label for="post_type">Post Type</label><br>
-        <input placeholder="text, photo or video" type="text" ng-model="newPost.post_type"><br>
+        <select ng-model="newPost.post_type">
+          <option value="text">Text</option>
+          <option value="photo">Photo</option>
+          <option value="video">Video</option>
+        </select>
         <label for="title">Title</label><br>
         <input type="text" ng-model="newPost.title">
 
-        <div>
+        <div ng-if="newPost.post_type === 'text'">
           <h3>If text:</h3>
           <textarea ng-model="newPost.text" placeholder="type some shit"></textarea>
         </div>
 
-        <div>
+        <div ng-if="newPost.post_type === 'photo'">
           <h3>If photo</h3>
           <input placeholder="photo url" type="text" ng-model="newPost.photo">
           <input placeholder="caption" type="text" ng-model="newPost.caption">
         </div>
 
-        <div>
+        <div ng-if="newPost.post_type === 'video'">
           <h3>If video</h3>
           <input placeholder="video url" type="text" ng-model="newPost.video">
           <input placeholder="caption" type="text" ng-model="newPost.caption">
         </div>
 
-        <button ng-click="createPost()">Create Post</button>
+        <button ng-click="createPost(currentJourneyId)">Create Post</button>
 
       </form>
     </div>
