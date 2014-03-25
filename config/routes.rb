@@ -4,7 +4,7 @@ WdiFinalProject::Application.routes.draw do
   root to: 'welcome#index'
 
   resources :journeys do
-    resources :posts, except: [:index]
+    resources :posts
   end
 
   resources :messages

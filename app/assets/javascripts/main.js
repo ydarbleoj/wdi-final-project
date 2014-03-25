@@ -42,6 +42,10 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 			templateUrl: '../templates/new_post.html',
 			controller: 'PostCtrl'
 		})
+		.when('/update-journey', {
+			templateUrl: '../templates/update_journey.html',
+			controller: 'PostCtrl'
+		})
 		.otherwise({
 			templateUrl: '../templates/nav.html',
 			controller: 'NavCtrl'
