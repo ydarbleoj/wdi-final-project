@@ -9,11 +9,20 @@
             ng-options="journey as journey.title for journey in journeys">
           </select>
         </div>
+        <div ng-if="currentJourney.title === 'Create a New Journey' && !currentJourney.id">
           <input
             placeholder="name your journey"
             ng-model="newJourney.title"
-            ng-if="currentJourney.title === 'Create a New Journey' && !currentJourney.id"
             type="text">
+          <input
+            placeholder="pick a start date"
+            ng-model="newJourney.start_date"
+            type="date">
+          <input
+            placeholder="pick an end date"
+            ng-model="newJourney.end_date"
+            type="date">
+        </div>
       <form>
 
         <label for="post_type">Post Type</label><br>

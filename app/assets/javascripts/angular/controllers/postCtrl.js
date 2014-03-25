@@ -38,8 +38,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
       data: {
         journey: {
           title: newJourney.title,
-          // start_date: currentJourney.start_date,
-          // end_date: currentJourney.end_date
+          start_date: newJourney.start_date,
+          end_date: newJourney.end_date
         }
       }
     }).success(function(response){
