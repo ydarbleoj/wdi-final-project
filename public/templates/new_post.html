@@ -2,13 +2,26 @@
   <div class="row">
 
     <div ng-controller="PostCtrl">
-        <div ng-click="getUserJourneys()">
+        <div ng-click="getUserJourneys(true)">
           <h3>journey (click me)</h3>
           <select
             ng-model="currentJourney"
             ng-options="journey as journey.title for journey in journeys">
-            <option>--</option>
           </select>
+        </div>
+        <div ng-if="currentJourney.title === 'Create a New Journey' && !currentJourney.id">
+          <input
+            placeholder="name your journey"
+            ng-model="newJourney.title"
+            type="text">
+          <input
+            placeholder="pick a start date"
+            ng-model="newJourney.start_date"
+            type="date">
+          <input
+            placeholder="pick an end date"
+            ng-model="newJourney.end_date"
+            type="date">
         </div>
       <form>
 
@@ -40,7 +53,10 @@
           <input placeholder="caption" type="text" ng-model="newPost.caption">
         </div>
 
-        <button ng-if="newPost.post_type && currentJourney" ng-click="createPost(currentJourney)">Create Post</button>
+        <div ng-if="newPost.post_type && currentJourney">
+          <button ng-if="currentJourney.id" ng-click="createPost(currentJourney.id)">Create Post</button>
+          <button ng-if="currentJourney.id === undefined" ng-click="createJourney(newJourney)"> Create Journey + Post</button>
+        </div>
 
       </form>
     </div>
