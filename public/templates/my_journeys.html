@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+
+    <div ng-controller="PostCtrl">
+      <div ng-click="getUserJourneys()">
+        <h3>choose a journey to update:</h3>
+      </div>
+        <select
+          ng-model="currentJourney"
+          ng-options="journey as journey.title for journey in journeys">
+        </select>
+
+      <div ng-if="currentJourney.id">
+        <input type="text" ng-model="currentJourney.title">
+        <input type="date" ng-model="currentJourney.start_date">
+        <input type="date" ng-model="currentJourney.end_date">
+        <button ng-click="updateJourney(currentJourney)">Update journey</button>
+        <button ng-click="deleteJourney(currentJourney.id)">Delete journey</button>
+      </div>
+
+      <button ng-click="getPosts(currentJourney)">load posts</button>
+      <div ng-if="currentJourney.id">
+        <ul ng-repeat="post in currentJourney.posts">
+          <li>Title: {{post.title}}</li>
+          <li>Type: {{post.post_type}}</li>
+          <li ng-if="post.post_type === 'text'">Body: {{post.text}}</li>
+          <li ng-if="post.post_type === 'video'">Video url: {{post.video}}</li>
+          <li ng-if="post.post_type === 'photo'">Photo url: {{post.photo}}</li>
+          <li ng-if="post.post_type !== 'text'">{{post.caption}}</li>
+          <li> <button ng-if="!editablePost" ng-click="editPost()">edit this post</button></li>
+          <li> <button ng-if="editablePost" ng-click="updatePost(currentJourney.id, post)">submit</button></li>
+          <li> ------ </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>

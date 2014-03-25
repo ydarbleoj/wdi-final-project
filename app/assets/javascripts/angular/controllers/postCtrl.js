@@ -5,6 +5,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   $scope.journeys = {};
   $scope.newJourney = {};
   $scope.currentJourney = {};
+  $scope.editablePost = false;
 
   $scope.getUserJourneys = function(addNew){
     $http({
@@ -34,6 +35,20 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
         post: $scope.newPost,
         journey_id: journeyId
       }
+    });
+  };
+
+  $scope.editPost = function(){
+    $scope.editablePost = true;
+  };
+
+  $scope.updatePost = function(journeyId, post){
+    $http({
+      method: 'PUT',
+      url: '/journeys/' + journeyId + '/posts/' + postId + '.json',
+      data: { post: post }
+    }).success(function(response){
+      $scope.editablePost = false;
     });
   };
 
