@@ -61,4 +61,11 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
+  $scope.deleteJourney = function(journeyId){
+    $http({
+      method: 'DELETE',
+      url: '/journeys/'+journeyId
+    });
+  };
+
 }]);
