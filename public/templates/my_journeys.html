@@ -21,14 +21,34 @@
       <button ng-click="getPosts(currentJourney)">load posts</button>
       <div ng-if="currentJourney.id">
         <ul ng-repeat="post in currentJourney.posts">
-          <li>Title: {{post.title}}</li>
           <li>Type: {{post.post_type}}</li>
-          <li ng-if="post.post_type === 'text'">Body: {{post.text}}</li>
-          <li ng-if="post.post_type === 'video'">Video url: {{post.video}}</li>
-          <li ng-if="post.post_type === 'photo'">Photo url: {{post.photo}}</li>
-          <li ng-if="post.post_type !== 'text'">{{post.caption}}</li>
+          <li>Title:
+            <span ng-if="!editablePost">{{post.title}}</span>
+            <input ng-if="editablePost" ng-model="post.title" type="text">
+          </li>
+          <li ng-if="post.post_type === 'text'">
+            Body:
+            <span ng-if="!editablePost">{{post.text}}</span>
+            <textarea ng-if="editablePost" ng-model="post.text"></textarea>
+          </li>
+          <li ng-if="post.post_type === 'video'">
+            Video url:
+            <span ng-if="!editablePost">{{post.video}}</span>
+            <input ng-if="editablePost" ng-model="post.video" type="text">
+          </li>
+          <li ng-if="post.post_type === 'photo'">
+            Photo url:
+            <span ng-if="!editablePost">{{post.photo}}</span>
+            <input ng-if="editablePost" ng-model="post.photo" type="text">
+          </li>
+          <li ng-if="post.post_type !== 'text'">
+            Caption:
+            <span ng-if="!editablePost">{{post.caption}}</span>
+            <input ng-if="editablePost" ng-model="post.caption" type="text">
+          </li>
           <li> <button ng-if="!editablePost" ng-click="editPost()">edit this post</button></li>
           <li> <button ng-if="editablePost" ng-click="updatePost(currentJourney.id, post)">submit</button></li>
+          <li> <button ng-if="editablePost" ng-click="deletePost(post)">delete</button></li>
           <li> ------ </li>
         </ul>
       </div>
