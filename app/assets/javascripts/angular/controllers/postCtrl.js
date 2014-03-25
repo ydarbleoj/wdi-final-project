@@ -101,6 +101,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
+  // given a journey with an existing id, updates journey with passed in data
   $scope.updateJourney = function(journey){
     $http({
       method: 'PUT',
@@ -109,6 +110,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
+  // given a journey, deletes it from db
   $scope.deleteJourney = function(journeyId){
     $http({
       method: 'DELETE',
@@ -116,6 +118,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
+  // takes the passed in journey or post out of edit mode
   $scope.cancelEdit = function(object){
     object.editable = false;
   };
