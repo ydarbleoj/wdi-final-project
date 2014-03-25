@@ -53,6 +53,8 @@
 
           <div ng-if="newPost.post_type === 'video' && currentJourney">
             <h3>If video</h3>
+            <div id="widget"></div>
+            <div id="player"></div>
             <input placeholder="video url" type="text" ng-model="newPost.video">
             <input placeholder="caption" type="text" ng-model="newPost.caption">
           </div>

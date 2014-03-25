@@ -55,10 +55,20 @@
             <input ng-if="post.editable" ng-model="post.caption" type="text">
           </li>
           <li>
-            <button ng-if="!post.editable" ng-click="edit(post)">edit this post</button>
-            <button ng-if="post.editable" ng-click="updatePost(currentJourney.id, post)">submit</button>
-            <button ng-if="post.editable" ng-click="deletePost(currentJourney.id, post)">delete</button>
-            <button ng-if="post.editable" ng-click="cancelEdit(post)">cancel</button>
+            <button ng-if="!post.editable" ng-click="edit(post)">
+              edit this post
+            </button>
+            <button ng-if="post.editable"
+                    ng-click="updatePost(currentJourney.id, post)">
+              submit
+            </button>
+            <button ng-if="post.editable"
+                    ng-click="deletePost(currentJourney.id, post)">
+              delete
+            </button>
+            <button ng-if="post.editable" ng-click="cancelEdit(post)">
+              cancel
+            </button>
           </li>
           <li> ------ </li>
         </ul>
