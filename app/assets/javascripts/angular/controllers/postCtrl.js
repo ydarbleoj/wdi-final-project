@@ -6,6 +6,24 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   $scope.newJourney = {};
   $scope.currentJourney = {};
 
+  // $scope.getCrudUrl = function(method, journey, post){
+  //   if (method === 'create' || method === 'read'){
+  //     if (post.id){
+  //       return '/journeys/' + journey.id + '/posts.json';
+  //     } else {
+  //       return '/journeys.json';
+  //     }
+  //   } else if (method === 'update' || method === 'read') {
+  //     if (post.id) {
+  //       return '/journeys/' + journey.id + '/posts/' + post.id + '.json';
+  //     } else {
+  //       return '/journeys/' + journey.id + '.json';
+  //     }
+  //   }
+  // };
+
+  // returns JSON object of user's journeys. pass in true to include an empty
+  // journey w/ title 'Create a New Journey' - for populating a dropdown list.
   $scope.getUserJourneys = function(addNew){
     $http({
       method: 'GET',
@@ -18,6 +36,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
+  // adds journey.posts array to a journey object
   $scope.getPosts = function(journey){
     $.get('/journeys/' + journey.id + '/posts.json')
       .success(function(response){
@@ -26,21 +45,25 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
-  $scope.createPost = function(journeyId){
+  // creates a post given a journey id and an unsaved post object
+  $scope.createPost = function(journeyId, post){
     $http({
       method: 'POST',
       url: '/journeys/' + journeyId + '/posts.json',
       data: {
-        post: $scope.newPost,
+        post: post,
         journey_id: journeyId
       }
     });
   };
 
+  // sets passed in journey or post to edit mode
   $scope.edit = function(object){
     object.editable = true;
   };
 
+  // given journey id and an updated post, persists post changes
+  // and takes it out of edit mode
   $scope.updatePost = function(journeyId, post){
     $http({
       method: 'PUT',
@@ -51,6 +74,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
+  // given a post and its parent journey id, deletes post
   $scope.deletePost = function(journeyId, post){
     post.editable = false;
     $http({
@@ -59,7 +83,9 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
-  $scope.createJourney = function(newJourney){
+  // given a new journey & post, saves journey and then saves associated post
+  // with new journey id
+  $scope.createJourney = function(newJourney, newPost){
     $http({
       method: 'POST',
       url: '/journeys.json',
@@ -71,7 +97,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
         }
       }
     }).success(function(response){
-      $scope.createPost(response.id);
+      $scope.createPost(response.id, newPost);
     });
   };
 

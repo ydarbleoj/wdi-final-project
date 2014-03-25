@@ -39,7 +39,7 @@
             <label for="title">Title</label><br>
             <input type="text" ng-model="newPost.title">
           </div>
-      
+
           <div ng-if="newPost.post_type === 'text' && currentJourney">
             <h3>If text:</h3>
             <textarea ng-model="newPost.text" placeholder="type some shit"></textarea>
@@ -58,8 +58,14 @@
           </div>
         </div>
           <div ng-if="newPost.post_type && currentJourney">
-            <button  ng-if="currentJourney.id" ng-click="createPost(currentJourney.id)">Create Post</button>
-            <button class="create-post" ng-if="currentJourney.id === undefined" ng-click="createJourney(newJourney)"><span class="arrow"><img src="/assets/blackarrow24.png" alt=""></span>   Start Today</button>
+            <button  ng-if="currentJourney.id" ng-click="createPost(currentJourney.id, newPost)">Create Post</button>
+            <button
+              class="create-post"
+              ng-if="currentJourney.id === undefined"
+              ng-click="createJourney(newJourney, newPost)">
+              <span class="arrow"><img src="/assets/blackarrow24.png" alt=""></span>
+              Start Today
+            </button>
           </div>
         </form>
       </div>
