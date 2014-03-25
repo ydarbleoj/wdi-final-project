@@ -18,17 +18,11 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
-  // $scope.setCurrentJourney = function(journey){
-  //   $scope.currentJourney = journey;
-  //   $scope.getPosts(journey.id, $scope.currentJourney);
-  // };
-
   $scope.getPosts = function(journey){
-    $http({
-      method: 'GET',
-      url: '/journeys/' + journey.id + '/posts.json'
-    }).success(function(response){
+    $.get('/journeys/' + journey.id + '/posts.json')
+      .success(function(response){
       journey.posts = response;
+      return journey;
     });
   };
 
@@ -56,6 +50,14 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
       }
     }).success(function(response){
       $scope.createPost(response.id);
+    });
+  };
+
+  $scope.updateJourney = function(journey){
+    $http({
+      method: 'PUT',
+      url: '/journeys/'+journey.id+'.json',
+      data: { journey: journey }
     });
   };
 

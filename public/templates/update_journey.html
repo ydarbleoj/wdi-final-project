@@ -14,11 +14,12 @@
         <input type="text" ng-model="currentJourney.title">
         <input type="date" ng-model="currentJourney.start_date">
         <input type="date" ng-model="currentJourney.end_date">
+        <button ng-click="updateJourney(currentJourney)">Update journey</button>
       </div>
 
       <ul ng-if="currentJourney.id">
-        <li ng-click="getPosts(currentJourney)"> load posts on click </li>
-        <li ng-repeat="post in currentJourney.posts"></li>
+        <li ng-click="getPosts(currentJourney)"> load posts on click - not working </li>
+        <li ng-repeat="post.title in currentJourney.posts"></li>
       </ul>
 
     </div>
