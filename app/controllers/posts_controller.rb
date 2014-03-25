@@ -1,15 +1,12 @@
 class PostsController < ApplicationController
   respond_to :json
 
-<<<<<<< HEAD
-=======
   def index
     journey = Journey.find(params[:journey_id])
 
     respond_with journey.posts
   end
 
->>>>>>> e0a47c05b276d57ca235c91c72439576fe619a0b
   def new
     @journey = Journey.find(params[:journey_id])
     @post = @journey.posts.build

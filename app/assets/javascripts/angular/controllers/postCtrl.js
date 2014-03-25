@@ -37,6 +37,28 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     });
   };
 
+  $scope.edit = function(object){
+    object.editable = true;
+  };
+
+  $scope.updatePost = function(journeyId, post){
+    $http({
+      method: 'PUT',
+      url: '/journeys/' + journeyId + '/posts/' + post.id + '.json',
+      data: { post: post }
+    }).success(function(response){
+      post.editable = false;
+    });
+  };
+
+  $scope.deletePost = function(journeyId, post){
+    post.editable = false;
+    $http({
+      method: 'DELETE',
+      url: '/journeys/' + journeyId + '/posts/' + post.id + '.json',
+    });
+  };
+
   $scope.createJourney = function(newJourney){
     $http({
       method: 'POST',
@@ -59,6 +81,17 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
       url: '/journeys/'+journey.id+'.json',
       data: { journey: journey }
     });
+  };
+
+  $scope.deleteJourney = function(journeyId){
+    $http({
+      method: 'DELETE',
+      url: '/journeys/'+journeyId
+    });
+  };
+
+  $scope.cancelEdit = function(object){
+    object.editable = false;
   };
 
 }]);
