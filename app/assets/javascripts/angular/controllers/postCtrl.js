@@ -12,21 +12,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
       url: '/journeys.json'
     }).success(function(response){
       $scope.journeys = response.current_user_journeys;
-    });
-  };
-
-  $scope.setCurrentJourney = function(journey){
-    $scope.currentJourney = journey;
-  };
-
-  $scope.createPost = function(journey){
-    $http({
-      method: 'POST',
-      url: '/journeys/' + journey.id + '/posts.json',
-      data: {
-        post: $scope.newPost,
-        journey_id: journey.id
-      }
       if(addNew) {
         $scope.journeys.push({ title: "Create a New Journey" });
       }
