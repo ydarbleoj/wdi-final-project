@@ -26,6 +26,7 @@
       </div>
 
       <button ng-click="getPosts(currentJourney)">load posts</button>
+      <a href='/#/new-post'><button>new post</button></a>
       <div ng-if="currentJourney.id">
         <ul ng-repeat="post in currentJourney.posts">
           <li>Type: {{post.post_type}}</li>
