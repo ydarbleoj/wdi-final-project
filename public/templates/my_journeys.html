@@ -23,32 +23,32 @@
         <ul ng-repeat="post in currentJourney.posts">
           <li>Type: {{post.post_type}}</li>
           <li>Title:
-            <span ng-if="!editablePost">{{post.title}}</span>
-            <input ng-if="editablePost" ng-model="post.title" type="text">
+            <span ng-if="!post.editablePost">{{post.title}}</span>
+            <input ng-if="post.editablePost" ng-model="post.title" type="text">
           </li>
           <li ng-if="post.post_type === 'text'">
             Body:
-            <span ng-if="!editablePost">{{post.text}}</span>
-            <textarea ng-if="editablePost" ng-model="post.text"></textarea>
+            <span ng-if="!post.editablePost">{{post.text}}</span>
+            <textarea ng-if="post.editablePost" ng-model="post.text"></textarea>
           </li>
           <li ng-if="post.post_type === 'video'">
             Video url:
-            <span ng-if="!editablePost">{{post.video}}</span>
-            <input ng-if="editablePost" ng-model="post.video" type="text">
+            <span ng-if="!post.editablePost">{{post.video}}</span>
+            <input ng-if="post.editablePost" ng-model="post.video" type="text">
           </li>
           <li ng-if="post.post_type === 'photo'">
             Photo url:
-            <span ng-if="!editablePost">{{post.photo}}</span>
-            <input ng-if="editablePost" ng-model="post.photo" type="text">
+            <span ng-if="!post.editablePost">{{post.photo}}</span>
+            <input ng-if="post.editablePost" ng-model="post.photo" type="text">
           </li>
           <li ng-if="post.post_type !== 'text'">
             Caption:
-            <span ng-if="!editablePost">{{post.caption}}</span>
-            <input ng-if="editablePost" ng-model="post.caption" type="text">
+            <span ng-if="!post.editablePost">{{post.caption}}</span>
+            <input ng-if="post.editablePost" ng-model="post.caption" type="text">
           </li>
-          <li> <button ng-if="!editablePost" ng-click="editPost()">edit this post</button></li>
-          <li> <button ng-if="editablePost" ng-click="updatePost(currentJourney.id, post)">submit</button></li>
-          <li> <button ng-if="editablePost" ng-click="deletePost(post)">delete</button></li>
+          <li> <button ng-if="!post.editablePost" ng-click="editPost(post)">edit this post</button></li>
+          <li> <button ng-if="post.editablePost" ng-click="updatePost(currentJourney.id, post)">submit</button></li>
+          <li> <button ng-if="post.editablePost" ng-click="deletePost(currentJourney.id, post)">delete</button></li>
           <li> ------ </li>
         </ul>
       </div>
