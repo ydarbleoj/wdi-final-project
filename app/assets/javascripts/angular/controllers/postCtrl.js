@@ -6,18 +6,30 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   $scope.newJourney = {};
   $scope.currentJourney = {};
 
-  $scope.getUserJourneys = function(){
+  $scope.getUserJourneys = function(addNew){
     $http({
       method: 'GET',
       url: '/journeys.json'
     }).success(function(response){
       $scope.journeys = response.current_user_journeys;
-      $scope.journeys.push({ title: "Create a New Journey" });
+      if(addNew) {
+        $scope.journeys.push({ title: "Create a New Journey" });
+      }
     });
   };
 
-  $scope.setCurrentJourney = function(journey){
-    $scope.currentJourney = journey;
+  // $scope.setCurrentJourney = function(journey){
+  //   $scope.currentJourney = journey;
+  //   $scope.getPosts(journey.id, $scope.currentJourney);
+  // };
+
+  $scope.getPosts = function(journey){
+    $http({
+      method: 'GET',
+      url: '/journeys/' + journey.id + '/posts.json'
+    }).success(function(response){
+      journey.posts = response;
+    });
   };
 
   $scope.createPost = function(journeyId){

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+
+    <div ng-controller="PostCtrl">
+      <div ng-click="getUserJourneys()">
+        <h3>choose a journey to update:</h3>
+      </div>
+        <select
+          ng-model="currentJourney"
+          ng-options="journey as journey.title for journey in journeys">
+        </select>
+
+      <div ng-if="currentJourney.id">
+        <input type="text" ng-model="currentJourney.title">
+        <input type="date" ng-model="currentJourney.start_date">
+        <input type="date" ng-model="currentJourney.end_date">
+      </div>
+
+      <ul ng-if="currentJourney.id">
+        <li ng-click="getPosts(currentJourney)"> load posts on click </li>
+        <li ng-repeat="post in currentJourney.posts"></li>
+      </ul>
+
+    </div>
+  </div>
+</div>
