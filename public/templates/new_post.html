@@ -7,9 +7,13 @@
           <select
             ng-model="currentJourney"
             ng-options="journey as journey.title for journey in journeys">
-            <option>--</option>
           </select>
         </div>
+          <input
+            placeholder="name your journey"
+            ng-model="newJourney.title"
+            ng-if="currentJourney.title === 'Create a New Journey' && !currentJourney.id"
+            type="text">
       <form>
 
         <label for="post_type">Post Type</label><br>
@@ -40,7 +44,10 @@
           <input placeholder="caption" type="text" ng-model="newPost.caption">
         </div>
 
-        <button ng-if="newPost.post_type && currentJourney" ng-click="createPost(currentJourney)">Create Post</button>
+        <div ng-if="newPost.post_type && currentJourney">
+          <button ng-if="currentJourney.id" ng-click="createPost(currentJourney.id)">Create Post</button>
+          <button ng-if="currentJourney.id === undefined" ng-click="createJourney(newJourney)"> Create Journey + Post</button>
+        </div>
 
       </form>
     </div>

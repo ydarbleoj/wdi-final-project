@@ -3,7 +3,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
 
   $scope.newPost  = {};
   $scope.journeys = {};
-  $scope.currentJourney = '';
+  $scope.newJourney = {};
+  $scope.currentJourney = {};
 
   $scope.getUserJourneys = function(){
     $http({
@@ -11,6 +12,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
       url: '/journeys.json'
     }).success(function(response){
       $scope.journeys = response.current_user_journeys;
+      $scope.journeys.push({ title: "Create a New Journey" });
     });
   };
 
@@ -18,14 +20,30 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     $scope.currentJourney = journey;
   };
 
-  $scope.createPost = function(journey){
+  $scope.createPost = function(journeyId){
     $http({
       method: 'POST',
-      url: '/journeys/' + journey.id + '/posts.json',
+      url: '/journeys/' + journeyId + '/posts.json',
       data: {
         post: $scope.newPost,
-        journey_id: journey.id
+        journey_id: journeyId
       }
+    });
+  };
+
+  $scope.createJourney = function(newJourney){
+    $http({
+      method: 'POST',
+      url: '/journeys.json',
+      data: {
+        journey: {
+          title: newJourney.title,
+          // start_date: currentJourney.start_date,
+          // end_date: currentJourney.end_date
+        }
+      }
+    }).success(function(response){
+      $scope.createPost(response.id);
     });
   };
 
