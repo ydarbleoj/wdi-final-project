@@ -37,6 +37,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			success_message: "You have been logged in.",
 			error_entity: $scope.login_error
 		});
+		$location.path('/contact');
 	};
 
 	$scope.logout = function() {
@@ -46,6 +47,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			success_message: 'You have been logged out.',
 			error_entity: $scope.login_error
 		});
+		$location.path("/home");
 	};
 
 	$scope.password_reset = function() {
@@ -58,32 +60,6 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			},
 				success_message: "Reset instructions have been sent to your e-mail address.",
 				error_entity: $scope.login_error
-		});
-	};
-
-	$scope.unlock = function() {
-		$scope.submit({
-			method: 'POST',
-			url: '../users/unlock.json',
-			data: {
-				user: { email: $scope.login_user.email
-				}
-			},
-			success_message: "An unlock e-mail has been sent to your e-mail address.",
-			error_entity: $scope.login_error
-		});
-	};
-
-	$scope.confirm = function() {
-		$scope.submit({
-			method: 'POST',
-			url: '../users/confirmation.json',
-			data: {
-				user: { email: $scope.login_user.email
-				}
-			},
-			success_message: "A new confirmation link has been sent to your e-mail address.",
-			error_entity: $scope.login_error
 		});
 	};
 
@@ -101,7 +77,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail.",
 			error_entity: $scope.register_error
 		});
-		$location.href = "#/home";
+		$location.path('/contact');
 	};
 
 	$scope.change_password = function() {
