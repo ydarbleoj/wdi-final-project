@@ -9,8 +9,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
 
   // sets $scope.videoMethod to either 'url' or 'record'
   $scope.setVideoMethod = function(method){
-    $scope.videoMethod = method
-  }
+    $scope.videoMethod = method;
+  };
 
   // returns JSON object of user's journeys. pass in true to include an empty
   // journey w/ title 'Create a New Journey' - for populating a dropdown list.

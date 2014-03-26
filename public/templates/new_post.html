@@ -2,8 +2,8 @@
   <div class="row">
     <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
       <div ng-controller="PostCtrl">
-          <div ng-click="getUserJourneys(true)">
-            <h3>journey (click me)</h3>
+          <div ng-init="getUserJourneys(true)">
+            <h3>journey</h3>
             <div class="new-journey">
               <select
                 ng-model="currentJourney"
@@ -63,7 +63,6 @@
             </div>
             <!-- NEW VIDEO VIA RECORD -->
             <div ng-if="videoMethod === 'record'">
-            <div id="widget"></div>
             <iframe id="widget" type="text/html" width="640" height="390"
               src="https://www.youtube.com/upload_embed" frameborder="0"></iframe>
             <div ng-if="videoMethod">
@@ -95,3 +94,44 @@
     </div>
   </div>
 </div>
+<div id="widget"></div>
+
+   <script>
+      // 2. Asynchronously load the Upload Widget and Player API code.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. Define global variables for the widget and the player.
+      //    The function loads the widget after the JavaScript code
+      //    has downloaded and defines event handlers for callback
+      //    notifications related to the widget.
+      var widget;
+      var player;
+      function onYouTubeIframeAPIReady() {
+        widget = new YT.UploadWidget('widget', {
+          width: 500,
+          events: {
+            'onUploadSuccess': onUploadSuccess,
+            'onProcessingComplete': onProcessingComplete
+          }
+        });
+      }
+
+      // 4. This function is called when a video has been successfully uploaded.
+      function onUploadSuccess(event) {
+        alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
+      }
+
+      // 5. This function is called when a video has been successfully
+      //    processed.
+      function onProcessingComplete(event) {
+        player = new YT.Player('player', {
+          height: 390,
+          width: 640,
+          videoId: event.data.videoId,
+          events: {}
+        });
+      }
+    </script>
