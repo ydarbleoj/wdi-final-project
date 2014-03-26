@@ -34,16 +34,18 @@
             <span ng-if="!post.editable">{{post.title}}</span>
             <input ng-if="post.editable" ng-model="post.title" type="text">
           </li>
+          <!-- TEXT -->
           <li ng-if="post.post_type === 'text'">
             Body:
             <span ng-if="!post.editable">{{post.text}}</span>
             <textarea ng-if="post.editable" ng-model="post.text"></textarea>
           </li>
+          <!-- VIDEO -->
           <li ng-if="post.post_type === 'video'">
-            Video url:
-            <span ng-if="!post.editable">{{post.video}}</span>
+              <div ng-if="!post.editable" id="player"></div>
             <input ng-if="post.editable" ng-model="post.video" type="text">
           </li>
+          <!-- PHOTO -->
           <li ng-if="post.post_type === 'photo'">
             Photo url:
             <span ng-if="!post.editable">{{post.photo}}</span>

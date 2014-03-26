@@ -52,12 +52,24 @@
           </div>
 
           <div ng-if="newPost.post_type === 'video' && currentJourney">
-            <h3>If video</h3>
+            <h3>add a video.</h3>
+            How would you like to add video?
+            <button ng-click="setVideoMethod('url')">YouTube URL</button>
+            <button ng-click="setVideoMethod('record')">Record</button>
+            <!-- NEW VIDEO VIA URL -->
+            <div ng-if="videoMethod === 'url'">
+              <p>Paste your URL below:</p>
+              <input placeholder="video url" type="text" ng-model="newPost.video">
+            </div>
+            <!-- NEW VIDEO VIA RECORD -->
+            <div ng-if="videoMethod === 'record'">
             <div id="widget"></div>
-            <input placeholder="video url" type="text" ng-model="newPost.video">
-            <input placeholder="caption" type="text" ng-model="newPost.caption">
             <iframe id="widget" type="text/html" width="640" height="390"
               src="https://www.youtube.com/upload_embed" frameborder="0"></iframe>
+            <div ng-if="videoMethod">
+              <p> Write a brief description of your video: </p>
+              <input placeholder="caption" type="text" ng-model="newPost.caption">
+            </div>
           </div>
         </div>
           <div ng-if="newPost.post_type && currentJourney">
