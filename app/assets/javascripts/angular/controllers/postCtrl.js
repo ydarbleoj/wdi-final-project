@@ -6,22 +6,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   $scope.newJourney = {};
   $scope.currentJourney = {};
 
-  // $scope.getCrudUrl = function(method, journey, post){
-  //   if (method === 'create' || method === 'read'){
-  //     if (post.id){
-  //       return '/journeys/' + journey.id + '/posts.json';
-  //     } else {
-  //       return '/journeys.json';
-  //     }
-  //   } else if (method === 'update' || method === 'read') {
-  //     if (post.id) {
-  //       return '/journeys/' + journey.id + '/posts/' + post.id + '.json';
-  //     } else {
-  //       return '/journeys/' + journey.id + '.json';
-  //     }
-  //   }
-  // };
-
   // returns JSON object of user's journeys. pass in true to include an empty
   // journey w/ title 'Create a New Journey' - for populating a dropdown list.
   $scope.getUserJourneys = function(addNew){
