@@ -39,18 +39,20 @@
             <label for="title">Title</label><br>
             <input type="text" ng-model="newPost.title">
           </div>
-      
+          <!-- TEXT -->
           <div ng-if="newPost.post_type === 'text' && currentJourney">
             <h3>If text:</h3>
             <textarea ng-model="newPost.text" placeholder="type some shit"></textarea>
           </div>
-
+          <!-- PHOTO -->
           <div ng-if="newPost.post_type === 'photo' && currentJourney">
             <h3>If photo</h3>
-            <input placeholder="photo url" type="text" ng-model="newPost.photo">
+            <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="newPost.photo">
             <input placeholder="caption" type="text" ng-model="newPost.caption">
+            <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class" ng-show="dropSupported">Drop Files Here</div>
+            <div ng-file-drop-available="dropSupported=true" ng-show="!dropSupported">Not supported</div>
           </div>
-
+          <!-- VIDEO -->
           <div ng-if="newPost.post_type === 'video' && currentJourney">
             <h3>If video</h3>
             <input placeholder="video url" type="text" ng-model="newPost.video">
