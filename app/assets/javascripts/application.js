@@ -16,9 +16,10 @@
 //= require angular-1.2.14/angular.min
 //= require angular-1.2.14/angular-route.min
 //= require angular-file-upload-1.2.9/angular-file-upload.min
-//= require angular-resource 
+//= require angular-resource
 //= require underscore
 //= require main
+//= require uploadVideo
 //= require foundation/foundation
 //= require_tree ./angular/controllers
 

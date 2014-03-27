@@ -79,6 +79,7 @@ gem 'carrierwave' # (0.9.0)
 
 gem 'carrierwave-aws'
 
+
 gem 'aws-s3' #(0.6.3)
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

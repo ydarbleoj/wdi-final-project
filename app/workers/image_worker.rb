@@ -1,4 +1,4 @@
-class ImageWorker 
+class ImageWorker
 
   def perform(post_id)
 
