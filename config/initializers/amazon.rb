@@ -1,3 +1,4 @@
+# require 'image_worker.rb'
 
 
 # AWS.config({

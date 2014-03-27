@@ -2,8 +2,8 @@
   <div class="row">
     <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
       <div ng-controller="PostCtrl">
-          <div ng-click="getUserJourneys(true)">
-            <h3>journey (click me)</h3>
+          <div ng-init="getUserJourneys(true)">
+            <h3>journey</h3>
             <div class="new-journey">
               <select
                 ng-model="currentJourney"
@@ -11,7 +11,7 @@
               </select>
             </div>
           </div>
-          <div class="new-journey-name"ng-if="currentJourney.title === 'Create a New Journey' && !currentJourney.id">
+          <div class="new-journey-name"ng-show="currentJourney.title === 'Create a New Journey' && !currentJourney.id">
             <input class="journey-name"
               placeholder="name your journey"
               ng-model="newJourney.title"
@@ -35,33 +35,63 @@
           </select>
           </div>
         <div class="post-properties">
-          <div ng-if="newPost.post_type && currentJourney">
+          <div ng-show="newPost.post_type && currentJourney">
             <label for="title">Title</label><br>
             <input type="text" ng-model="newPost.title">
           </div>
           <!-- TEXT -->
-          <div ng-if="newPost.post_type === 'text' && currentJourney">
+          <div ng-show="newPost.post_type === 'text' && currentJourney">
             <h3>If text:</h3>
             <textarea ng-model="newPost.text" placeholder="type some shit"></textarea>
           </div>
+
           <!-- PHOTO -->
-          <div ng-if="newPost.post_type === 'photo' && currentJourney">
+          <div ng-show="newPost.post_type === 'photo' && currentJourney">
             <h3>If photo</h3>
             <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="newPost.photo">
             <input placeholder="caption" type="text" ng-model="newPost.caption">
             <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class" ng-show="dropSupported">Drop Files Here</div>
             <div ng-file-drop-available="dropSupported=true" ng-show="!dropSupported">Not supported</div>
           </div>
+
           <!-- VIDEO -->
-          <div ng-if="newPost.post_type === 'video' && currentJourney">
-            <h3>If video</h3>
-            <input placeholder="video url" type="text" ng-model="newPost.video">
-            <input placeholder="caption" type="text" ng-model="newPost.caption">
+          <div ng-show="newPost.post_type === 'video' && currentJourney">
+            <h3>add a video.</h3>
+            Would you like to
+            <button ng-show="videoMethod==='record'" ng-click="setVideoMethod('url')">use an existing YouTube URL</button>
+            <button ng-show="videoMethod==='url'" ng-click="setVideoMethod('record')">Record a video</button>
+            instead?
+            <!-- NEW VIDEO VIA URL -->
+            <div ng-show="videoMethod === 'url'">
+              <p>Paste your URL below:</p>
+              <input placeholder="video url" type="text" ng-model="newPost.video">
+            </div>
+            <!-- NEW VIDEO VIA RECORD -->
+            <div ng-hide="videoMethod === 'url'">
+              <div id="widget"></div>
+            <div ng-show="videoMethod">
+              <p> Write a brief description of your video: </p>
+              <input placeholder="caption" type="text" ng-model="newPost.caption">
+            </div>
           </div>
         </div>
-          <div ng-if="newPost.post_type && currentJourney">
-            <button  ng-if="currentJourney.id" ng-click="createPost(currentJourney.id)">Create Post</button>
-            <button class="create-post" ng-if="currentJourney.id === undefined" ng-click="createJourney(newJourney)"><span class="arrow"><img src="/assets/blackarrow24.png" alt=""></span>   Start Today</button>
+          <div ng-show="newPost.post_type && currentJourney">
+            <!-- BUTTON IF EXISTING JOURNEY -->
+            <button
+              class="create-post"
+              ng-show="currentJourney.id"
+              ng-click="createPost(currentJourney.id, newPost)">
+              <span class="arrow"><img src="/assets/blackarrow24.png" alt=""></span>
+              Create Post
+            </button>
+            <!-- BUTTON IF NEW JOURNEY -->
+            <button
+              class="create-post"
+              ng-show="currentJourney.id === undefined"
+              ng-click="createJourney(newJourney, newPost)">
+              <span class="arrow"><img src="/assets/blackarrow24.png" alt=""></span>
+              Start Today
+            </button>
           </div>
         </form>
       </div>

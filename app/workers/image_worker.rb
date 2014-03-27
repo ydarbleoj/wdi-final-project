@@ -1,4 +1,4 @@
-class ImageWorker 
+# class ImageWorker
 
   # def perform(post_id)
 
@@ -22,6 +22,6 @@ class ImageWorker
   #   File.delay_for(2.minutes).delete("#{Rails.root}/public#{post.photo.url}")
 
 
-  # end 
+  # end
 
-end
+# end
