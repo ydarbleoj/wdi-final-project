@@ -10,65 +10,67 @@
           ng-options="journey as journey.title for journey in journeys">
         </select>
 
-      <div ng-if="currentJourney.id && !currentJourney.editable">
+      <div ng-show="currentJourney.id && !currentJourney.editable">
         <h4>{{currentJourney.title}}</h4>
         <span>{{currentJourney.start_date}}<br></span>
         <span>{{currentJourney.end_date}}<br></span>
-        <button ng-if="!currentJourney.editable" ng-click="edit(currentJourney)">edit</button>
+        <button ng-show="!currentJourney.editable" ng-click="edit(currentJourney)">edit</button>
       </div>
-      <div ng-if="currentJourney.id && currentJourney.editable">
+      <div ng-show="currentJourney.id && currentJourney.editable">
         Title: <input type="text" ng-model="currentJourney.title"><br>
         Start Date: <input type="date" ng-model="currentJourney.start_date"><br>
         End Date: <input type="date" ng-model="currentJourney.end_date"><br>
-        <button ng-if="currentJourney.editable" ng-click="updateJourney(currentJourney)">Update journey</button>
-        <button ng-if="currentJourney.editable" ng-click="deleteJourney(currentJourney.id)">Delete journey</button>
-        <button ng-if="currentJourney.editable" ng-click="cancelEdit(currentJourney)">cancel</button>
+        <button ng-show="currentJourney.editable" ng-click="updateJourney(currentJourney)">Update journey</button>
+        <button ng-show="currentJourney.editable" ng-click="deleteJourney(currentJourney.id)">Delete journey</button>
+        <button ng-show="currentJourney.editable" ng-click="cancelEdit(currentJourney)">cancel</button>
       </div>
 
       <button ng-click="getPosts(currentJourney)">load posts</button>
       <a href='/#/new-post'><button>new post</button></a>
-      <div ng-if="currentJourney.id">
+      <div ng-show="currentJourney.id">
         <ul ng-repeat="post in currentJourney.posts">
           <li>Type: {{post.post_type}}</li>
           <li>Title:
-            <span ng-if="!post.editable">{{post.title}}</span>
-            <input ng-if="post.editable" ng-model="post.title" type="text">
+            <span ng-show="!post.editable">{{post.title}}</span>
+            <input ng-show="post.editable" ng-model="post.title" type="text">
           </li>
           <!-- TEXT -->
-          <li ng-if="post.post_type === 'text'">
+          <li ng-show="post.post_type === 'text'">
             Body:
-            <span ng-if="!post.editable">{{post.text}}</span>
-            <textarea ng-if="post.editable" ng-model="post.text"></textarea>
+            <span ng-show="!post.editable">{{post.text}}</span>
+            <textarea ng-show="post.editable" ng-model="post.text"></textarea>
           </li>
           <!-- VIDEO -->
-          <li ng-if="post.post_type === 'video'">
-              <div ng-if="!post.editable" id="player"></div>
-            <input ng-if="post.editable" ng-model="post.video" type="text">
+          <li ng-show="post.post_type === 'video'">
+            <div ng-show="!post.editable">
+              <div id="player"></div>
+            </div>
+            <input ng-show="post.editable" ng-model="post.video" type="text">
           </li>
           <!-- PHOTO -->
-          <li ng-if="post.post_type === 'photo'">
+          <li ng-show="post.post_type === 'photo'">
             Photo url:
-            <span ng-if="!post.editable">{{post.photo}}</span>
-            <input ng-if="post.editable" ng-model="post.photo" type="text">
+            <span ng-show="!post.editable">{{post.photo}}</span>
+            <input ng-show="post.editable" ng-model="post.photo" type="text">
           </li>
-          <li ng-if="post.post_type !== 'text'">
+          <li ng-show="post.post_type !== 'text'">
             Caption:
-            <span ng-if="!post.editable">{{post.caption}}</span>
-            <input ng-if="post.editable" ng-model="post.caption" type="text">
+            <span ng-show="!post.editable">{{post.caption}}</span>
+            <input ng-show="post.editable" ng-model="post.caption" type="text">
           </li>
           <li>
-            <button ng-if="!post.editable" ng-click="edit(post)">
+            <button ng-show="!post.editable" ng-click="edit(post)">
               edit this post
             </button>
-            <button ng-if="post.editable"
+            <button ng-show="post.editable"
                     ng-click="updatePost(currentJourney.id, post)">
               submit
             </button>
-            <button ng-if="post.editable"
+            <button ng-show="post.editable"
                     ng-click="deletePost(currentJourney.id, post)">
               delete
             </button>
-            <button ng-if="post.editable" ng-click="cancelEdit(post)">
+            <button ng-show="post.editable" ng-click="cancelEdit(post)">
               cancel
             </button>
           </li>
@@ -79,8 +81,6 @@
     </div>
   </div>
 </div>
-
-    <!-- <div id="player"></div> -->
 
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.

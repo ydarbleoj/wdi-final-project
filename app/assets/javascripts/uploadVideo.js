@@ -1,8 +1,8 @@
-      // // 2. Asynchronously load the Upload Widget and Player API code.
+      // 2. Asynchronously load the Upload Widget and Player API code.
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
-      // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       // 3. Define global variables for the widget and the player.
       //    The function loads the widget after the JavaScript code
@@ -10,6 +10,9 @@
       //    notifications related to the widget.
       var widget;
       var player;
+      // define var for video id, which will be passed to the createPost method
+      // in the ng PostCtrl
+      var videoId;
       function onYouTubeIframeAPIReady() {
         widget = new YT.UploadWidget('widget', {
           width: 500,
@@ -22,7 +25,8 @@
 
       // 4. This function is called when a video has been successfully uploaded.
       function onUploadSuccess(event) {
-        alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
+        // try to git this without the hidden input field
+        videoId = event.data.videoId;
       }
 
       // 5. This function is called when a video has been successfully

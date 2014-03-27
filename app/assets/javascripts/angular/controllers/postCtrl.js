@@ -5,7 +5,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   $scope.journeys = {};
   $scope.newJourney = {};
   $scope.currentJourney = {};
-  $scope.videoMethod = null;
+  $scope.videoMethod = 'record';
+
 
   // sets $scope.videoMethod to either 'url' or 'record'
   $scope.setVideoMethod = function(method){
@@ -23,6 +24,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
       if(addNew) {
         $scope.journeys.push({ title: "Create a New Journey" });
       }
+      console.log(foo);
     });
   };
 
@@ -37,6 +39,11 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
 
   // creates a post given a journey id and an unsaved post object
   $scope.createPost = function(journeyId, post){
+    // if $scope.videoMethod = 'url', parse for id and save from form
+    if ($scope.videoMethod === 'record'){
+    post.video = videoId;
+  }
+
     $http({
       method: 'POST',
       url: '/journeys/' + journeyId + '/posts.json',
