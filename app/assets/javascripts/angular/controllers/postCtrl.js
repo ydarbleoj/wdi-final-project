@@ -4,8 +4,10 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   $scope.newPost  = {};
   $scope.journeys = {};
   $scope.newJourney = {};
-  $scope.currentJourney = {};
   $scope.videoMethod = 'record';
+  $scope.currentJourney = {};
+  var posts;
+
 
 
   // sets $scope.videoMethod to either 'url' or 'record'
@@ -32,8 +34,15 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     $.get('/journeys/' + journey.id + '/posts.json')
       .success(function(response){
       journey.posts = response;
+      posts = response;
       return journey;
     });
+  };
+
+  $scope.renderIframes = function(){
+    for(var i = 0; i < posts.length; i++){
+      var thisplayer = createPlayer(posts[i]);
+    }
   };
 
   // creates a post given a journey id and an unsaved post object

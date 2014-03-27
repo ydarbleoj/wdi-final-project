@@ -13,15 +13,39 @@ var player;
 // define var for video id, which will be passed to the createPost method
 // in the ng PostCtrl
 var videoId;
+
 function onYouTubeIframeAPIReady() {
   widget = new YT.UploadWidget('widget', {
     width: 500,
     events: {
       'onUploadSuccess': onUploadSuccess,
-      'onProcessingComplete': onProcessingComplete
+      // 'onProcessingComplete': onProcessingComplete
     }
   });
+
+  if(typeof posts === 'undefined'){
+    return;
+  }
+
+  for(var i = 0; i < posts.length; i++){
+    var thisplayer = createPlayer(posts[i]);
+  }
 }
+
+function createPlayer(post){
+  player = new YT.Player( post.video, {
+    height: '390',
+    width: '640',
+    videoId: post.video,
+    events: {
+      // 'onReady': onPlayerReady,
+      // 'onStateChange': onPlayerStateChange
+    }
+  });
+  return player;
+}
+
+
 
 // 4. This function is called when a video has been successfully uploaded.
 function onUploadSuccess(event) {
@@ -31,14 +55,14 @@ function onUploadSuccess(event) {
 
 // 5. This function is called when a video has been successfully
 //    processed.
-function onProcessingComplete(event) {
-  player = new YT.Player('player', {
-    height: 390,
-    width: 640,
-    videoId: event.data.videoId,
-    events: {}
-  });
-}
+// function onProcessingComplete(event) {
+//   player = new YT.Player('player', {
+//     height: 390,
+//     width: 640,
+//     videoId: event.data.videoId,
+//     events: {}
+//   });
+// }
 
 function parseVideoUrl(url) {
   // need to implement this. just returning the url for now.
