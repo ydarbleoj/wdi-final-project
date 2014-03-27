@@ -2,7 +2,7 @@ var journeyApp = angular.module('journeyApp', [
 	'journeyRouter',
 	'angularFileUpload',
 	'journeyAppCtrls',
-	"ngResource"
+	'ngResource'
 	]);
 
 var journeyAppCtrls = angular.module('journeyAppCtrls', []);

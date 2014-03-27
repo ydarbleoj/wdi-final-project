@@ -16,9 +16,13 @@
 
 class Post < ActiveRecord::Base
   belongs_to :journey
-  has_many :comments, as: :commentable, dependent: :destroy
+  # has_many :comments, as: :commentable, dependent: :destroy
 
-  before_validation { |post| post.post_type.downcase! }
+  #before_validation { |post| post.post_type.downcase! }
 
-  validates :post_type, presence: true, inclusion: { in: ["photo", "text", "video"] }
+  #validates :post_type, presence: true, inclusion: { in: ["photo", "text", "video"] }
+
+  # mount_uploader :photo, ImageUploader 
+
+
 end

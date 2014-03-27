@@ -8,8 +8,8 @@ journeyAppCtrls.factory('Journey', ['$resource', function($resource){
 }]);
 
 
-journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", function($scope, $http, Post, $upload){
-  $scope.foo = "seball";
+journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", 
+  function($scope, $http, Post, $upload){
 
   $scope.newPost  = {};
   $scope.journeys = {};
@@ -44,6 +44,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", fu
         post: $scope.newPost,
         journey_id: journeyId
       }
+      // on s
     });
   };
 
@@ -82,6 +83,10 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", fu
       }
     }).success(function(response){
       $scope.createPost(response.id);
+      // $('#file_upload').find('input[name=key]').val(retdata.key);
+      // $('#file_upload').find('input[name=policy]').val(retdata.policy);
+      // $('#file_upload').find('input[name=signature]').val(retdata.signature);
+
     });
   };
 
@@ -102,6 +107,46 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", fu
 
   $scope.cancelEdit = function(object){
     object.editable = false;
+  };
+
+
+  $scope.onFileSelect = function($files){
+
+    $scope.files = $files;
+    $scope.upload = [];
+
+    for(var i = 0; i < $files.length; i++) {
+      var file = $files[i]; 
+      file.progress = parseInt(0);
+      (function (file, i) {
+        $http.get('/getImage.json').success(function(response){
+          $scope.s3Params = response;
+          $scope.upload[i] = $upload.upload({
+            url: 'https://wdi-final-project.s3.amazonaws.com/', 
+            method: 'POST', 
+            data: {
+              'key': $scope.s3Params.key, 
+              'acl': 'public', 
+              'Content-Type': file.type, 
+              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId, 
+              'success_action_status': '200',
+              'Policy': $scope.s3Params.Policy, 
+              'Signature': $scope.s3Params.Signature
+            },         
+            file: file, 
+          }).then(function(reponse){ 
+            file.progress = parseInt(100);
+            if (response.status === 201){
+             console.log('success')
+            } else {
+              console.log('upload failed');
+            }
+          }, null, function(event){
+            file.progress = parseInt(100.0 * event.loaded / event.total);
+          });
+        });
+      }(file, i));
+    } 
   };
 
 }]);

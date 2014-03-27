@@ -7,6 +7,8 @@ WdiFinalProject::Application.routes.draw do
     resources :posts
   end
 
+  get "/getImage", to: 'posts#render_new_photo'
+
   resources :messages
 
 end

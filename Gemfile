@@ -73,6 +73,11 @@ gem 'foundation-rails'
 
 gem 'ng-rails-csrf'
 
+gem 'aws-sdk' # S3 API
+
+gem 'carrierwave' # (0.9.0)
+
+gem 'carrierwave-aws'
 
 gem 'aws-s3' #(0.6.3)
 # Use ActiveModel has_secure_password

@@ -1,3 +1,5 @@
+<div class="row">
+  <div class="small-8 small-centered medium-8 medium-centered columns">
 <%= form_for [@journey, @post] do |f| %>
   <%= f.label :post_type %><br>
   <%= f.text_field :post_type, placeholder: "text, photo or video" %><br>
@@ -12,7 +14,7 @@
   <div>
     <h3>If photo</h3>
     <%=f.label :photo, "photo" %><br>
-    <%#=f.file_field :photo %>
+    <%=f.file_field :photo, id: "imageLoader" %>
     <%=f.text_field :photo, placeholder: "photo url"%><br>
     <%=f.text_field :caption, placeholder: "caption"%><br>
   </div>
@@ -28,3 +30,6 @@
   <%= f.submit %>
 
 <% end %>
+</div>
+</div>
+/journeys/:journey_id/posts/new

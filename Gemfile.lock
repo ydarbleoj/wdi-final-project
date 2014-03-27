@@ -37,6 +37,10 @@ GEM
       builder
       mime-types
       xml-simple
+    aws-sdk (1.34.1)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -54,6 +58,13 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+    carrierwave-aws (0.3.2)
+      aws-sdk (>= 1.8.0)
+      carrierwave (>= 0.7.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -252,6 +263,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -267,9 +279,12 @@ DEPENDENCIES
   annotate
   awesome_print
   aws-s3
+  aws-sdk
   better_errors
   binding_of_caller
   capybara (~> 2.2.0)
+  carrierwave
+  carrierwave-aws
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.0.1)
   devise

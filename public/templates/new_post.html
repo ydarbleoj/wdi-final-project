@@ -47,6 +47,13 @@
           <!-- PHOTO -->
           <div ng-if="newPost.post_type === 'photo' && currentJourney">
             <h3>If photo</h3>
+            <input type="hidden" name="key" value="{{s3Params.key}}">
+            <input type="hidden" name="{{s3Params.AWSAccessKeyId}}" value=""> 
+            <input type="hidden" name="acl" value="public"> 
+            <input type="hidden" name="success_action_status" value="200">
+            <input type="hidden" name="policy" value="{{s3Params.Policy}}">
+            <input type="hidden" name="signature" value="{{s3Params.Signature}}">
+            <input type="hidden" name="Content-Type" value="file.type">      
             <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="newPost.photo">
             <input placeholder="caption" type="text" ng-model="newPost.caption">
             <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class" ng-show="dropSupported">Drop Files Here</div>
@@ -68,3 +75,10 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
