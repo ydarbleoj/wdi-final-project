@@ -39,13 +39,15 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   // creates a post given a journey id and an unsaved post object
   $scope.createPost = function(journeyId, post){
     // if $scope.videoMethod = 'url', parse for id and save from form
+    // if post.post_type !== video, videoId will not have been set,
+    // so nil will be passed in, which is the expected behavior
     if ($scope.videoMethod === 'record'){
     post.video = videoId;
   } else if ($scope.videoMethod === 'record'){
     post.video = parseVideoUrl(post.video);
   }
 
-  // TODO: add logic - if video id is nil don't allow create
+    // TODO: add logic - if video id is nil don't allow create
 
     $http({
       method: 'POST',
