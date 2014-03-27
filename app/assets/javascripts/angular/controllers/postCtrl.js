@@ -24,7 +24,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
       if(addNew) {
         $scope.journeys.push({ title: "Create a New Journey" });
       }
-      console.log(foo);
     });
   };
 
@@ -42,7 +41,11 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
     // if $scope.videoMethod = 'url', parse for id and save from form
     if ($scope.videoMethod === 'record'){
     post.video = videoId;
+  } else if ($scope.videoMethod === 'record'){
+    post.video = parseVideoUrl(post.video);
   }
+
+  // TODO: add logic - if video id is nil don't allow create
 
     $http({
       method: 'POST',
