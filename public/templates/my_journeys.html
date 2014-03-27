@@ -1,6 +1,14 @@
 <div class="container">
   <div class="row">
-
+    <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
+      <div ng-controller="PostCtrl">
+        <div ng-click="getUserJourneys()">
+          <h3>choose a journey:</h3>
+        </div>
+          <select
+            ng-model="currentJourney"
+            ng-options="journey as journey.title for journey in journeys">
+          </select>
     <div ng-controller="PostCtrl">
       <div ng-init="getUserJourneys()">
         <h3>choose a journey:</h3>
@@ -80,7 +88,6 @@
           <li> ------ </li>
         </ul>
       </div>
-
     </div>
   </div>
 </div>

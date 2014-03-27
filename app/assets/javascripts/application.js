@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular-file-upload-1.2.9/angular-file-upload-shim.min
 //= require angular-1.2.14/angular.min
 //= require angular-1.2.14/angular-route.min
+//= require angular-file-upload-1.2.9/angular-file-upload.min
 //= require angular-resource
 //= require underscore
 //= require main

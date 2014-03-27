@@ -1,4 +1,14 @@
-journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $http){
+
+journeyAppCtrls.factory('Post', ['$resource', function($resource){
+  return $resource("/journeys/:journey_id/posts/:id.json", {journey_id: "@journey_id", id: "@id"}, {update: {method: "PATCH"}});
+}]);
+
+journeyAppCtrls.factory('Journey', ['$resource', function($resource){
+  return $resource("/journeys/:id.json", { id: "@id"}, {update: {method: "PATCH"}});
+}]);
+
+
+journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", function($scope, $http, Post, $upload){
   $scope.foo = "seball";
 
   $scope.newPost  = {};
@@ -135,3 +145,5 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', function($scope, $htt
   };
 
 }]);
+
+
