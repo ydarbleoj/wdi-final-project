@@ -36,9 +36,11 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			},
 			success_message: "You have been logged in.",
 			error_entity: $scope.login_error
+		}, function(){
+			$location.path('/contact');
 		});
-		$location.path('/contact');
 	};
+
 
 	$scope.logout = function() {
 		$scope.submit({
@@ -95,7 +97,9 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 		});
 	};
 
-	$scope.submit = function(parameters) {
+
+
+	$scope.submit = function(parameters, redirect) {
 		$scope.reset_messages();
 
 		$http({
@@ -107,6 +111,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			if (status == 201 || status == 204){
 				parameters.error_entity.message = parameters.success_message;
 				$scope.reset_users();
+				redirect();
 			} else {
 				if (data.error) {
 					parameters.error_entity.message = data.error;

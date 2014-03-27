@@ -14,8 +14,12 @@ journeyRouter = angular.module("journeyRouter", [
 	"ngRoute"
 ]);
 
-journeyRouter.config(['$routeProvider', function($routeProvider){
+journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	$routeProvider
+		.when('/', {
+			templateUrl: '../templates/index.html',
+			controller: 'IndexCtrl'
+		})
 		.when('/home', {
 			templateUrl: '../templates/index.html',
 			controller: 'IndexCtrl'
@@ -52,5 +56,6 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 			templateUrl: '../templates/nav.html',
 			controller: 'NavCtrl'
 		});
+		// $locationProvider.html5Mode(true);
 }]);
 

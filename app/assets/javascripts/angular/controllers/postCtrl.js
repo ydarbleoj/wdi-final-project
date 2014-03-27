@@ -8,8 +8,8 @@ journeyAppCtrls.factory('Journey', ['$resource', function($resource){
 }]);
 
 
-journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", 
-  function($scope, $http, Post, $upload){
+journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$location",
+  function($scope, $http, Post, $upload, $location){
 
   $scope.newPost  = {};
   $scope.journeys = {};
@@ -36,6 +36,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
       if(addNew) {
         $scope.journeys.push({ title: "Create a New Journey" });
       }
+    }).error(function(){
+      $location.path('/home');
     });
   };
 
@@ -77,6 +79,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
       }
       // on s
     });
+    $location.path('/my-journeys');
   };
 
   // sets passed in journey or post to edit mode
@@ -155,25 +158,25 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
     $scope.upload = [];
 
     for(var i = 0; i < $files.length; i++) {
-      var file = $files[i]; 
+      var file = $files[i];
       file.progress = parseInt(0);
       (function (file, i) {
         $http.get('/getImage.json').success(function(response){
           $scope.s3Params = response;
           $scope.upload[i] = $upload.upload({
-            url: 'https://wdi-final-project.s3.amazonaws.com/', 
-            method: 'POST', 
+            url: 'https://wdi-final-project.s3.amazonaws.com/',
+            method: 'POST',
             data: {
-              'key': $scope.s3Params.key, 
-              'acl': 'public', 
-              'Content-Type': file.type, 
-              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId, 
+              'key': $scope.s3Params.key,
+              'acl': 'public',
+              'Content-Type': file.type,
+              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId,
               'success_action_status': '200',
-              'Policy': $scope.s3Params.Policy, 
+              'Policy': $scope.s3Params.Policy,
               'Signature': $scope.s3Params.Signature
-            },         
-            file: file, 
-          }).then(function(reponse){ 
+            },
+            file: file,
+          }).then(function(reponse){
             file.progress = parseInt(100);
             if (response.status === 201){
              console.log('success')
@@ -185,7 +188,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
           });
         });
       }(file, i));
-    } 
+    }
   };
 
 }]);
