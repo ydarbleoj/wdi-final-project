@@ -20,7 +20,7 @@ body {
 
 /* ///////NAVIGATION/////// */
 .nav {
-	width: 115px;
+	width: 7.5em;
 	height: 100%;
 	margin-top: -20px;
 	margin-left: 0;
@@ -100,6 +100,12 @@ li#login:hover {
 	box-shadow: 10px 9px 53px #000000;
 	transition: ease-in-out .75;
 }
+
+li#logout:hover {
+  box-shadow: 10px 9px 53px #000000;
+  transition: ease-in-out .75;
+}
+
 
 /*//////PROFILE PAGE//////*/
 
@@ -185,24 +191,6 @@ li#login:hover {
   content: "";
   position: absolute;
   pointer-events: none;
-}
-
-.new-journey::after { /*  Custom dropdown arrow */
-  content: "\25BC";
-  height: 1em;
-  font-size: .625em;
-  line-height: 1;
-  right: 1.2em;
-  top: 50%;
-  margin-top: -.5em;
-}
-
-.new-journey::before { /*  Custom dropdown arrow cover */
-  width: 2em;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 0 3px 3px 0;
 }
 
 .post-type select {
@@ -325,7 +313,7 @@ button.create-post:hover {
 
 /*////// NEW-POST //////*/
 
-input[type="file"] {  
+/*input[type="file"] {  
   width: 6.3em \0/IE9;
   height: 1.5em;
   margin: 5px;
@@ -408,5 +396,5 @@ button {
   color: #777;
   padding-top: 5px;
   padding-left: 10px;
-}
+}*/
 

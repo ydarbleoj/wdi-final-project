@@ -18,6 +18,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.currentJourney = {};
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
+  $scope.journeys_count = 12;
+  $scope.followers_count = 23;
   var posts;
 
 
