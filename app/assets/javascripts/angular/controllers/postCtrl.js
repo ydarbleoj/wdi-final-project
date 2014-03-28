@@ -57,6 +57,12 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
     }
   };
 
+  $scope.displayJourney = function(journey){
+    $scope.currentJourney = journey;
+    $scope.getPosts(journey);
+    $scope.renderIframes();
+  };
+
   // creates a post given a journey id and an unsaved post object
   $scope.createPost = function(journeyId, post){
     // if $scope.videoMethod = 'url', parse for id and save from form
@@ -77,9 +83,9 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
         post: post,
         journey_id: journeyId
       }
-      // on s
+    }).success(function(){
+      $location.path('/my-journeys');
     });
-    $location.path('/my-journeys');
   };
 
   // sets passed in journey or post to edit mode
@@ -179,7 +185,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
           }).then(function(reponse){
             file.progress = parseInt(100);
             if (response.status === 201){
-             console.log('success')
+             console.log('success');
             } else {
               console.log('upload failed');
             }

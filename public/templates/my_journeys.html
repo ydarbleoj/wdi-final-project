@@ -5,11 +5,12 @@
         <div ng-init="getUserJourneys()">
           <h3>choose a journey:</h3>
         </div>
-          <select
-            ng-model="currentJourney"
-            ng-options="journey as journey.title for journey in journeys"
-            ng-change="getPosts(currentJourney)">
-          </select>
+          <!-- we can change these buttons to icons or something -->
+          <button class="create-post" id="journey_select"
+            ng-repeat="journey in journeys"
+            ng-click="displayJourney(journey)">
+            {{journey.title}}
+          </button>
 
         <div ng-show="currentJourney.id && !currentJourney.editable">
           <h4>{{currentJourney.title}}</h4>
