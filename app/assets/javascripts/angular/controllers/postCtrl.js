@@ -213,6 +213,12 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
     }
   };
 
+  $scope.getCurrentUser = function(){
+    $.get('/currentUser').success(function(response){
+      $scope.currentUser = response;
+    });
+  };
+
 }]);
 
 

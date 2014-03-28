@@ -3,6 +3,9 @@
   <div class="row">
     <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
       <div ng-controller="PostCtrl">
+        <div ng-init="getCurrentUser()">
+          <img src="{{currentUser.photo}}">
+        </div>
         <div ng-init="getUserJourneys()">
           <h3>choose a journey:</h3>
         </div>
