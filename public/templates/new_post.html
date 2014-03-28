@@ -5,12 +5,14 @@
       <div ng-controller="PostCtrl">
 
           <div ng-init="getUserJourneys(true)">
-            <h3>journey</h3>
+            <h3>select a journey</h3>
             <div class="new-journey">
-              <select
-                ng-model="currentJourney"
-                ng-options="journey as journey.title for journey in journeys">
-              </select>
+              <button class="create-post"
+                ng-repeat="journey in journeys"
+                ng-click="setCurrentJourney(journey)">
+                {{journey.title}}
+              </button>
+              <div><strong>current journey: </strong>{{currentJourney.title}}</div>
             </div>
           </div>
           <div class="new-journey-name"ng-show="currentJourney.title === 'Create a New Journey' && !currentJourney.id">
@@ -28,35 +30,35 @@
               type="date">
           </div>
         <form>
-          <div class="post-type">
+        <div class="post-type">
           <label for="post_type">Post Type</label><br>
-          <select ng-model="newPost.post_type">
-            <option value="text">Text</option>
-            <option value="photo">Photo</option>
-            <option value="video">Video</option>
-          </select>
-          </div>
+          <button class="create-post"
+            ng-repeat="post_type in post_types"
+            ng-click="setPostType(post_type)">
+            {{post_type}}
+          </button>
+        </div>
         <div class="post-properties">
-          <div ng-show="newPost.post_type && currentJourney">
+          <div ng-show="newPost.post_type && currentJourney.title">
             <label for="title">Title</label><br>
             <input type="text" ng-model="newPost.title">
           </div>
           <!-- TEXT -->
-          <div ng-show="newPost.post_type === 'text' && currentJourney">
+          <div ng-show="newPost.post_type === 'text' && currentJourney.title">
             <h3>If text:</h3>
             <textarea ng-model="newPost.text" placeholder="type some shit"></textarea>
           </div>
 
           <!-- PHOTO -->
-          <div ng-show="newPost.post_type === 'photo' && currentJourney">
+          <div ng-show="newPost.post_type === 'photo' && currentJourney.title">
             <h3>If photo</h3>
             <input type="hidden" name="key" value="{{s3Params.key}}">
-            <input type="hidden" name="{{s3Params.AWSAccessKeyId}}" value=""> 
-            <input type="hidden" name="acl" value="public-read"> 
+            <input type="hidden" name="{{s3Params.AWSAccessKeyId}}" value="">
+            <input type="hidden" name="acl" value="public-read">
             <input type="hidden" name="success_action_status" value="200">
             <input type="hidden" name="policy" value="{{s3Params.Policy}}">
             <input type="hidden" name="signature" value="{{s3Params.Signature}}">
-            <input type="hidden" name="Content-Type" value="file.type">      
+            <input type="hidden" name="Content-Type" value="file.type">
             <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="newPost.photo">
             <input placeholder="caption" type="text" ng-model="newPost.caption">
             <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class" ng-show="dropSupported">Drop Files Here</div>
@@ -64,16 +66,16 @@
           </div>
 
           <!-- VIDEO -->
-          <div ng-show="newPost.post_type === 'video' && currentJourney">
+          <div ng-show="newPost.post_type === 'video' && currentJourney.title">
             <h3>add a video.</h3>
             Would you like to
-            <button ng-show="videoMethod==='record'" ng-click="setVideoMethod('url')">use an existing YouTube URL</button>
+            <button ng-show="videoMethod==='record'" ng-click="setVideoMethod('url')">use an existing YouTube video</button>
             <button ng-show="videoMethod==='url'" ng-click="setVideoMethod('record')">Record a video</button>
             instead?
             <!-- NEW VIDEO VIA URL -->
             <div ng-show="videoMethod === 'url'">
-              <p>Paste your URL below:</p>
-              <input placeholder="video url" type="text" ng-model="newPost.video">
+              <p>Paste your video ID below:</p>
+              <input placeholder="e.g., 'X0uYvQ_aXKw'" type="text" ng-model="newPost.video">
             </div>
             <!-- NEW VIDEO VIA RECORD -->
             <div ng-hide="videoMethod === 'url'">
@@ -84,7 +86,7 @@
             </div>
           </div>
         </div>
-          <div ng-show="newPost.post_type && currentJourney">
+          <div ng-show="newPost.post_type && currentJourney.title">
             <!-- BUTTON IF EXISTING JOURNEY -->
             <button
               class="create-post"
