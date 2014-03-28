@@ -219,6 +219,16 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
     });
   };
 
+  $scope.updateUserPhoto = function(user){
+    user.photo = $scope.imageUrl;
+    $http({
+      method: "PUT",
+      url: "/users/"+user.id+".json",
+      data: user
+    });
+
+  };
+
 }]);
 
 

@@ -4,7 +4,10 @@
     <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
       <div ng-controller="PostCtrl">
         <div ng-init="getCurrentUser()">
-          <img src="{{currentUser.photo}}">
+          <h1>{{currentUser.username}}</h1>
+          <img src="{{currentUser.photo}}" ng-model="currentUser.photo">
+         <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
+          <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>
         </div>
         <div ng-init="getUserJourneys()">
           <h3>choose a journey:</h3>
@@ -31,9 +34,7 @@
           <button ng-show="currentJourney.editable" ng-click="cancelEdit(currentJourney)">cancel</button>
         </div>
 
-        <button ng-click="getPosts(currentJourney)">load posts</button>
         <button ng-click="renderIframes()">get videos</button>
-        <a href='/#/new-post'><button>new post</button></a>
         <!-- <div ng-show="currentJourney.id"> -->
           <ul ng-repeat="post in currentJourney.posts">
             <li>Type: {{post.post_type}}</li>
