@@ -79,6 +79,9 @@ gem 'carrierwave' # (0.9.0)
 
 gem 'carrierwave-aws'
 
+gem 'rmagick'
+
+gem 'mini_magick'
 
 gem 'aws-s3' #(0.6.3)
 # Use ActiveModel has_secure_password

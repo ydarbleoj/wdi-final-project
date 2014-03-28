@@ -11,19 +11,7 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-	<div ng-controller="NavCtrl">
-	  <ul class="nav nav-list">
-	      <li id="newPost" ng-class="navClass('new-post')"><a href='#/new-post'><img src="/assets/plus32.png" alt=""></a></li>
-	      <li id="newsfeed" ng-class="navClass('newsfeed')"><a href='#/newsfeed'><img src="/assets/square32.png" alt=""></a></li>
-	      <li id="profile" ng-class="navClass('profile')"><a href='#/profile'><img src="/assets/user32.png" alt=""></a></li>
-	      <li id="postVideo" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/video32.png" alt=""></a></li>
-        <li id="postText" ng-class="navClass('contact')"><a href='#/contact'><img src="/assets/text32.png" alt=""></a></li>
-        <li id="signup" ><a href='#/signup'><img src="/assets/arrow24.png" alt=""></a></li>
-        <li id="login"><a href='#/login'><img src="/assets/login24.png" alt=""></a></li>
-        <li id="logout"><a ng-click="logout()" ng-controller="LoginCtrl" href='#/logout'><img src="/assets/logout16.png" alt=""></a></li>
-	  </ul>
-	</div>
-
+	
 	<div ng-view></div>
   
   <div style="text-align: center"> <%= current_user.username unless current_user.nil? %></div>

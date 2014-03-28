@@ -16,11 +16,11 @@ journeyRouter = angular.module("journeyRouter", [
 
 journeyRouter.config(['$routeProvider', function($routeProvider){
 	$routeProvider
-		.when('/home', {
+		.when('/', {
 			templateUrl: '../templates/index.html',
 			controller: 'IndexCtrl'
 		})
-		.when('/contact', {
+		.when('/newsfeed', {
 			templateUrl: '../templates/journeys.html',
 			controller: 'NewsFeedCtrl'
 		})
