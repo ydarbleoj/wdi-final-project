@@ -39,6 +39,7 @@ li#login-index {
 }
 
 li#login-index:hover {
+	
 	box-shadow: 10px 9px 53px #000000;
 	transition: ease-in-out .75;
 }

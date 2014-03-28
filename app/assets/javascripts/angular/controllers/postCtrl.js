@@ -16,9 +16,15 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.newJourney = {};
   $scope.videoMethod = 'record';
   $scope.currentJourney = {};
+  $scope.imageUrl = null;
+  $scope.post_types = ['text', 'photo', 'video'];
   var posts;
 
 
+
+  $scope.setPostType = function(post_type){
+    $scope.newPost.post_type = post_type
+  };
 
   // sets $scope.videoMethod to either 'url' or 'record'
   $scope.setVideoMethod = function(method){
@@ -57,6 +63,10 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
     }
   };
 
+  $scope.setCurrentJourney = function(journey){
+    $scope.currentJourney = journey;
+  };
+
   $scope.displayJourney = function(journey){
     $scope.currentJourney = journey;
     $scope.getPosts(journey);
@@ -68,11 +78,17 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
     // if $scope.videoMethod = 'url', parse for id and save from form
     // if post.post_type !== video, videoId will not have been set,
     // so nil will be passed in, which is the expected behavior
-    if ($scope.videoMethod === 'record'){
-    post.video = videoId;
-  } else if ($scope.videoMethod === 'record'){
-    post.video = parseVideoUrl(post.video);
-  }
+    if (post.post_type === 'video'){
+      if ($scope.videoMethod === 'record'){
+        post.video = videoId;
+      } else if ($scope.videoMethod === 'url'){
+        post.video = parseVideoUrl(post.video);
+      }
+    }
+
+      if (post.post_type === 'photo'){
+        post.photo = $scope.imageUrl;
+      }
 
     // TODO: add logic - if video id is nil don't allow create
 
@@ -83,9 +99,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
         post: post,
         journey_id: journeyId
       }
-    }).success(function(){
-      $location.path('/my-journeys');
     });
+      $location.path('/my-journeys');
   };
 
   // sets passed in journey or post to edit mode
@@ -185,7 +200,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
           }).then(function(response){
             file.progress = parseInt(100);
             if (response.status === 201){
-              console.log(response.data);
+             $scope.imageUrl = $(response.data).find("Location").text();
              console.log('success');
             } else {
               console.log('upload failed');
