@@ -164,16 +164,16 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
             url: 'https://wdi-final-project.s3.amazonaws.com/', 
             method: 'POST', 
             data: {
-              'key': $scope.s3Params.key, 
-              'acl': 'public', 
+              'key': $scope.s3Params.key,
+              'acl': 'public-read', 
+              'success_action_status': '201',
               'Content-Type': file.type, 
-              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId, 
-              'success_action_status': '200',
-              'Policy': $scope.s3Params.Policy, 
-              'Signature': $scope.s3Params.Signature
-            },         
-            file: file, 
-          }).then(function(reponse){ 
+              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId,
+              'policy': $scope.s3Params.policy, 
+              'signature': $scope.s3Params.signature
+            },
+            'file': file
+          }).then(function(response){ 
             file.progress = parseInt(100);
             if (response.status === 201){
              console.log('success')

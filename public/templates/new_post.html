@@ -1,7 +1,9 @@
+<div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
 <div class = "container new-post">
   <div class="row">
     <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
       <div ng-controller="PostCtrl">
+
           <div ng-init="getUserJourneys(true)">
             <h3>journey</h3>
             <div class="new-journey">
@@ -50,7 +52,7 @@
             <h3>If photo</h3>
             <input type="hidden" name="key" value="{{s3Params.key}}">
             <input type="hidden" name="{{s3Params.AWSAccessKeyId}}" value=""> 
-            <input type="hidden" name="acl" value="public"> 
+            <input type="hidden" name="acl" value="public-read"> 
             <input type="hidden" name="success_action_status" value="200">
             <input type="hidden" name="policy" value="{{s3Params.Policy}}">
             <input type="hidden" name="signature" value="{{s3Params.Signature}}">
