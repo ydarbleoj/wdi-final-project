@@ -23,7 +23,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
 
   $scope.setPostType = function(post_type){
-    $scope.newPost.post_type = post_type
+    $scope.newPost.post_type = post_type;
   };
 
   // sets $scope.videoMethod to either 'url' or 'record'
