@@ -1,0 +1,161 @@
+.container-index {
+	width: 100%;
+	height: 100%;
+	top: 0em;
+}
+
+.header-index {
+	width: 100%;
+	height: 6em;
+	margin-top: -1.25em;
+	background-color: rgba(44,57,73, 1); 
+	border-left: 10px solid rgba(255,127,102, 1);
+	
+}
+
+.nav-index {
+	width: 20%;
+	height: 1em;
+	margin: auto 0;
+	float: right;
+}
+
+li#signup-index {
+	/*right: 50%;*/
+	margin-left: 2.5em;
+	margin-top: 2.5em;
+	position: relative;
+	text-align: center;
+	display: block;
+}
+
+li#login-index {
+	/*left: 50%;*/
+	margin-left: -7em;
+	margin-top: -3.75em;
+	position: relative;
+	text-align: center;
+	display: block;
+}
+
+li#login-index:hover {
+	
+	box-shadow: 10px 9px 53px #000000;
+	transition: ease-in-out .75;
+}
+
+.content {
+	width: 100%;
+	height: 30em;
+}
+
+.footer-index {
+	width: 100%;
+	height: 10em;
+	background-color: rgba(44,57,73, 1); 
+	ont-family: Lato;
+	font-weight: 100;
+	font-size: 1.25em;
+	color: transparent;
+	transition: ease-in-out .5s;
+	padding-bottom: 100px;
+}
+
+a {
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin: 0;
+}
+
+.video-index {
+	width: 25%;
+	height: 10em;
+	padding-top: 3em;
+	float: left;
+	border-right: 2px solid rgba(255,127,102, .3);
+}
+
+li#video-text:hover {
+	color: white;
+	transition: ease-in-out .5s;
+	padding-bottom: 100px;
+}
+
+img#video-link {
+	transition: ease-in-out .5s;
+}
+
+img#video-link:hover {
+	transition: ease-in-out .5s;
+	padding-top: 12px;
+}
+
+.picture-index {
+	width: 25%;
+	height: 10em;
+	padding-top: 3em;
+	float: left;
+	border-right: 2px solid rgba(255,127,102, .3);
+	transition: ease-in-out .5s;
+}
+
+li#picture-text:hover {
+	color: white;
+	transition: ease-in-out .5s;
+	padding-bottom: 100px;
+}
+
+img#picture-link {
+	transition: ease-in-out .5s;
+}
+
+img#picture-link:hover {
+	transition: ease-in-out .5s;
+	padding-top: 12px;
+}
+
+.text-index {
+	width: 25%;
+	height: 10em;
+	padding-top: 3em;
+	float: left;
+	border-right: 2px solid rgba(255,127,102, .3);
+}
+
+li#text-text:hover {
+	color: white;
+	transition: ease-in-out .5s;
+	padding-bottom: 100px;
+}
+
+img#text-link {
+	transition: ease-in-out .5s;
+}
+
+img#text-link:hover {
+	transition: ease-in-out .5s;
+	padding-top: 10px;
+}
+
+.follow-index {
+	width: 25%;
+	height: 10em;
+	padding-top: 3em;
+	float: right;
+}
+
+li#follow-text:hover {
+	color: white;
+	transition: ease-in-out .5s;
+	padding-bottom: 100px;
+}
+
+img#follow-link {
+	transition: ease-in-out .5s;
+}
+
+img#follow-link:hover {
+	transition: ease-in-out .5s;
+	padding-top: 10px;
+}

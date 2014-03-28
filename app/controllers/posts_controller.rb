@@ -76,7 +76,7 @@ class PostsController < ApplicationController
       "expiration" => 5.minutes.from_now.xmlschema,
       "conditions" => [
         { "bucket" => 'wdi-final-project' },
-        [ "starts-with", "$key", "" ], # need fix
+        [ "starts-with", "$key", "" ], 
         { "acl" => 'public-read' },
         [ "starts-with", "$Content-Type", ""],
         [ "starts-with", "$success_action_status", ""],
