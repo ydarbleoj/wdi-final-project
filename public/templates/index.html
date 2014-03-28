@@ -9,7 +9,16 @@
 	<div class="row content">
 		<div class="small-8 small-centered medium-8 medium-centered large-6 large-centered columns">
 			<div ng-controller="IndexCtrl">
-				<iframe width="420" height="315" src="//www.youtube.com/embed/LatorN4P9aA" frameborder="0" allowfullscreen></iframe>
+				<h1 class="app-title">
+					Journeys
+				</h1>
+					<div ng-show="video">
+						<iframe width="800" height="400" src="//www.youtube.com/embed/LatorN4P9aA" frameborder="0" allowfullscreen></iframe>
+					</div>
+
+					<div ng-show="photo">
+						<iframe width="800" height="400" src="https://wdi-final-project.s3.amazonaws.com/users%2F8%2F1396024513" frameborder="0"></iframe>
+					</div>
 			</div>
 		</div>
 	</div>
@@ -17,10 +26,10 @@
 	<div class="footer-index">
 		<div class="row">
 			<div class="video-index">
-				<li id="video-text" ><a href='#/signup'><img id="video-link" src="/assets/video64.png" alt=""></a>Take a video</li>
+				<li id="video-text" ><a  ng-click="showVideo()"><img id="video-link" src="/assets/video64.png" alt=""></a>Take a video</li>
 			</div>
 			<div class="picture-index">
-				<li id="picture-text" ><a href='#/signup'><img id="picture-link"src="/assets/webcam64.png" alt=""></a>Take a picture</li>
+				<li id="picture-text" ><a ng-click="showPhoto()"><img id="picture-link"src="/assets/webcam64.png" alt=""></a>Take a picture</li>
  			</div>
 
 			<div class="text-index">

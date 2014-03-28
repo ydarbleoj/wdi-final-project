@@ -10734,6 +10734,9 @@ return jQuery;
   }
 
 })( jQuery );
+/*! 1.2.9 */
+
+!function(){var a=function(){try{var a=new ActiveXObject("ShockwaveFlash.ShockwaveFlash");if(a)return!0}catch(b){if(void 0!=navigator.mimeTypes["application/x-shockwave-flash"])return!0}return!1};if(window.XMLHttpRequest&&(window.FormData?window.XMLHttpRequest=function(a){return function(){var b=new a;return b.setRequestHeader=function(a){return function(c,d){if("__setXHR_"===c){var e=d(b);e instanceof Function&&e(b)}else a.apply(b,arguments)}}(b.setRequestHeader),b}}(window.XMLHttpRequest):(window.XMLHttpRequest=function(b){return function(){var c=new b,d=c.send;return c.__requestHeaders=[],c.open=function(a){return c.upload||(c.upload={}),c.upload.addEventListener=function(a,b){"progress"===a&&(c.__progress=b),"load"===a&&(c.__load=b)},function(b,d,e){a.apply(c,[b,d,e]),c.__url=d}}(c.open),c.getResponseHeader=function(a){return function(b){return c.__fileApiXHR?c.__fileApiXHR.getResponseHeader(b):a.apply(c,[b])}}(c.getResponseHeader),c.getAllResponseHeaders=function(a){return function(){return c.__fileApiXHR?c.__fileApiXHR.getAllResponseHeaders():a.apply(c)}}(c.getAllResponseHeaders),c.abort=function(a){return function(){return c.__fileApiXHR?c.__fileApiXHR.abort():null==a?null:a.apply(c)}}(c.abort),c.setRequestHeader=function(a){return function(b,d){if("__setXHR_"===b){var e=d(c);e instanceof Function&&e(c)}else a.apply(c,arguments)}}(c.setRequestHeader),c.send=function(){if(arguments[0]&&arguments[0].__isShim){var b=arguments[0],e={url:c.__url,complete:function(a,b){a||c.__load({type:"load",loaded:c.__total,total:c.__total,target:c,lengthComputable:!0}),void 0!==b.status&&Object.defineProperty(c,"status",{get:function(){return b.status}}),void 0!==b.statusText&&Object.defineProperty(c,"statusText",{get:function(){return b.statusText}}),Object.defineProperty(c,"readyState",{get:function(){return 4}}),void 0!==b.response&&Object.defineProperty(c,"response",{get:function(){return b.response}}),Object.defineProperty(c,"responseText",{get:function(){return b.responseText}}),c.__fileApiXHR=b,c.onreadystatechange()},progress:function(a){a.target=c,c.__progress(a),c.__total=a.total},headers:c.__requestHeaders};e.data={},e.files={};for(var f=0;f<b.data.length;f++){var g=b.data[f];null!=g.val&&null!=g.val.name&&null!=g.val.size&&null!=g.val.type?e.files[g.key]=g.val:e.data[g.key]=g.val}setTimeout(function(){if(!a())throw'Adode Flash Player need to be installed. To check ahead use "FileAPI.hasFlash"';c.__fileApiXHR=FileAPI.upload(e)},1)}else d.apply(c,arguments)},c}}(window.XMLHttpRequest),window.XMLHttpRequest.__hasFlash=a()),window.XMLHttpRequest.__isShim=!0),!window.FormData){var b=function(b){if(!a())throw'Adode Flash Player need to be installed. To check ahead use "FileAPI.hasFlash"';if(!b.__isWrapped&&(null!=b.getAttribute("ng-file-select")||null!=b.getAttribute("data-ng-file-select"))){var c=document.createElement("div");c.innerHTML='<div class="js-fileapi-wrapper" style="position:relative; overflow:hidden"></div>',c=c.firstChild;var d=b.parentNode;d.insertBefore(c,b),d.removeChild(b),c.appendChild(b),b.__isWrapped=!0}},c=function(a){return function(b){var c=FileAPI.getFiles(b);b.target||(b.target={}),b.target.files=c,b.target.files.item=function(a){return b.target.files[a]||null},a(b)}},d=function(a,b){return("change"===b.toLowerCase()||"onchange"===b.toLowerCase())&&"file"==a.getAttribute("type")};HTMLInputElement.prototype.addEventListener&&(HTMLInputElement.prototype.addEventListener=function(a){return function(e,f,g,h){d(this,e)?(b(this),a.apply(this,[e,c(f),g,h])):a.apply(this,[e,f,g,h])}}(HTMLInputElement.prototype.addEventListener)),HTMLInputElement.prototype.attachEvent&&(HTMLInputElement.prototype.attachEvent=function(a){return function(e,f){d(this,e)?(b(this),a.apply(this,[e,c(f)])):a.apply(this,[e,f])}}(HTMLInputElement.prototype.attachEvent)),window.FormData=FormData=function(){return{append:function(a,b,c){this.data.push({key:a,val:b,name:c})},data:[],__isShim:!0}},function(){if(window.FileAPI||(window.FileAPI={}),!FileAPI.upload){var b,c,d,e,f,g=document.createElement("script"),h=document.getElementsByTagName("script");if(window.FileAPI.jsUrl)b=window.FileAPI.jsUrl;else if(window.FileAPI.jsPath)c=window.FileAPI.jsPath;else for(d=0;d<h.length;d++)if(f=h[d].src,e=f.indexOf("angular-file-upload-shim.js"),-1==e&&(e=f.indexOf("angular-file-upload-shim.min.js")),e>-1){c=f.substring(0,e);break}null==FileAPI.staticPath&&(FileAPI.staticPath=c),g.setAttribute("src",b||c+"FileAPI.min.js"),document.getElementsByTagName("head")[0].appendChild(g),FileAPI.hasFlash=a()}}()}window.FileReader||(window.FileReader=function(){function a(a,c){var d={type:a,target:b,loaded:c.loaded,total:c.total,error:c.error};return null!=c.result&&(d.target.result=c.result),d}var b=this,c=!1;this.listeners={},this.addEventListener=function(a,c){b.listeners[a]=b.listeners[a]||[],b.listeners[a].push(c)},this.removeEventListener=function(a,c){b.listeners[a]&&b.listeners[a].splice(b.listeners[a].indexOf(c),1)},this.dispatchEvent=function(a){var c=b.listeners[a.type];if(c)for(var d=0;d<c.length;d++)c[d].call(b,a)},this.onabort=this.onerror=this.onload=this.onloadstart=this.onloadend=this.onprogress=null;var d=function(d){if(c||(c=!0,b.onloadstart&&this.onloadstart(a("loadstart",d))),"load"===d.type){b.onloadend&&b.onloadend(a("loadend",d));var e=a("load",d);b.onload&&b.onload(e),b.dispatchEvent(e)}else if("progress"===d.type){var e=a("progress",d);b.onprogress&&b.onprogress(e),b.dispatchEvent(e)}else{var e=a("error",d);b.onerror&&b.onerror(e),b.dispatchEvent(e)}};this.readAsArrayBuffer=function(a){FileAPI.readAsBinaryString(a,d)},this.readAsBinaryString=function(a){FileAPI.readAsBinaryString(a,d)},this.readAsDataURL=function(a){FileAPI.readAsDataURL(a,d)},this.readAsText=function(a){FileAPI.readAsText(a,d)}})}();
 /*
  AngularJS v1.2.14
  (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -10958,6 +10961,9 @@ g[h];n&&r&&(l[n.name]=r)}q=l}else q=null;else q=null;q=a=q}q&&(b=s(f,{params:e.e
 function(){this.$get=function(){return{}}});n.directive("ngView",x);n.directive("ngView",z);x.$inject=["$route","$anchorScroll","$animate"];z.$inject=["$compile","$controller","$route"]})(window,window.angular);
 //# sourceMappingURL=angular-route.min.js.map
 ;
+/*! 1.2.9 */
+
+!function(){var a=angular.module("angularFileUpload",[]);a.service("$upload",["$http","$rootScope","$timeout",function(a,b,c){function d(b){b.method=b.method||"POST",b.headers=b.headers||{},b.transformRequest=b.transformRequest||function(b){return window.ArrayBuffer&&b instanceof ArrayBuffer?b:a.defaults.transformRequest[0](b)},window.XMLHttpRequest.__isShim&&(b.headers.__setXHR_=function(){return function(a){b.__XHR=a,a.upload.addEventListener("progress",function(a){b.progress&&c(function(){b.progress&&b.progress(a)})},!1),a.upload.addEventListener("load",function(a){a.lengthComputable&&c(function(){b.progress&&b.progress(a)})},!1)}});var d=a(b);return d.progress=function(a){return b.progress=a,d},d.abort=function(){return b.__XHR&&c(function(){b.__XHR.abort()}),d},d.then=function(a,c){return function(d,e,f){b.progress=f||b.progress;var g=c.apply(a,[d,e,f]);return g.abort=a.abort,g.progress=a.progress,g}}(d,d.then),d}this.upload=function(b){b.headers=b.headers||{},b.headers["Content-Type"]=void 0,b.transformRequest=b.transformRequest||a.defaults.transformRequest;var c=new FormData;if(b.data)for(var e in b.data){var f=b.data[e];if(b.formDataAppender)b.formDataAppender(c,e,f);else{if("function"==typeof b.transformRequest)f=b.transformRequest(f);else for(var g=0;g<b.transformRequest.length;g++){var h=b.transformRequest[g];"function"==typeof h&&(f=h(f))}c.append(e,f)}}b.transformRequest=angular.identity;var i=b.fileFormDataName||"file";if("[object Array]"===Object.prototype.toString.call(b.file))for(var j="[object String]"===Object.prototype.toString.call(i),g=0;g<b.file.length;g++)c.append(j?i+g:i[g],b.file[g],b.file[g].name);else c.append(i,b.file,b.file.name);return b.data=c,d(b)},this.http=function(a){return d(a)}}]),a.directive("ngFileSelect",["$parse","$http","$timeout",function(a,b,c){return function(b,d,e){var f=a(e.ngFileSelect);d.bind("change",function(a){var d,e,g=[];if(d=a.target.files,null!=d)for(e=0;e<d.length;e++)g.push(d.item(e));c(function(){f(b,{$files:g,$event:a})})}),d.bind("click",function(){this.value=null})}}]),a.directive("ngFileDropAvailable",["$parse","$http","$timeout",function(a,b,c){return function(b,d,e){if("draggable"in document.createElement("span")){var f=a(e.ngFileDropAvailable);c(function(){f(b)})}}}]),a.directive("ngFileDrop",["$parse","$http","$timeout",function(a,b,c){return function(b,d,e){if("draggable"in document.createElement("span")){var f=null,g=a(e.ngFileDrop);d[0].addEventListener("dragover",function(a){c.cancel(f),a.stopPropagation(),a.preventDefault(),d.addClass(e.ngFileDragOverClass||"dragover")},!1),d[0].addEventListener("dragleave",function(){f=c(function(){d.removeClass(e.ngFileDragOverClass||"dragover")})},!1),d[0].addEventListener("drop",function(a){a.stopPropagation(),a.preventDefault(),d.removeClass(e.ngFileDragOverClass||"dragover");var f,h=[],i=a.dataTransfer.files;if(null!=i)for(f=0;f<i.length;f++)h.push(i.item(f));c(function(){g(b,{$files:h,$event:a})})},!1)}}}])}();
 /**
  * @license AngularJS v1.2.14
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -12900,38 +12906,133 @@ angular.module('ngResource', ['ng']).
   }
 }).call(this);
 var journeyApp = angular.module('journeyApp', [
-	'journeyRouter', 
-	'journeyAppCtrls'
+	'journeyRouter',
+	'angularFileUpload',
+	'journeyAppCtrls',
+	'ngResource'
 	]);
 
-journeyAppCtrls = angular.module('journeyAppCtrls', []);
+var journeyAppCtrls = angular.module('journeyAppCtrls', []);
+
+
 
 
 journeyRouter = angular.module("journeyRouter", [
 	"ngRoute"
 ]);
 
-journeyRouter.config(['$routeProvider', function($routeProvider){
+journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	$routeProvider
-		.when('/home', {
-			templateUrl: '../templates/index.html', 
+		.when('/', {
+			templateUrl: '../templates/index.html',
 			controller: 'IndexCtrl'
 		})
-		.when('/contact', {
-			templateUrl: '../templates/journeys.html', 
+		.when('/newsfeed', {
+			templateUrl: '../templates/journeys.html',
 			controller: 'NewsFeedCtrl'
 		})
 		.when('/profile', {
-			templateUrl: '../templates/profile.html', 
+			templateUrl: '../templates/profile.html',
 			controller: 'ProfileCtrl'
+		})
+		.when('/login', {
+			templateUrl: '../templates/login.html',
+			controller: 'LoginCtrl'
+		})
+		.when('/logout', {
+			templateUrl: '../templates/index.html',
+			controller: 'LoginCtrl'
+		})
+		.when('/signup', {
+			templateUrl: '../templates/signup.html',
+			controller: 'LoginCtrl'
+		})
+		.when('/new-post', {
+			templateUrl: '../templates/new_post.html',
+			controller: 'PostCtrl'
+		})
+		.when('/my-journeys', {
+			templateUrl: '../templates/my_journeys.html',
+			controller: 'PostCtrl'
 		})
 		.otherwise({
 			templateUrl: '../templates/nav.html',
 			controller: 'NavCtrl'
 		});
+		// $locationProvider.html5Mode(true);
 }]);
 
+// 2. Asynchronously load the Upload Widget and Player API code.
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+// 3. Define global variables for the widget and the player.
+//    The function loads the widget after the JavaScript code
+//    has downloaded and defines event handlers for callback
+//    notifications related to the widget.
+var widget;
+var player;
+// define var for video id, which will be passed to the createPost method
+// in the ng PostCtrl
+var videoId;
+
+function onYouTubeIframeAPIReady() {
+  widget = new YT.UploadWidget('widget', {
+    width: 500,
+    events: {
+      'onUploadSuccess': onUploadSuccess,
+      // 'onProcessingComplete': onProcessingComplete
+    }
+  });
+
+  if(typeof posts === 'undefined'){
+    return;
+  }
+
+  for(var i = 0; i < posts.length; i++){
+    var thisplayer = createPlayer(posts[i]);
+  }
+}
+
+function createPlayer(post){
+  player = new YT.Player( post.video, {
+    height: '390',
+    width: '640',
+    videoId: post.video,
+    events: {
+      // 'onReady': onPlayerReady,
+      // 'onStateChange': onPlayerStateChange
+    }
+  });
+  return player;
+}
+
+
+
+// 4. This function is called when a video has been successfully uploaded.
+function onUploadSuccess(event) {
+  // try to git this without the hidden input field
+  videoId = event.data.videoId;
+}
+
+// 5. This function is called when a video has been successfully
+//    processed.
+// function onProcessingComplete(event) {
+//   player = new YT.Player('player', {
+//     height: 390,
+//     width: 640,
+//     videoId: event.data.videoId,
+//     events: {}
+//   });
+// }
+
+function parseVideoUrl(url) {
+  // need to implement this. just returning the url for now.
+  return url;
+}
+;
 /*
  * Foundation Responsive Library
  * http://foundation.zurb.com
@@ -13539,13 +13640,191 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 journeyAppCtrls.controller('IndexCtrl', ['$scope', function($scope){
 
 	$scope.foo = 'bar';
+	var nav;
+
+		$scope.showVideo = function() {
+			if ($scope.video) {
+				$scope.video = false;
+			} else {
+				$scope.video = true;
+			}
+			// $scope.showPhoto();
+		};
+
+		$scope.showPhoto = function(){
+			if($scope.photo){
+				$scope.photo = false;
+			} else {
+				$scope.photo = true;
+			}
+			// $scope.showVideo();
+		}
 
 }]);
+journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
+
+	$scope.login_user = {
+		email: null,
+		password: null
+	};
+
+	$scope.login_error = {
+		message: null,
+		errors: {}
+	};
+
+	$scope.register_user = {
+		username: null,
+		email: null,
+		password: null,
+		password_confirmation: null
+	};
+
+	$scope.register_error = {
+		username: null,
+		email: null,
+		errors: {}
+	};
+
+	// when we call submit we are first reseting any messages from a previous call.
+
+	$scope.login = function() {
+		$scope.submit({
+			method: 'POST',
+			url: '../users/sign_in.json',
+			data: {
+				user: { email: $scope.login_user.email,
+				password: $scope.login_user.password
+				}
+			},
+			success_message: "You have been logged in.",
+			error_entity: $scope.login_error
+		}, function(){
+			$location.path('/my-journeys');
+		});
+	};
+
+
+	$scope.logout = function() {
+		$scope.submit({
+			method: 'DELETE',
+			url: '../users/sign_out.json',
+			success_message: 'You have been logged out.',
+			error_entity: $scope.login_error
+		},function(){
+			$location.path("/");
+		});
+	};
+
+	$scope.password_reset = function() {
+		$scope.submit({
+			method: 'POST',
+			url: '../users/password.json',
+			data: {
+				user: { email: $scope.login_user.email
+				}
+			},
+				success_message: "Reset instructions have been sent to your e-mail address.",
+				error_entity: $scope.login_error
+		});
+	};
+
+	$scope.register = function() {
+		$scope.submit({
+			method: 'POST',
+			url: '../users.json',
+			data: {
+				user: { username: $scope.register_user.username,
+								email: $scope.register_user.email,
+								password: $scope.register_user.password,
+								password_confirmation: $scope.register_user.password_confirmation
+				}
+			},
+			success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail.",
+			error_entity: $scope.register_error
+		}, function(){
+			$location.path('/my-journeys');
+		});
+	};
+
+	$scope.change_password = function() {
+		$scope.submit({
+			method: "POST",
+			url: '../users/password.json',
+			data: {
+				user: { email: $scope.register_user.email,
+					password: $scope.register_user.password,
+					password_confirmation: $scope.register_user.password_confirmation
+				}
+			},
+			success_message: "Your password has been updated.",
+			error_entity: $scope.register_error
+		});
+	};
+
+
+
+	$scope.submit = function(parameters, redirect) {
+		$scope.reset_messages();
+
+		$http({
+			method: parameters.method,
+			url: parameters.url,
+			data: parameters.data
+		})
+		.success(function(data, status){
+			if (status == 201 || status == 204){
+				parameters.error_entity.message = parameters.success_message;
+				$scope.reset_users();
+				redirect();
+			} else {
+				if (data.error) {
+					parameters.error_entity.message = data.error;
+				} else {
+					parameters.error_entity.message =
+						"Success, but with an unexpected success code, potentially a server error, please report via support channels as this indicates a code defect. Server response was: " + JSON.stringify(data);
+					}
+				}
+		})
+		.error(function(data, status) {
+			if(status == 422){
+				parameters.error_entity.errors = data.errors; // errors into objects
+			} else {
+				if (data.error) {
+					parameters.error_entity.message = data.error;
+				} else {
+					parameters.error_entity.message = "Unexplained error, potentially a server error, please report via support channels as this indicates a code defect. Server response was: " + JSON.stringify(data);
+				}
+			}
+		});
+	};
+
+	$scope.reset_messages = function() {
+		$scope.login_error.message = null;
+		$scope.login_error.errors = {};
+		$scope.register_error.message = null;
+		$scope.register_error.errors = {};
+	};
+
+	$scope.reset_users = function() {
+		$scope.login_user.email = null;
+		$scope.login_user.password = null;
+		$scope.register_user.email = null;
+		$scope.register_user.password = null;
+		$scope.register_user.password_confirmation = null;
+	};
+}]);
  journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+
+
     $scope.navClass = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';
         return page === currentRoute ? 'active' : '';
-    };      
+    };  
+
+
+     //$scope.showPageHero = $location.path() === '/';
+
 }]);
 journeyAppCtrls.controller('NewsFeedCtrl', ['$scope', function($scope){
 
@@ -13565,10 +13844,257 @@ journeyAppCtrls.controller('NewsFeedCtrl', ['$scope', function($scope){
 
 	];
 }]);
+
+journeyAppCtrls.factory('Post', ['$resource', function($resource){
+  return $resource("/journeys/:journey_id/posts/:id.json", {journey_id: "@journey_id", id: "@id"}, {update: {method: "PATCH"}});
+}]);
+
+journeyAppCtrls.factory('Journey', ['$resource', function($resource){
+  return $resource("/journeys/:id.json", { id: "@id"}, {update: {method: "PATCH"}});
+}]);
+
+
+journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$location",
+  function($scope, $http, Post, $upload, $location){
+
+  $scope.newPost  = {};
+  $scope.journeys = {};
+  $scope.newJourney = {};
+  $scope.videoMethod = 'record';
+  $scope.currentJourney = {};
+  $scope.imageUrl = null;
+  $scope.post_types = ['text', 'photo', 'video'];
+  $scope.journeys_count = 12;
+  $scope.followers_count = 23;
+  var posts;
+
+
+
+  $scope.setPostType = function(post_type){
+    $scope.newPost.post_type = post_type;
+  };
+
+  // sets $scope.videoMethod to either 'url' or 'record'
+  $scope.setVideoMethod = function(method){
+    $scope.videoMethod = method;
+  };
+
+  // returns JSON object of user's journeys. pass in true to include an empty
+  // journey w/ title 'Create a New Journey' - for populating a dropdown list.
+  $scope.getUserJourneys = function(addNew){
+    $http({
+      method: 'GET',
+      url: '/journeys.json'
+    }).success(function(response){
+      $scope.journeys = response.current_user_journeys;
+      if(addNew) {
+        $scope.journeys.push({ title: "Create a New Journey" });
+      }
+    }).error(function(){
+      $location.path('/home');
+    });
+  };
+
+  // adds journey.posts array to a journey object
+  $scope.getPosts = function(journey){
+    $.get('/journeys/' + journey.id + '/posts.json')
+      .success(function(response){
+      journey.posts = response;
+      posts = response;
+      return journey;
+    });
+  };
+
+  $scope.renderIframes = function(){
+    for(var i = 0; i < posts.length; i++){
+      var thisplayer = createPlayer(posts[i]);
+    }
+  };
+
+  $scope.setCurrentJourney = function(journey){
+    $scope.currentJourney = journey;
+  };
+
+  $scope.displayJourney = function(journey){
+    $scope.currentJourney = journey;
+    $scope.getPosts(journey);
+    $scope.renderIframes();
+  };
+
+  // creates a post given a journey id and an unsaved post object
+  $scope.createPost = function(journeyId, post){
+    // if $scope.videoMethod = 'url', parse for id and save from form
+    // if post.post_type !== video, videoId will not have been set,
+    // so nil will be passed in, which is the expected behavior
+    if (post.post_type === 'video'){
+      if ($scope.videoMethod === 'record'){
+        post.video = videoId;
+      } else if ($scope.videoMethod === 'url'){
+        post.video = parseVideoUrl(post.video);
+      }
+    }
+
+      if (post.post_type === 'photo'){
+        post.photo = $scope.imageUrl;
+      }
+
+    // TODO: add logic - if video id is nil don't allow create
+
+    $http({
+      method: 'POST',
+      url: '/journeys/' + journeyId + '/posts.json',
+      data: {
+        post: post,
+        journey_id: journeyId
+      }
+    });
+      $location.path('/my-journeys');
+  };
+
+  // sets passed in journey or post to edit mode
+  $scope.edit = function(object){
+    object.editable = true;
+  };
+
+  // given journey id and an updated post, persists post changes
+  // and takes it out of edit mode
+  $scope.updatePost = function(journeyId, post){
+    $http({
+      method: 'PUT',
+      url: '/journeys/' + journeyId + '/posts/' + post.id + '.json',
+      data: { post: post }
+    }).success(function(response){
+      post.editable = false;
+    });
+  };
+
+  // given a post and its parent journey id, deletes post
+  $scope.deletePost = function(journeyId, post){
+    post.editable = false;
+    $http({
+      method: 'DELETE',
+      url: '/journeys/' + journeyId + '/posts/' + post.id + '.json',
+    });
+  };
+
+  // given a new journey & post, saves journey and then saves associated post
+  // with new journey id
+  $scope.createJourney = function(newJourney, newPost){
+    $http({
+      method: 'POST',
+      url: '/journeys.json',
+      data: {
+        journey: {
+          title: newJourney.title,
+          start_date: newJourney.start_date,
+          end_date: newJourney.end_date
+        }
+      }
+    }).success(function(response){
+      $scope.createPost(response.id);
+      // $('#file_upload').find('input[name=key]').val(retdata.key);
+      // $('#file_upload').find('input[name=policy]').val(retdata.policy);
+      // $('#file_upload').find('input[name=signature]').val(retdata.signature);
+    });
+  };
+
+  // given a journey with an existing id, updates journey with passed in data
+  $scope.updateJourney = function(journey){
+    $http({
+      method: 'PUT',
+      url: '/journeys/'+journey.id+'.json',
+      data: { journey: journey }
+    });
+  };
+
+  // given a journey, deletes it from db
+  $scope.deleteJourney = function(journeyId){
+    $http({
+      method: 'DELETE',
+      url: '/journeys/'+journeyId
+    });
+  };
+
+  // takes the passed in journey or post out of edit mode
+  $scope.cancelEdit = function(object){
+    object.editable = false;
+  };
+
+
+  $scope.onFileSelect = function($files){
+
+    $scope.files = $files;
+    $scope.upload = [];
+
+    for(var i = 0; i < $files.length; i++) {
+      var file = $files[i];
+      file.progress = parseInt(0);
+      (function (file, i) {
+        $http.get('/getImage.json').success(function(response){
+          $scope.s3Params = response;
+          $scope.upload[i] = $upload.upload({
+            url: 'https://wdi-final-project.s3.amazonaws.com/',
+            method: 'POST',
+            data: {
+              'key': $scope.s3Params.key,
+              'acl': 'public-read',
+              'success_action_status': '201',
+              'Content-Type': file.type,
+              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId,
+              'policy': $scope.s3Params.policy,
+              'signature': $scope.s3Params.signature
+            },
+            'file': file
+          }).then(function(response){
+            file.progress = parseInt(100);
+            if (response.status === 201){
+             $scope.imageUrl = $(response.data).find("Location").text();
+             console.log('success');
+            } else {
+              console.log('upload failed');
+            }
+          }, null, function(event){
+            file.progress = parseInt(100.0 * event.loaded / event.total);
+          });
+        });
+      }(file, i));
+    }
+  };
+
+  $scope.getCurrentUser = function(){
+    $.get('/currentUser').success(function(response){
+      $scope.currentUser = response;
+    });
+  };
+
+  $scope.updateUserPhoto = function(user){
+    user.photo = $scope.imageUrl;
+    $http({
+      method: "PUT",
+      url: "/users/"+user.id+".json",
+      data: user
+    });
+
+  };
+
+}]);
+
+
 journeyAppCtrls.controller('ProfileCtrl', ['$scope', function($scope){
 
 	$scope.profile = "James Franco";
 
+
+}]);
+journeyAppCtrls.controller("SignupFormCtrl", ['$scope', function($scope){
+
+	$scope.message = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, id, magnam, suscipit ipsam quidem tempora voluptates corporis illum soluta autem architecto nobis sequi repellat quo doloribus laboriosam unde. Eos, quos.";
+
+	$scope.submitForm = function(isValid) {
+		if(isValid) {
+			alert('you think you are signed up');
+		}
+	};
 }]);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
@@ -13582,6 +14108,8 @@ journeyAppCtrls.controller('ProfileCtrl', ['$scope', function($scope){
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
 
 
 
