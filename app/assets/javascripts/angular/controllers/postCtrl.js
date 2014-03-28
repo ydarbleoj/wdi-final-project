@@ -44,8 +44,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       if(addNew) {
         $scope.journeys.push({ title: "Create a New Journey" });
       }
-    }).error(function(){
-      $location.path('/home');
     });
   };
 

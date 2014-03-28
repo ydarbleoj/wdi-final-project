@@ -12921,13 +12921,13 @@ journeyRouter = angular.module("journeyRouter", [
 	"ngRoute"
 ]);
 
-journeyRouter.config(['$routeProvider', function($routeProvider){
+journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	$routeProvider
-		.when('/home', {
+		.when('/', {
 			templateUrl: '../templates/index.html',
 			controller: 'IndexCtrl'
 		})
-		.when('/contact', {
+		.when('/newsfeed', {
 			templateUrl: '../templates/journeys.html',
 			controller: 'NewsFeedCtrl'
 		})
@@ -12959,6 +12959,7 @@ journeyRouter.config(['$routeProvider', function($routeProvider){
 			templateUrl: '../templates/nav.html',
 			controller: 'NavCtrl'
 		});
+		// $locationProvider.html5Mode(true);
 }]);
 
 // 2. Asynchronously load the Upload Widget and Player API code.
@@ -13639,6 +13640,25 @@ function parseVideoUrl(url) {
 journeyAppCtrls.controller('IndexCtrl', ['$scope', function($scope){
 
 	$scope.foo = 'bar';
+	var nav;
+
+		$scope.showVideo = function() {
+			if ($scope.video) {
+				$scope.video = false;
+			} else {
+				$scope.video = true;
+			}
+			// $scope.showPhoto();
+		};
+
+		$scope.showPhoto = function(){
+			if($scope.photo){
+				$scope.photo = false;
+			} else {
+				$scope.photo = true;
+			}
+			// $scope.showVideo();
+		}
 
 }]);
 journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
@@ -13679,9 +13699,11 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			},
 			success_message: "You have been logged in.",
 			error_entity: $scope.login_error
+		}, function(){
+			$location.path('/my-journeys');
 		});
-		$location.path('/contact');
 	};
+
 
 	$scope.logout = function() {
 		$scope.submit({
@@ -13689,8 +13711,9 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			url: '../users/sign_out.json',
 			success_message: 'You have been logged out.',
 			error_entity: $scope.login_error
+		},function(){
+			$location.path("/");
 		});
-		$location.path("/home");
 	};
 
 	$scope.password_reset = function() {
@@ -13719,8 +13742,9 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			},
 			success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail.",
 			error_entity: $scope.register_error
+		}, function(){
+			$location.path('/my-journeys');
 		});
-		$location.path('/contact');
 	};
 
 	$scope.change_password = function() {
@@ -13738,7 +13762,9 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 		});
 	};
 
-	$scope.submit = function(parameters) {
+
+
+	$scope.submit = function(parameters, redirect) {
 		$scope.reset_messages();
 
 		$http({
@@ -13750,6 +13776,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 			if (status == 201 || status == 204){
 				parameters.error_entity.message = parameters.success_message;
 				$scope.reset_users();
+				redirect();
 			} else {
 				if (data.error) {
 					parameters.error_entity.message = data.error;
@@ -13788,10 +13815,13 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 	};
 }]);
  journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+
+
     $scope.navClass = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';
         return page === currentRoute ? 'active' : '';
-    };      
+    };  
+
 
      //$scope.showPageHero = $location.path() === '/';
 
@@ -13824,17 +13854,25 @@ journeyAppCtrls.factory('Journey', ['$resource', function($resource){
 }]);
 
 
-journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", 
-  function($scope, $http, Post, $upload){
+journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$location",
+  function($scope, $http, Post, $upload, $location){
 
   $scope.newPost  = {};
   $scope.journeys = {};
   $scope.newJourney = {};
   $scope.videoMethod = 'record';
   $scope.currentJourney = {};
+  $scope.imageUrl = null;
+  $scope.post_types = ['text', 'photo', 'video'];
+  $scope.journeys_count = 12;
+  $scope.followers_count = 23;
   var posts;
 
 
+
+  $scope.setPostType = function(post_type){
+    $scope.newPost.post_type = post_type;
+  };
 
   // sets $scope.videoMethod to either 'url' or 'record'
   $scope.setVideoMethod = function(method){
@@ -13871,16 +13909,32 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
     }
   };
 
+  $scope.setCurrentJourney = function(journey){
+    $scope.currentJourney = journey;
+  };
+
+  $scope.displayJourney = function(journey){
+    $scope.currentJourney = journey;
+    $scope.getPosts(journey);
+    $scope.renderIframes();
+  };
+
   // creates a post given a journey id and an unsaved post object
   $scope.createPost = function(journeyId, post){
     // if $scope.videoMethod = 'url', parse for id and save from form
     // if post.post_type !== video, videoId will not have been set,
     // so nil will be passed in, which is the expected behavior
-    if ($scope.videoMethod === 'record'){
-    post.video = videoId;
-  } else if ($scope.videoMethod === 'record'){
-    post.video = parseVideoUrl(post.video);
-  }
+    if (post.post_type === 'video'){
+      if ($scope.videoMethod === 'record'){
+        post.video = videoId;
+      } else if ($scope.videoMethod === 'url'){
+        post.video = parseVideoUrl(post.video);
+      }
+    }
+
+      if (post.post_type === 'photo'){
+        post.photo = $scope.imageUrl;
+      }
 
     // TODO: add logic - if video id is nil don't allow create
 
@@ -13891,8 +13945,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
         post: post,
         journey_id: journeyId
       }
-      // on s
     });
+      $location.path('/my-journeys');
   };
 
   // sets passed in journey or post to edit mode
@@ -13971,28 +14025,29 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
     $scope.upload = [];
 
     for(var i = 0; i < $files.length; i++) {
-      var file = $files[i]; 
+      var file = $files[i];
       file.progress = parseInt(0);
       (function (file, i) {
         $http.get('/getImage.json').success(function(response){
           $scope.s3Params = response;
           $scope.upload[i] = $upload.upload({
-            url: 'https://wdi-final-project.s3.amazonaws.com/', 
-            method: 'POST', 
+            url: 'https://wdi-final-project.s3.amazonaws.com/',
+            method: 'POST',
             data: {
-              'key': $scope.s3Params.key, 
-              'acl': 'public', 
-              'Content-Type': file.type, 
-              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId, 
-              'success_action_status': '200',
-              'Policy': $scope.s3Params.Policy, 
-              'Signature': $scope.s3Params.Signature
-            },         
-            file: file, 
-          }).then(function(reponse){ 
+              'key': $scope.s3Params.key,
+              'acl': 'public-read',
+              'success_action_status': '201',
+              'Content-Type': file.type,
+              'AWSAccessKeyId': $scope.s3Params.AWSAccessKeyId,
+              'policy': $scope.s3Params.policy,
+              'signature': $scope.s3Params.signature
+            },
+            'file': file
+          }).then(function(response){
             file.progress = parseInt(100);
             if (response.status === 201){
-             console.log('success')
+             $scope.imageUrl = $(response.data).find("Location").text();
+             console.log('success');
             } else {
               console.log('upload failed');
             }
@@ -14001,56 +14056,32 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload",
           });
         });
       }(file, i));
-    } 
+    }
+  };
+
+  $scope.getCurrentUser = function(){
+    $.get('/currentUser').success(function(response){
+      $scope.currentUser = response;
+    });
+  };
+
+  $scope.updateUserPhoto = function(user){
+    user.photo = $scope.imageUrl;
+    $http({
+      method: "PUT",
+      url: "/users/"+user.id+".json",
+      data: user
+    });
+
   };
 
 }]);
 
 
-journeyAppCtrls.controller("PostContentCtrl", ["$scope", "$http",  function($scope, $http){
-	
-	$scope.user = {
-        name: "Joel", 	
-  };
- 	
-  $scope.journeys = [
-  	{ title: "Transition" }, 
-  	{ title: "Marathon" }, 
-  	{ title: {
-  		other: "default"
-  		} 
-  	}
-  ];
-
-  // $scope.data = {
-  // 	newJourney: "default", 
-  // 	newPost: "default"
-  // }
-
-  $scope.post_options =
-    [
-        { id: 1, type: "Video" },
-        { id: 2, type: "Picture" },
-        { id: 3, type: "Text" }
-
-    ];
-
-	$scope.content = dataVids;
-	// $scope.content = [];
-
-	// $scope.fetchContent = function() {
-	// 	$http.get($scope.url).then(function(result){
-	// 		$scope.content = result.data;
-	// 	});
-	// }
-	// populating content with data
-
-	// $scope.fetchContent();
-
-}]);
 journeyAppCtrls.controller('ProfileCtrl', ['$scope', function($scope){
 
 	$scope.profile = "James Franco";
+
 
 }]);
 journeyAppCtrls.controller("SignupFormCtrl", ['$scope', function($scope){
