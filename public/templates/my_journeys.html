@@ -1,30 +1,38 @@
 <div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
-<div class="container">
+<div class="container-my-journeys">
   <div class="row">
-    <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
-      <div ng-controller="PostCtrl">
-        <div ng-init="getCurrentUser()">
-          <h1>{{currentUser.username}}</h1>
-          <img src="{{currentUser.photo}}" ng-model="currentUser.photo">
-         <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
-          <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>
+    <div ng-controller="PostCtrl">
+      <div class="user-profile">  
+        <div class="user-header" ng-init="getCurrentUser()">
+          <img id="user-image"src="/assets/james.jpg" ng-model="currentUser.photo">
+          <h1 class="user-name">{{currentUser.username}}</h1>
+         <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
+          <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
+          <div class="journeys-count">{{journeys_count}} <span id="journey-number">Journeys</span></div>
+          <div class="profile-followers">{{followers_count}} <span id="follower-count">Followers</span></div>
         </div>
-        <div ng-init="getUserJourneys()">
-          <h3>choose a journey:</h3>
-        </div>
-          <!-- we can change these buttons to icons or something -->
-          <button class="create-post" id="journey_select"
-            ng-repeat="journey in journeys"
-            ng-click="displayJourney(journey)">
-            {{journey.title}}
-          </button>
+        <div class="current-journeys">
+          <div ng-init="getUserJourneys()">
+              <h3>Your Journeys</h3>
 
+                <button class="create-post" id="journey_select"
+                  ng-repeat="journey in journeys"
+                  ng-click="displayJourney(journey)">
+                  {{journey.title}}
+                </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="journey-title">
         <div ng-show="currentJourney.id && !currentJourney.editable">
           <h4>{{currentJourney.title}}</h4>
-          <span>{{currentJourney.start_date}}<br></span>
-          <span>{{currentJourney.end_date}}<br></span>
+          <span>Begin: {{currentJourney.start_date}}<br></span>
+          <span>Ends: {{currentJourney.end_date}}<br></span>
           <button ng-show="!currentJourney.editable" ng-click="edit(currentJourney)">edit</button>
         </div>
+
+      
         <div ng-show="currentJourney.id && currentJourney.editable">
           Title: <input type="text" ng-model="currentJourney.title"><br>
           Start Date: <input type="date" ng-model="currentJourney.start_date"><br>
@@ -33,13 +41,15 @@
           <button ng-show="currentJourney.editable" ng-click="deleteJourney(currentJourney.id)">Delete journey</button>
           <button ng-show="currentJourney.editable" ng-click="cancelEdit(currentJourney)">cancel</button>
         </div>
+      </div>
 
-        <button ng-click="renderIframes()">get videos</button>
+       <div class="my-journeys-feed">
+        <button class="get-videos"ng-click="renderIframes()">get videos</button>
         <!-- <div ng-show="currentJourney.id"> -->
           <ul ng-repeat="post in currentJourney.posts">
-            <li>Type: {{post.post_type}}</li>
-            <li>Title:
-              <span ng-show="!post.editable">{{post.title}}</span>
+            <!-- <li>{{post.post_type}}</li> -->
+            <li>
+              <span class="post-title"ng-show="!post.editable">{{post.title}}</span>
               <input ng-show="post.editable" ng-model="post.title" type="text">
             </li>
             <!-- TEXT -->
@@ -49,27 +59,28 @@
               <textarea ng-show="post.editable" ng-model="post.text"></textarea>
             </li>
             <!-- VIDEO -->
+           <div class="my-journeys-video"> 
             <li ng-show="post.post_type === 'video'">
-              <div>
+              
               <div ng-show="!post.editable">
                 <div id="{{post.video}}"></div>
               </div>
-              </div>
               <input ng-show="post.editable" ng-model="post.video" type="text">
             </li>
+          </div>
             <!-- PHOTO -->
+          <div class="my-journeys-picture">
             <li ng-show="post.post_type === 'photo'">
-              Photo url:
               <div ng-show="!post.editable"><img src="{{post.photo}}"></div>
               <input ng-show="post.editable" ng-model="post.photo" type="text">
             </li>
             <li ng-show="post.post_type !== 'text'">
-              Caption:
-              <span ng-show="!post.editable">{{post.caption}}</span>
+             
+              <span class="caption" ng-show="!post.editable">{{post.caption}}</span>
               <input ng-show="post.editable" ng-model="post.caption" type="text">
             </li>
             <li>
-              <button ng-show="!post.editable" ng-click="edit(post)">
+              <button id="edit-post" ng-show="!post.editable" ng-click="edit(post)">
                 edit this post
               </button>
               <button ng-show="post.editable"
@@ -84,12 +95,11 @@
                 cancel
               </button>
             </li>
-            <li> ------ </li>
+          </div>
           </ul>
-        <!-- </div> -->
-      </div>
+       </div>
+
     </div>
   </div>
 </div>
 
-<!-- <div id="player"></div> -->

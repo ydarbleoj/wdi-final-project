@@ -1,0 +1,126 @@
+/*////// PROFILE PAGE //////*/
+.container-my-journeys {
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+
+.user-profile {
+	width: 91%;
+	height: 18em;
+	float: right;
+	margin-top: -1.5em;
+	margin-left: 7.5em;
+	background-color: white;
+	position: relative;
+}
+
+img#user-image {
+	width: 8em;
+	height: 8em;
+	margin: 50px 0 0 100px;
+	border-radius: 50%;
+}
+
+.user-name {
+	margin: -130px 0 0 280px;
+	font-family: Lato;
+	font-weight: 300;
+	font-size: 3em;
+}
+
+.journeys-count {
+	margin: 30px 0 0 280px;
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 1.15em;
+	color: rgba(255,127,102, 1);
+}
+
+span {
+	margin-left: 20px;
+	font-size: .85em;
+	color: rgba(44,57,73, .6);
+}
+
+.profile-followers {
+	margin: -17px 0 0 420px;
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 1.15em;
+	color: rgba(255,127,102, 1);
+}
+
+
+.current-journeys {
+	width: 100%;
+	height: 5em;
+	margin-top: 70px;
+	border-top: 1px solid  rgba(44,57,73, .3);
+}
+
+h3 {
+	margin: 15px 0 0 20px;
+	float: left;
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 1.15em;
+	color: rgba(44,57,73, .6);
+}
+
+.create-post {
+	margin: 1px 0 0 12px;
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 1.15em;
+	color: rgba(44,57,73, .6);
+}
+
+.journey-title {
+	width: 91%;
+	height: 5em;
+	margin-right: 0em;
+	float: right;
+/*	background-color: white;*/
+}
+
+.my-journeys-feed {
+	width: 91%;
+	height: 20em;
+	float: right;
+}
+
+.caption span {
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 2em;
+	color: rgba(44,57,73, 1);
+}
+
+.my-journeys-picture {
+	width: 400px;
+	height: 400px;
+	float: left;
+
+
+}
+
+.get-videos {
+
+}
+
+.my-journeys-video {
+	width: 400px;
+	height: 400px;
+	float: left;
+	margin-left: -13em;
+	margin-top: 
+}
+
+button#edit-post {
+	
+}
+
+
+
+
