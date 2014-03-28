@@ -1,11 +1,17 @@
-<div class="newsFeed"ng-controller="NewsFeedCtrl">
-		
-		<div id="topJourneys">
-			<div ng-repeat="journey in journeys" class="journey">
-				<h2>{{ journey.name }}</h2>
-				<h3>{{ journey.title }}</h3>
+<div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
+	<div class="container">
+		<div class="row">
+			<div class="small-8 small-centered medium-8 medium-centered large-6 large-centered columns">
+				<div class="newsFeed"ng-controller="NewsFeedCtrl">
+					<div id="topJourneys">
+						<div ng-repeat="journey in journeys" class="journey">
+							<h2>{{ journey.name }}</h2>
+							<h3>{{ journey.title }}</h3>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	<!-- <div ng-include="'profile.html'"></div> -->
+	</div>
 </div>
-
+	

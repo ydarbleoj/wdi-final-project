@@ -29,3 +29,5 @@ class ApplicationController < ActionController::Base
       super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
     end
 end
+
+

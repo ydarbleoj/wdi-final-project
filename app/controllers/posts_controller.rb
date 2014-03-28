@@ -54,7 +54,8 @@ class PostsController < ApplicationController
         render json: {
           policy: s3_upload_policy_document,
           signature: s3_upload_signature,
-          key: key
+          key: key,
+          AWSAccessKeyId: AWS.config.access_key_id
         }.to_json
       }
     end
@@ -65,19 +66,20 @@ class PostsController < ApplicationController
   protected
 
   def key
-    "users/#{current_user.to_param}/#{Time.now.to_s}"
+    "users/#{current_user.to_param}/#{Time.now.to_i}"
   end
 
 
   def s3_upload_policy_document
     return @policy if @policy
-
-    ret = { "expiration" => "5.minutes.from_now.xmlschema",
+    ret = {
+      "expiration" => 5.minutes.from_now.xmlschema,
       "conditions" => [
         { "bucket" => 'wdi-final-project' },
-        # [ "starts-with", "$key", @journey. ], # need fix
-        { "acl" => 'public' },
-        { "success_action_status" => "200" },
+        [ "starts-with", "$key", "" ], # need fix
+        { "acl" => 'public-read' },
+        [ "starts-with", "$Content-Type", ""],
+        [ "starts-with", "$success_action_status", ""],
         [ "content-length-range", 0, 1048576 ]
       ]
     }
@@ -86,7 +88,12 @@ class PostsController < ApplicationController
 
 
   def s3_upload_signature
-    signature = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), 'l9j+XoBWdSkeIjYgjlv6pA3BUHC7w/ysMmpS/klo', s3_upload_policy_document)).gsub("\n","")
+    Base64.encode64(
+      OpenSSL::HMAC.digest(
+        OpenSSL::Digest::Digest.new('sha1'),
+        AWS.config.secret_access_key, s3_upload_policy_document)
+      )
+    .gsub("\n","")
   end
 
 end

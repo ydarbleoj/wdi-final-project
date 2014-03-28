@@ -20,11 +20,7 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/index.html',
 			controller: 'IndexCtrl'
 		})
-		.when('/home', {
-			templateUrl: '../templates/index.html',
-			controller: 'IndexCtrl'
-		})
-		.when('/contact', {
+		.when('/newsfeed', {
 			templateUrl: '../templates/journeys.html',
 			controller: 'NewsFeedCtrl'
 		})
