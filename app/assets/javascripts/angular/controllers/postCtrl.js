@@ -23,7 +23,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
 
   $scope.setPostType = function(post_type){
-    $scope.newPost.post_type = post_type
+    $scope.newPost.post_type = post_type;
   };
 
   // sets $scope.videoMethod to either 'url' or 'record'
@@ -211,6 +211,22 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
         });
       }(file, i));
     }
+  };
+
+  $scope.getCurrentUser = function(){
+    $.get('/currentUser').success(function(response){
+      $scope.currentUser = response;
+    });
+  };
+
+  $scope.updateUserPhoto = function(user){
+    user.photo = $scope.imageUrl;
+    $http({
+      method: "PUT",
+      url: "/users/"+user.id+".json",
+      data: user
+    });
+
   };
 
 }]);

@@ -8,6 +8,7 @@ WdiFinalProject::Application.routes.draw do
   end
 
   get "/getImage", to: 'posts#render_new_photo'
+  get "/currentUser", to: 'users#get_current_user'
 
   resources :messages
 
