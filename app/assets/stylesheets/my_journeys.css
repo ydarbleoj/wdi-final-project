@@ -98,23 +98,22 @@ h3 {
 }
 
 .my-journeys-picture {
-	width: 400px;
+	width: 600px;
 	height: 400px;
-	float: left;
-
+	float: right;
 
 }
 
 .get-videos {
-
+	margin-top: 10px;
 }
 
 .my-journeys-video {
 	width: 400px;
 	height: 400px;
 	float: left;
-	margin-left: -13em;
-	margin-top: 
+	margin-left: -3em;
+	margin-top: -13em;
 }
 
 button#edit-post {
