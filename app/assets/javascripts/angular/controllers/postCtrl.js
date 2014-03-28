@@ -185,6 +185,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
           }).then(function(response){
             file.progress = parseInt(100);
             if (response.status === 201){
+              console.log(response.data);
              console.log('success');
             } else {
               console.log('upload failed');
