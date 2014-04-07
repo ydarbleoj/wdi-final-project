@@ -52,6 +52,7 @@
           <!-- PHOTO -->
           <div ng-show="newPost.post_type === 'photo' && currentJourney.title">
             <h3>If photo</h3>
+            <input type="file" accept="image/*;capture=camera">
             <input type="hidden" name="key" value="{{s3Params.key}}">
             <input type="hidden" name="{{s3Params.AWSAccessKeyId}}" value="">
             <input type="hidden" name="acl" value="public-read">
