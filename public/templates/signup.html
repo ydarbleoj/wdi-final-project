@@ -1,12 +1,15 @@
+<!--////// NAVBAR //////-->
 <div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
-<div class="container">
-	<div class="row">
-	<div class="small-4 small-centered medium-8 medium-centered large-6 large-centered columns">
-		<div class="body">
 
-		  <div ng-class="{error: register_error.errors.username}">
-		  	Username: <br>
-		  	<input type="text" ng-model="register_user.username" ng-minlength="2" ng-maxlength="15" />
+<!--////// SIGNUP //////-->
+<div class="container-signup">
+	<div class="row">
+		<div class="small-7 small-centered medium-2 medium-centered large-1 large-centered columns">
+			<div class="signup-body">
+				<div class="signup-title"><h1>Signup</h1></div>
+		  	<div id="signup-username" ng-class="{error: register_error.errors.username}">
+		  	<div class="signup-image"><img src="assets/user24.png" alt=""></div>
+		  	<div class="signup-input"><input type="text" ng-model="register_user.username" ng-minlength="2" ng-maxlength="15" placeholder="Username"/></div>
 		    <div ng-show="register_error.errors.username">
 		      <div ng-repeat="field_error in register_error.errors.username">
 		      	{{field_error}}
@@ -14,9 +17,9 @@
 		    </div>
 		  </div>
 
-		  <div ng-class="{error: register_error.errors.email}">
-		  	Email: <br>
-		  	<input ng-model="register_user.email" />
+		  <div id="signup-email" ng-class="{error: register_error.errors.email}">
+		  	<div class="signup-email-image"><img src="assets/emaillogin24.png" alt=""></div>
+		  	<div class="signup-email-input"><input ng-model="register_user.email" placeholder="Your email" /></div>
 		    <div ng-show="register_error.errors.email">
 		      <div ng-repeat="field_error in register_error.errors.email">
 		      	{{field_error}}
@@ -24,9 +27,9 @@
 		    </div>
 		  </div>
 
-		  <div ng-class="{error: register_error.errors.password}">
-		  	Password: <br>
-		  	<input type="password" ng-model="register_user.password" />
+		  <div id="signup-password" ng-class="{error: register_error.errors.password}">
+		  	<div class="signup-password-image"><img src="assets/passwordlogin24.png" alt=""></div>
+		  	<div class="signup-password-input"><input type="password" ng-model="register_user.password" placeholder="Your password" /></div>
 		    <div ng-show="register_error.errors.password">
 		      <div ng-repeat="field_error in register_error.errors.password">
 		      	{{field_error}}
@@ -34,18 +37,17 @@
 		    </div>
 		  </div>
 
-		  <div ng-class="{error: register_error.errors.password_confirmation}">
-		  	Confirm password: <br>
-		  	<input type="password" ng-model="register_user.password_confirmation" />
+		  <div id="signup-confirmation" ng-class="{error: register_error.errors.password_confirmation}">
+		  	<div class="signup-confirm-image"><img src="assets/checkmark24.png" alt=""></div>
+		  	<div class="signup-confirm-input"><input type="password" ng-model="register_user.password_confirmation" placeholder="Confirm it"/></div>
 		    <div ng-show="register_error.errors.password_confirmation">
 		      <div ng-repeat="field_error in register_error.errors.password_confirmation">
 		      	{{field_error}}
 		      </div>
 		    </div>
 		  </div>
-
-		  <button ng-click="register()" class="btn btn-primary" >Register</button>
-		  <button ng-click="change_password()" class="btn btn-primary" >Change Password</button>
+	
+		  <button ng-click="register()" class="btn-signup" >Register</button>
 		</div>
 	</div>
 	</div>
