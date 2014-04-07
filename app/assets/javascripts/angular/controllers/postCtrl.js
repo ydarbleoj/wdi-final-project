@@ -146,9 +146,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       }
     }).success(function(response){
       $scope.createPost(response.id);
-      // $('#file_upload').find('input[name=key]').val(retdata.key);
-      // $('#file_upload').find('input[name=policy]').val(retdata.policy);
-      // $('#file_upload').find('input[name=signature]').val(retdata.signature);
     });
   };
 
