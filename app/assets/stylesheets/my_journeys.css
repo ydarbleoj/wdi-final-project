@@ -1,16 +1,18 @@
 /*////// PROFILE PAGE //////*/
 .container-my-journeys {
-	width: 100%;
+	width: 91%;
 	height: 100%;
 	top: 0;
+	float: right;
 }
 
+/* //////USER PROFILE HEADER////// */
 .user-profile {
-	width: 91%;
-	height: 18em;
+	width: 100%;
+	height: 14em;
 	float: right;
-	margin-top: -1.5em;
-	margin-left: 7.5em;
+	top: -1.4em;
+	margin-top: 0em;
 	background-color: white;
 	position: relative;
 }
@@ -18,7 +20,7 @@
 img#user-image {
 	width: 8em;
 	height: 8em;
-	margin: 50px 0 0 100px;
+	margin: 45px 0 0 100px;
 	border-radius: 50%;
 }
 
@@ -51,43 +53,34 @@ span {
 	color: rgba(255,127,102, 1);
 }
 
+/*//////PROFILE LINKS//////*/
 
-.current-journeys {
+.profile-links {
 	width: 100%;
-	height: 5em;
-	margin-top: 70px;
-	border-top: 1px solid  rgba(44,57,73, .3);
+	height: 4em;
+	float: right;
+	margin-top: -1.4em;
+	background-color: white;
+	border-top: 1px solid rgba(44,57,73, .3);
 }
 
 h3 {
-	margin: 15px 0 0 20px;
+	padding: 16px 40px 0 80px;
 	float: left;
 	font-family: Lato;
-	font-weight: 400;
+	font-weight: 300;
 	font-size: 1.15em;
-	color: rgba(44,57,73, .6);
+	color: rgba(44,57,73, .8);
 }
 
-.create-post {
-	margin: 1px 0 0 12px;
-	font-family: Lato;
-	font-weight: 400;
-	font-size: 1.15em;
-	color: rgba(44,57,73, .6);
-}
+/*//////NOVO POST//////*/
 
-.journey-title {
-	width: 91%;
-	height: 5em;
-	margin-right: 0em;
-	float: right;
-/*	background-color: white;*/
-}
 
-.my-journeys-feed {
-	width: 91%;
-	height: 20em;
-	float: right;
+.novo-display {
+	width: 600px;
+	height: 400px;
+	float: left;
+	/*background-color: white;*/
 }
 
 .caption span {
@@ -119,7 +112,4 @@ h3 {
 button#edit-post {
 	
 }
-
-
-
 

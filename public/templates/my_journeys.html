@@ -1,6 +1,7 @@
 <div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
 <div class="container-my-journeys">
   <div class="row">
+    <!-- USER PROFILE HEADER  -->
     <div ng-controller="PostCtrl">
       <div class="user-profile">  
         <div class="user-header" ng-init="getCurrentUser()">
@@ -11,36 +12,41 @@
           <div class="journeys-count">{{journeys_count}} <span id="journey-number">Journeys</span></div>
           <div class="profile-followers">{{followers_count}} <span id="follower-count">Followers</span></div>
         </div>
-        <div class="current-journeys">
-          <div ng-init="getUserJourneys()">
-              <h3>Your Journeys</h3>
+      </div>
 
-                <button class="create-post" id="journey_select"
+
+      <div class="profile-links">
+        <div ng-init="getUserJourneys()">
+            <h3>My Novos</h3>
+            <h3>Following</h3>
+            <h3>Trending</h3>
+            <h3>Everyone</h3>
+            <h3>Categories</h3>
+              <button class="create-post" id="journey_select"
                   ng-repeat="journey in journeys"
-                  ng-click="displayJourney(journey)">
-                  {{journey.title}}
-                </button>
-          </div>
+                ng-click="displayJourney(journey)">
+                {{journey.title}}
+              </button>
         </div>
       </div>
+     
       
       <div class="journey-title">
         <div ng-show="currentJourney.id && !currentJourney.editable">
           <h4>{{currentJourney.title}}</h4>
-          <span>Begin: {{currentJourney.start_date}}<br></span>
-          <span>Ends: {{currentJourney.end_date}}<br></span>
-          <button ng-show="!currentJourney.editable" ng-click="edit(currentJourney)">edit</button>
+         <!--  <span>Begin: {{currentJourney.start_date}}<br></span>
+          <span>Ends: {{currentJourney.end_date}}<br></span> -->
+          <button class='edit-button-profile' ng-show="!currentJourney.editable" ng-click="edit(currentJourney)">edit</button>
         </div>
 
-      
-        <div ng-show="currentJourney.id && currentJourney.editable">
-          Title: <input type="text" ng-model="currentJourney.title"><br>
-          Start Date: <input type="date" ng-model="currentJourney.start_date"><br>
-          End Date: <input type="date" ng-model="currentJourney.end_date"><br>
-          <button ng-show="currentJourney.editable" ng-click="updateJourney(currentJourney)">Update journey</button>
-          <button ng-show="currentJourney.editable" ng-click="deleteJourney(currentJourney.id)">Delete journey</button>
-          <button ng-show="currentJourney.editable" ng-click="cancelEdit(currentJourney)">cancel</button>
-        </div>
+          <div ng-show="currentJourney.id && currentJourney.editable">
+            Title: <input type="text" ng-model="currentJourney.title"><br>
+            Start Date: <input type="date" ng-model="currentJourney.start_date"><br>
+            End Date: <input type="date" ng-model="currentJourney.end_date"><br>
+            <button ng-show="currentJourney.editable" ng-click="updateJourney(currentJourney)">Update journey</button>
+            <button ng-show="currentJourney.editable" ng-click="deleteJourney(currentJourney.id)">Delete journey</button>
+<!--             <button ng-show="currentJourney.editable" ng-click="cancelEdit(currentJourney)">cancel</button>
+ -->      </div>
       </div>
 
        <div class="my-journeys-feed">

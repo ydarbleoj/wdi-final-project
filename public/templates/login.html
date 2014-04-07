@@ -1,37 +1,38 @@
+<!--////// NAVBAR //////-->
 <div class="ng-include" src="'../templates/nav.html'"></div>
-<div class="container" ng-controller="LoginCtrl">
-	<div class="row">
-		<div class="small-4 small-centered medium-8 medium-centered large-6 large-centered columns">
-			<div class="login">
-				<h1>Login</h1>
-			</div>
-			
-			<div class="error" ng-show="login_error.message">
-				<p>{{ login_error.message }}</p>
-			</div>	
-			
 
+<!--////// LOGIN //////-->
+<div class="container-login" ng-controller="LoginCtrl">
+	<div class="row">
+		<div class="small-7 small-centered medium-2 medium-centered large-1 large-centered columns">
 			<div class="login-body">
-				<div id='login-email' ng-class="{ error: login_error.errors.email }" >	Email: <br>
-					<input ng-model="login_user.email" />
+				<div class="login-title">
+					<h1>Login</h1>
+					<div class="error" ng-show="login_error.message">
+						<p>{{ login_error.message }}</p>
+					</div>	
+				</div>
+				<div id='login-email' ng-class="{ error: login_error.errors.email }" >		
+					<div class="login-image"><img src="assets/emaillogin24.png" alt=""></div>
+					<div class="login-input"><input ng-model="login_user.email" placeholder="User email"/></div>
 					<div ng-show="login_errors.errors.email">
 						<div ng-repeat="field_error in login_error.errors.email">
 							{{ field_error }}
 						</div>
 					</div>
 				</div>
-				
 				<div id="login-password" ng-class="{ error: login_error.errors.password }"> 
-					Password: <br>
-					<input type="password" ng-model="login_user.password" />
+					<div class="login-password-image"><img src="assets/passwordlogin24.png" alt=""></div>
+					<div class="login-password-input"><input type="password" ng-model="login_user.password" placeholder="Password" /></div>
 					<div ng-show="login_error.errors.password">
-						<div ng-repeat="field_error in login_error.errors.password">{{ field_error }}</div>
+						<div ng-repeat="field_error in login_error.errors.password">{{ 	field_error }}
+						</div>
 					</div>
 				</div>
 
-				<button ng-click="login()" class="btn">Login</button>
-				<button ng-click="logout()" class="btn">Logout</button>
-				<button ng-click="password_reset()" class="btn">Reset Password</button>
+				<button ng-click="login()" class="btn-login">Login</button>
+<!-- 				<button ng-click="password_reset()" class="btn">Reset Password</button>
+ -->			</div>
 			</div>
 		</div>
 	</div>
