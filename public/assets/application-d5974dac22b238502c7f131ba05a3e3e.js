@@ -13642,9 +13642,23 @@ journeyAppCtrls.controller('IndexCtrl', ['$scope', function($scope){
 	$scope.foo = 'bar';
 	var nav;
 
-	// $scope.showNav = funciton(boolean){
-	// 	nav = false;
-	// }
+		$scope.showVideo = function() {
+			if ($scope.video) {
+				$scope.video = false;
+			} else {
+				$scope.video = true;
+			}
+			// $scope.showPhoto();
+		};
+
+		$scope.showPhoto = function(){
+			if($scope.photo){
+				$scope.photo = false;
+			} else {
+				$scope.photo = true;
+			}
+			// $scope.showVideo();
+		}
 
 }]);
 journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
@@ -13850,6 +13864,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.currentJourney = {};
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
+  $scope.journeys_count = 12;
+  $scope.followers_count = 23;
   var posts;
 
 
@@ -13874,8 +13890,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       if(addNew) {
         $scope.journeys.push({ title: "Create a New Journey" });
       }
-    }).error(function(){
-      $location.path('/home');
     });
   };
 
@@ -13976,9 +13990,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       }
     }).success(function(response){
       $scope.createPost(response.id);
-      // $('#file_upload').find('input[name=key]').val(retdata.key);
-      // $('#file_upload').find('input[name=policy]').val(retdata.policy);
-      // $('#file_upload').find('input[name=signature]').val(retdata.signature);
     });
   };
 
@@ -14064,50 +14075,10 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 }]);
 
 
-journeyAppCtrls.controller("PostContentCtrl", ["$scope", "$http",  function($scope, $http){
-	
-	$scope.user = {
-        name: "Joel", 	
-  };
- 	
-  $scope.journeys = [
-  	{ title: "Transition" }, 
-  	{ title: "Marathon" }, 
-  	{ title: {
-  		other: "default"
-  		} 
-  	}
-  ];
-
-  // $scope.data = {
-  // 	newJourney: "default", 
-  // 	newPost: "default"
-  // }
-
-  $scope.post_options =
-    [
-        { id: 1, type: "Video" },
-        { id: 2, type: "Picture" },
-        { id: 3, type: "Text" }
-
-    ];
-
-	$scope.content = dataVids;
-	// $scope.content = [];
-
-	// $scope.fetchContent = function() {
-	// 	$http.get($scope.url).then(function(result){
-	// 		$scope.content = result.data;
-	// 	});
-	// }
-	// populating content with data
-
-	// $scope.fetchContent();
-
-}]);
 journeyAppCtrls.controller('ProfileCtrl', ['$scope', function($scope){
 
 	$scope.profile = "James Franco";
+
 
 }]);
 journeyAppCtrls.controller("SignupFormCtrl", ['$scope', function($scope){
