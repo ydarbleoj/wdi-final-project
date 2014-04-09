@@ -212,7 +212,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
   $scope.getCurrentUser = function(){
     $.get('/currentUser').success(function(response){
-      $scope.currentUser = response;
+      $scope.currentUser = response.user;
+      $scope.currentUser.full_name = response.full_name;
     });
   };
 
@@ -227,5 +228,3 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   };
 
 }]);
-
-

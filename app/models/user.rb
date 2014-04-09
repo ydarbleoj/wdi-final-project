@@ -61,4 +61,12 @@ class User < ActiveRecord::Base
     follows.find_by(followed_id: other_user.id).destroy
   end
 
+  def full_name
+    if f_name
+      "#{f_name} #{l_name}"
+    else
+      username
+    end
+  end
+
 end
