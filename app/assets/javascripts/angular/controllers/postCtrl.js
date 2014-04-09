@@ -24,8 +24,11 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
 
   $scope.initializePage = function(){
-    // $scope.getUserJourneys();
-    $scope.getUserJourneys(false, true);
+    $scope.getUserJourneys();
+    // call this instead of the above to load the user's first journey on page load
+    // disabled for now because only the title, not the posts, loads
+    // TODO: get currentJourney's posts to load on page load
+    // $scope.getUserJourneys(false, true);
 
   }
 
