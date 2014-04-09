@@ -1,7 +1,0 @@
-<h1> welcome home. </h1>
-<% @journeys.each do |j| %>
-  <ul>
-    <li><%= link_to j.title, journey_path(j) %></li>
-    <li>by <%= j.user.f_name %></li>
-  </ul>
-<% end %>

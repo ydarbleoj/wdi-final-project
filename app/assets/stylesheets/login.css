@@ -57,11 +57,11 @@
 	float: left;
 }
 
-input { 
+input {
 	width: 250px;
 	height: 50px;
 	padding-left: 20px;
-	background-color: #cccccc; 
+	background-color: #cccccc;
 	opacity: .7;
 	border: none;
 	font-size: 1.25em;
@@ -104,6 +104,18 @@ input {
 }
 
 #signup-username {
+	width: 300px;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+#signup-first-name {
+	width: 300px;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+#signup-last-name {
 	width: 300px;
 	height: 50px;
 	margin-bottom: 20px;
@@ -181,11 +193,11 @@ input {
 	padding-left: 13px;
 }
 
-input { 
+input {
 	width: 250px;
 	height: 50px;
 	padding-left: 10px;
-	background-color: #cccccc; 
+	background-color: #cccccc;
 	opacity: .7;
 	border: none;
 	font-size: 1.15em;

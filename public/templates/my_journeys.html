@@ -3,10 +3,10 @@
   <div class="row">
     <!-- USER PROFILE HEADER  -->
     <div ng-controller="PostCtrl">
-      <div class="user-profile">  
+      <div class="user-profile">
         <div class="user-header" ng-init="getCurrentUser()">
           <img id="user-image"src="/assets/james.jpg" ng-model="currentUser.photo">
-          <h1 class="user-name">{{currentUser.username}}</h1>
+          <h1 class="user-name">{{currentUser.full_name}} </h1>
          <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
           <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
           <div class="journeys-count">{{journeys_count}} <span id="journey-number">Journeys</span></div>
@@ -16,21 +16,27 @@
 
 
       <div class="profile-links">
+        <!-- fetch current_user.journeys array when this div loads -->
         <div ng-init="getUserJourneys()">
-            <h3>My Novos</h3>
-            <h3>Following</h3>
-            <h3>Trending</h3>
-            <h3>Everyone</h3>
-            <h3>Categories</h3>
-              <button class="create-post" id="journey_select"
-                  ng-repeat="journey in journeys"
-                ng-click="displayJourney(journey)">
-                {{journey.title}}
-              </button>
+          <h3>My Novos</h3>
+          <h3>Following</h3>
+          <h3>Trending</h3>
+          <h3>Everyone</h3>
+          <h3>Categories</h3>
+        </div>
+        <div>
+          <!-- display each journey in current_user.journeys as a button -->
+          <!-- on click of given button, load posts for that journey -->
+          <button class="create-post" id="journey_select"
+            ng-repeat="journey in journeys"
+            ng-init="getPosts(journey)"
+            ng-click="setCurrentJourney(journey)">
+            {{journey.title}}
+          </button>
         </div>
       </div>
-     
-      
+
+
       <div class="journey-title">
         <div ng-show="currentJourney.id && !currentJourney.editable">
           <h4>{{currentJourney.title}}</h4>
@@ -50,7 +56,6 @@
       </div>
 
        <div class="my-journeys-feed">
-        <button class="get-videos"ng-click="renderIframes()">get videos</button>
         <!-- <div ng-show="currentJourney.id"> -->
           <ul ng-repeat="post in currentJourney.posts">
             <!-- <li>{{post.post_type}}</li> -->
@@ -65,9 +70,9 @@
               <textarea ng-show="post.editable" ng-model="post.text"></textarea>
             </li>
             <!-- VIDEO -->
-           <div class="my-journeys-video"> 
+           <div class="my-journeys-video">
             <li ng-show="post.post_type === 'video'">
-              
+
               <div ng-show="!post.editable">
                 <div id="{{post.video}}"></div>
               </div>
@@ -81,7 +86,7 @@
               <input ng-show="post.editable" ng-model="post.photo" type="text">
             </li>
             <li ng-show="post.post_type !== 'text'">
-             
+
               <span class="caption" ng-show="!post.editable">{{post.caption}}</span>
               <input ng-show="post.editable" ng-model="post.caption" type="text">
             </li>
@@ -108,4 +113,3 @@
     </div>
   </div>
 </div>
-

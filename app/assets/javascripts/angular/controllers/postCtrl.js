@@ -65,12 +65,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
   $scope.setCurrentJourney = function(journey){
     $scope.currentJourney = journey;
-  };
-
-  $scope.displayJourney = function(journey){
-    $scope.currentJourney = journey;
-    $scope.getPosts(journey);
     $scope.renderIframes();
+
   };
 
   // creates a post given a journey id and an unsaved post object
@@ -212,7 +208,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
   $scope.getCurrentUser = function(){
     $.get('/currentUser').success(function(response){
-      $scope.currentUser = response;
+      $scope.currentUser = response.user;
+      $scope.currentUser.full_name = response.full_name;
     });
   };
 
@@ -227,5 +224,3 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   };
 
 }]);
-
-
