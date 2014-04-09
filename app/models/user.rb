@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
             foreign_key: :recipient_id, dependent: :destroy
 
   has_many :follows, foreign_key: :follower_id, dependent: :destroy
-  has_many :followed_users, through: :follows, source: :followed
+  has_many :following, through: :follows, source: :followed
 
   has_many :reverse_follows, foreign_key: :followed_id,
             class_name: 'Follow', dependent: :destroy
@@ -49,16 +49,26 @@ class User < ActiveRecord::Base
     follows.find_by(followed_id: other_user.id)
   end
 
-  def follow!(other_user)
-    follows.create!(followed_id: other_user.id)
+  def follow!(*other_users)
+    other_users.each do |user|
+      unless user.id == id # user can't follow self. TODO: raise error in this case.
+        follows.create!(followed_id: user.id)
+      end
+    end
   end
 
-  def follow(other_user)
-    follows.create(followed_id: other_user.id)
-  end
+  # def follow(*other_users)
+  #   other_users.each do |user|
+  #     follows.create(followed_id: user.id)
+  #   end
+  # end
 
-  def unfollow!(other_user)
-    follows.find_by(followed_id: other_user.id).destroy
+  def unfollow!(*other_users)
+    unless user.id == id
+      other_users.each do |user|
+        follows.find_by(followed_id: user.id).destroy
+      end
+    end
   end
 
   def full_name

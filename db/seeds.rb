@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 users = User.create([
+  # users[0]
   {
     email: "james@gmail.com",
     password: "password",
@@ -14,14 +15,60 @@ users = User.create([
     f_name: "james",
     l_name: "franco"
   },
+  # users[1]
   {
     email: "user@gmail.com",
     password: "password",
     username: "dummy",
     f_name: "Dummy",
     l_name: "User"
-  }
+  },
+  # users[2]
+  {
+    email: "demo@mail.com",
+    password: "password",
+    username: "demo",
+    f_name: "Demo",
+    l_name: "Brown"
+  },
+  # users[3]
+  {
+    email: "person@hotmail.com",
+    password: "password",
+    username: "personifyme"
+  },
+  # users[4]
+  {
+    email: "yourbuddy@gmail.com",
+    password: "password",
+    username: "buddyolpal",
+  },
 ])
+
+users[0].follow!(users[1], users[2])
+users[1].follow!(users[0], users[1], users[4])
+users[2].follow!(users[4], users[1])
+users[3].follow!(users[1], users[4], users[2])
+users[4].follow!(users[0], users[1], users[2], users[3])
+
+
+# uncomment below to print follow relationships to the console:
+# users.each do |user|
+#   puts "#{user.username}: "
+#   print "following: "
+#   user.following.each do |follow|
+#     print "#{follow.username} "
+#   end
+#   puts
+#
+#   print "followers: "
+#   user.followers.each do |follow|
+#     print "#{follow.username} "
+#   end
+#   puts
+# end
+
+
 
 journeys = [
   # journeys for james franco
@@ -41,6 +88,37 @@ journeys = [
     {
       title: "Transition",
       start_date: Time.now
+    }
+  ]),
+  # journeys for Demo Brown
+  users[2].journeys.create([
+    {
+      title: "Growing my hair out",
+      start_date: Time.new(2014, 6, 10),
+      end_date: Time.new(2015, 8, 10)
+    }
+  ]),
+
+  # journeys for personifyme
+  users[3].journeys.create([
+    {
+      title: "Doin' thangs",
+      start_date: Time.new(2014, 6, 20),
+      end_date: Time.new(2018, 8, 10)
+    },
+    {
+      title: "Doin' fewer thangs",
+      start_date: Time.new(2013, 7, 20),
+      end_date: Time.new(2014, 6, 20)
+    }
+  ]),
+
+  # journeys for personifyme
+  users[4].journeys.create([
+    {
+      title: "Transitioning",
+      start_date: Time.new(2013, 7, 24),
+      end_date: Time.new(2014, 6, 20)
     }
   ])
 ]
@@ -102,6 +180,5 @@ posts = [
       photo: "http://kaihofi.us/img/zia_arm.jpg",
       caption: "what's the POINT? #seewhatididthere"
     }
-
   ])
 ]
