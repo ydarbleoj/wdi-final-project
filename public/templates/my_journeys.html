@@ -17,7 +17,7 @@
 
       <div class="profile-links">
         <!-- fetch current_user.journeys array when this div loads -->
-        <div ng-init="getUserJourneys()">
+        <div ng-init="initializePage()">
           <h3>My Novos</h3>
           <h3>Following</h3>
           <h3>Trending</h3>
@@ -74,11 +74,11 @@
             <li ng-show="post.post_type === 'video'">
 
               <div ng-show="!post.editable">
-                <iframe width="640" height="390"
-                src="//www.youtube.com/embed/{{post.video}}" frameborder="0" 
+<!--                 <iframe width="640" height="390"
+                src="//www.youtube.com/embed/{{post.video}}" frameborder="0"
                 allowfullscreen>
-              </iframe>
-                <!-- <div id="{{post.video}}"></div> -->
+              </iframe> -->
+                <div id="{{post.video}}"></div>
               </div>
               <input ng-show="post.editable" ng-model="post.video" type="text">
             </li>
