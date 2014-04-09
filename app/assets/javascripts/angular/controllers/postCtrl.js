@@ -70,7 +70,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.displayJourney = function(journey){
     $scope.currentJourney = journey;
     $scope.getPosts(journey);
-    $scope.renderIframes();
+    // $scope.renderIframes();
   };
 
   // creates a post given a journey id and an unsaved post object

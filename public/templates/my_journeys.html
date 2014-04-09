@@ -29,6 +29,7 @@
           <!-- on click of given button, load posts for that journey -->
           <button class="create-post" id="journey_select"
             ng-repeat="journey in journeys"
+            ng-init="getPosts(journey)"
             ng-click="displayJourney(journey)">
             {{journey.title}}
           </button>
