@@ -30,7 +30,7 @@
           <button class="create-post" id="journey_select"
             ng-repeat="journey in journeys"
             ng-init="getPosts(journey)"
-            ng-click="displayJourney(journey)">
+            ng-click="setCurrentJourney(journey)">
             {{journey.title}}
           </button>
         </div>
@@ -56,7 +56,6 @@
       </div>
 
        <div class="my-journeys-feed">
-        <button class="get-videos"ng-click="renderIframes()">get videos</button>
         <!-- <div ng-show="currentJourney.id"> -->
           <ul ng-repeat="post in currentJourney.posts">
             <!-- <li>{{post.post_type}}</li> -->

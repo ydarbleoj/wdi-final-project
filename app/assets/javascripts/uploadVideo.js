@@ -28,7 +28,7 @@ function onYouTubeIframeAPIReady() {
   }
 
   for(var i = 0; i < posts.length; i++){
-    var thisplayer = createPlayer(posts[i]);
+    createPlayer(posts[i]);
   }
 }
 
@@ -49,7 +49,7 @@ function createPlayer(post){
 
 // 4. This function is called when a video has been successfully uploaded.
 function onUploadSuccess(event) {
-  // try to git this without the hidden input field
+  // try to get this without the hidden input field
   videoId = event.data.videoId;
 }
 

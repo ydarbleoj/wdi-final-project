@@ -59,7 +59,19 @@ posts = [
       video: "ikkH7PVMceU"
     }
   ]),
-  # no posts for Dummy User > "Weight Loss"
+  # posts for Dummy User > "Weight Loss"
+  journeys[1][0].posts.create([
+    {
+      post_type: "text",
+      title: "Let's get started!",
+      text: "Selfies Banksy Marfa,blasf local herba hardorevore fanny pack American Apparel next level Schlitz lomo. Fixie Tumblr you probably haven't heard of them, +1 Wes Anderson fingerstache ethical butcher mixtape Godard 8-bit Banksy skateboard chia. Paleo tofu direct trade, PBR&B photo booth Brooklyn lomo church-key selfies master cleanse raw denim Tumblr. Fap tattooed brunch retro Etsy Austin literally. Meggings biodiesel Brooklyn hashtag. Pop-up swag wolf art party.\nCred ethical chambray fingerstache. Sartorial street art fanny pack, fingerstache photo booth organic small batch single-origin coffee seitan swag next level sriracha pour-over. Disrupt cred master cleanse American Apparel whatever biodiesel synth, shabby chic you probably haven't heard of them banjo roof party put a bird on it actually craft beer. Freegan pour-over selvage, paleo direct trade messenger bag drinking vinegar seitan small batch fashion axe. Master cleanse tousled occupy +1, chillwave biodiesel letterpress fingerstache forage chambray ethical slow-carb roof party hella bitters. Direct trade mustache cornhole asymmetrical fashion axe. Gastropub gluten-free polaroid, meh mixtape street art Odd Future XOXO bespoke art party fap fixie photo booth umami chillwave."
+    },
+    {
+      post_type: "video",
+      title: "Hey guys",
+      video: "ikkH7PVMceU"
+    }
+  ]),
 
   # posts for Dummy User > "Transition"
   journeys[1][1].posts.create([
