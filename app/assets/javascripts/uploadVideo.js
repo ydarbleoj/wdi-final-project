@@ -22,14 +22,6 @@ function onYouTubeIframeAPIReady() {
       // 'onProcessingComplete': onProcessingComplete
     }
   });
-
-  if(typeof posts === 'undefined'){
-    return;
-  }
-
-  for(var i = 0; i < posts.length; i++){
-    createPlayer(posts[i]);
-  }
 }
 
 function createPlayer(post){

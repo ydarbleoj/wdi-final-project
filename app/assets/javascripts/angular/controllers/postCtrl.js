@@ -24,6 +24,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
 
 
+  // sets $scope.newPost.post_type to 'text', 'video', or 'photo'
   $scope.setPostType = function(post_type){
     $scope.newPost.post_type = post_type;
   };
@@ -57,16 +58,8 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
     });
   };
 
-  $scope.renderIframes = function(){
-    for(var i = 0; i < posts.length; i++){
-      var thisplayer = createPlayer(posts[i]);
-    }
-  };
-
   $scope.setCurrentJourney = function(journey){
     $scope.currentJourney = journey;
-    $scope.renderIframes();
-
   };
 
   // creates a post given a journey id and an unsaved post object

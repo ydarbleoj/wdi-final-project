@@ -74,7 +74,11 @@
             <li ng-show="post.post_type === 'video'">
 
               <div ng-show="!post.editable">
-                <div id="{{post.video}}"></div>
+                <iframe width="640" height="390"
+                src="//www.youtube.com/embed/{{post.video}}" frameborder="0" 
+                allowfullscreen>
+              </iframe>
+                <!-- <div id="{{post.video}}"></div> -->
               </div>
               <input ng-show="post.editable" ng-model="post.video" type="text">
             </li>
