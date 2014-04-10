@@ -2,11 +2,13 @@ var journeyApp = angular.module('journeyApp', [
 	'journeyRouter',
 	'angularFileUpload',
 	'journeyAppCtrls',
-	'ngResource'
+	'ngResource', 
+	'journeyAppDirectives'
 	]);
 
 var journeyAppCtrls = angular.module('journeyAppCtrls', []);
 
+var journeyAppDirectives = angular.module('journeyAppDirectives', []);
 
 
 

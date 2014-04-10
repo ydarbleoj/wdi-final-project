@@ -56,33 +56,33 @@
       </div>
 
        <div class="my-journeys-feed">
-        <!-- <div ng-show="currentJourney.id"> -->
+        <!-- TESTING DIRECTIVE -->
+          <div id="container" ng-controller="PostCtrl">
+            <content-item ng-repeat="item in content" content="item"></content-item>
+          </div>
+
+        <div ng-show="currentJourney.id"> 
           <ul ng-repeat="post in currentJourney.posts">
-            <!-- <li>{{post.post_type}}</li> -->
+              <li>{{post.post_type}}</li> 
             <li>
-              <span class="post-title"ng-show="!post.editable">{{post.title}}</span>
-              <input ng-show="post.editable" ng-model="post.title" type="text">
+              <span class="post-title" ng-show="!post.editable">{{post.title}}</span>
+             <!--  <input ng-show="post.editable" ng-model="post.title" type="text"> -->
             </li>
             <!-- TEXT -->
-            <li ng-show="post.post_type === 'text'">
+            <li ng-show="post.post_type === 'text'" >
               Body:
               <span ng-show="!post.editable">{{post.text}}</span>
               <textarea ng-show="post.editable" ng-model="post.text"></textarea>
             </li>
-            <!-- VIDEO -->
-           <div class="my-journeys-video">
-            <li ng-show="post.post_type === 'video'">
 
-              <div ng-show="!post.editable">
-                <div id="{{post.video}}"></div>
-              </div>
+            <!-- VIDEO -->
+            <li ng-show="post.post_type === 'video'" id="{{post.video}}"> 
               <input ng-show="post.editable" ng-model="post.video" type="text">
             </li>
-          </div>
+
             <!-- PHOTO -->
-          <div class="my-journeys-picture">
             <li ng-show="post.post_type === 'photo'">
-              <div ng-show="!post.editable"><img src="{{post.photo}}"></div>
+              <img src="{{post.photo}}">
               <input ng-show="post.editable" ng-model="post.photo" type="text">
             </li>
             <li ng-show="post.post_type !== 'text'">
@@ -106,8 +106,7 @@
                 cancel
               </button>
             </li>
-          </div>
-          </ul>
+          </ul> 
        </div>
 
     </div>
