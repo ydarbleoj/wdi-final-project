@@ -19,16 +19,17 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.post_types = ['text', 'photo', 'video'];
   $scope.journeys_count = 12;
   $scope.followers_count = 23;
+  $scope.initialized = false
   var posts;
 
 
 
   $scope.initializePage = function(){
-    $scope.getUserJourneys();
+    // $scope.getUserJourneys();
     // call this instead of the above to load the user's first journey on page load
     // disabled for now because only the title, not the posts, loads
     // TODO: get currentJourney's posts to load on page load
-    // $scope.getUserJourneys(false, true);
+    $.when($scope.getUserJourneys(false, true)).then(function(){ $scope.initialized = true });
 
   }
 
@@ -60,8 +61,10 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       // if a truthy second arg is passed in, execute the following.
       // the fn is called like this from initializePage()
       if(ifInit) {
-        $scope.setCurrentJourney($scope.journeys[0]);
-        $scope.getPosts($scope.currentJourney);
+        var last = $scope.journeys.length -1
+        $.when($scope.setCurrentJourney($scope.journeys[last]))
+        .then($scope.getPosts($scope.currentJourney));
+
       }
       return $scope
     });
@@ -73,7 +76,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       .success(function(response){
       journey.posts = response;
       posts = response;
-      return journey;
+      return $scope;
     });
   };
 
@@ -85,7 +88,7 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
   $scope.setCurrentJourney = function(journey){
     $scope.currentJourney = journey;
-    $scope.renderIframes();
+    // $scope.renderIframes();
 
   };
 

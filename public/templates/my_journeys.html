@@ -56,7 +56,7 @@
       </div>
 
        <div class="my-journeys-feed">
-        <!-- <div ng-show="currentJourney.id"> -->
+        <div ng-if="initialized">
           <ul ng-repeat="post in currentJourney.posts">
             <!-- <li>{{post.post_type}}</li> -->
             <li>
@@ -112,6 +112,7 @@
             </li>
           </div>
           </ul>
+        </div> <!--/if initialized -->
        </div>
 
     </div>
