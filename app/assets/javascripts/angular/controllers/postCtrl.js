@@ -12,7 +12,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   function($scope, $http, Post, $upload, $location){
 
   $scope.newPost  = {};
-  $scope.journeys = {};
   $scope.newJourney = {};
   $scope.videoMethod = 'record';
   $scope.currentJourney = {};
@@ -20,10 +19,21 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.post_types = ['text', 'photo', 'video'];
   $scope.journeys_count = 12;
   $scope.followers_count = 23;
+  $scope.initialized = false
   var posts;
 
 
 
+  $scope.initializePage = function(){
+    // $scope.getUserJourneys();
+    // call this instead of the above to load the user's first journey on page load
+    // disabled for now because only the title, not the posts, loads
+    // TODO: get currentJourney's posts to load on page load
+    $.when($scope.getUserJourneys(false, true)).then(function(){ $scope.initialized = true });
+
+  }
+
+  // sets $scope.newPost.post_type to 'text', 'video', or 'photo'
   $scope.setPostType = function(post_type){
     $scope.newPost.post_type = post_type;
   };
@@ -35,15 +45,28 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
   // returns JSON object of user's journeys. pass in true to include an empty
   // journey w/ title 'Create a New Journey' - for populating a dropdown list.
-  $scope.getUserJourneys = function(addNew){
+  $scope.getUserJourneys = function(ifAddNew, ifInit){
     $http({
       method: 'GET',
       url: '/journeys.json'
     }).success(function(response){
       $scope.journeys = response.current_user_journeys;
-      if(addNew) {
+
+      // if a truthy first argument is passed in, execute the following.
+      // the fn is called like this from new_post.html
+      if(ifAddNew) {
         $scope.journeys.push({ title: "Create a New Journey" });
       }
+
+      // if a truthy second arg is passed in, execute the following.
+      // the fn is called like this from initializePage()
+      if(ifInit) {
+        var last = $scope.journeys.length -1
+        $.when($scope.setCurrentJourney($scope.journeys[last]))
+        .then($scope.getPosts($scope.currentJourney));
+
+      }
+      return $scope
     });
   };
 
@@ -53,19 +76,19 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       .success(function(response){
       journey.posts = response;
       posts = response;
-      return journey;
+      return $scope;
     });
   };
 
   $scope.renderIframes = function(){
     for(var i = 0; i < posts.length; i++){
-      var thisplayer = createPlayer(posts[i]);
+      createPlayer(posts[i]);
     }
   };
 
   $scope.setCurrentJourney = function(journey){
     $scope.currentJourney = journey;
-    $scope.renderIframes();
+    // $scope.renderIframes();
 
   };
 

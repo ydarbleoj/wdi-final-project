@@ -24,6 +24,10 @@ describe Follow do
 
   it "lists a user's followers"
 
+  it "does not allow a user to follow themself"
+
+  it "does not allow a user to follow another user twice"
+
 
 
 end

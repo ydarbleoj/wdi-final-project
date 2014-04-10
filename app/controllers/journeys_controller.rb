@@ -7,8 +7,7 @@ class JourneysController < ApplicationController
 
     respond_with sorted_journeys: journeys, #TODO make a trending algorithm for this
 
-                 # BUG user_instance.followed_users always returns an empty array
-                 following_journeys: current_user.followed_users,
+                 following_journeys: current_user.following,
 
                  # TODO split ths out into a separate method so current_user
                  # can have authentication distinct from all users/no user
@@ -31,7 +30,7 @@ class JourneysController < ApplicationController
   end
 
   def show
-    journey = Journey.find(params[:id])
+    journey = Journey.find(params[:id]);
 
     respond_with journey
   end
