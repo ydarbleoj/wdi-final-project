@@ -1,0 +1,18 @@
+<div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
+<div class="profile-partial ng-include" src="'../templates/profile.html'"></div>
+<div class="profile-nav-partial ng-include" src="'../templates/profile_nav.html'"></div>
+
+<div ng-controller="PostCtrl">
+
+	<h1 class="picture-part">Picture Html</h1>
+
+	<h3>{{currentJourney.id}}</h3>
+	<div ng-bind-html="post.photo"></div>
+
+	<button class="create-post" id="journey_select"
+	  ng-repeat="journey in journeys"
+	  ng-init="getPosts(journey)"
+	  ng-click="setCurrentJourney(journey)">
+	  {{journey.title}}
+	</button>
+</div>

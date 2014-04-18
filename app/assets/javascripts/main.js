@@ -2,11 +2,13 @@ var journeyApp = angular.module('journeyApp', [
 	'journeyRouter',
 	'angularFileUpload',
 	'journeyAppCtrls',
-	'ngResource'
+	'ngResource', 
+	'appDirective'
 	]);
 
 var journeyAppCtrls = angular.module('journeyAppCtrls', []);
 
+var appDirective = angular.module('appDirective', []);
 
 
 
@@ -47,6 +49,10 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 		.when('/my-journeys', {
 			templateUrl: '../templates/my_journeys.html',
 			controller: 'PostCtrl'
+		})
+		.when('/picture', {
+			templateUrl: '../templates/posts/picture.html', 
+			controller: ''
 		})
 		.otherwise({
 			templateUrl: '../templates/nav.html',

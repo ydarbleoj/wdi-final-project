@@ -20,8 +20,13 @@
 //= require underscore
 //= require main
 //= require uploadVideo
+//= require app
 //= require foundation/foundation
 //= require_tree ./angular/controllers
 
 
 $(document).foundation();
+
+
+
+
