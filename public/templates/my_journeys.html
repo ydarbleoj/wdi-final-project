@@ -1,41 +1,17 @@
+<!-- START PARTIALS  -->
 <div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
+<div class="profile-partial ng-include" src="'../templates/profile.html'"></div>
+<div class="profile-nav-partial ng-include" src="'../templates/profile_nav.html'"></div>
+<!-- END PARTIALS -->
 <div class="container-my-journeys">
   <div class="row">
-    <!-- USER PROFILE HEADER  -->
-    <div ng-controller="PostCtrl">
-      <div class="user-profile">
-        <div class="user-header" ng-init="getCurrentUser()">
-          <img id="user-image"src="/assets/james.jpg" ng-model="currentUser.photo">
-          <h1 class="user-name">{{currentUser.full_name}} </h1>
-         <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
-          <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
-          <div class="journeys-count">{{journeys_count}} <span id="journey-number">Journeys</span></div>
-          <div class="profile-followers">{{followers_count}} <span id="follower-count">Followers</span></div>
-        </div>
-      </div>
-
-
-      <div class="profile-links">
-        <!-- fetch current_user.journeys array when this div loads -->
-        <div ng-init="getUserJourneys()">
-          <h3>My Novos</h3>
-          <h3>Following</h3>
-          <h3>Trending</h3>
-          <h3>Everyone</h3>
-          <h3>Categories</h3>
-        </div>
-        <div>
-          <!-- display each journey in current_user.journeys as a button -->
-          <!-- on click of given button, load posts for that journey -->
-          <button class="create-post" id="journey_select"
-            ng-repeat="journey in journeys"
-            ng-init="getPosts(journey)"
-            ng-click="setCurrentJourney(journey)">
-            {{journey.title}}
-          </button>
-        </div>
-      </div>
-
+    <button class="create-post" id="journey_select"
+    ng-repeat="journey in journeys"
+    ng-init="getPosts(journey)"
+    ng-click="setCurrentJourney(journey)">
+    {{journey.title}}
+  </button>
+  
 
       <div class="journey-title">
         <div ng-show="currentJourney.id && !currentJourney.editable">
@@ -58,31 +34,34 @@
        <div class="my-journeys-feed">
         <!-- TESTING DIRECTIVE -->
           <div id="container" ng-controller="PostCtrl">
-            <content-item ng-repeat="item in content" content="item"></content-item>
+            <ul>
+              <li ng-repeat="post in currentJourney.posts">
+                <content-item post="post"></content-item>
+              </li>
+            </ul>
           </div>
 
         <div ng-show="currentJourney.id"> 
-          <ul ng-repeat="post in currentJourney.posts">
-              <li>{{post.post_type}}</li> 
+          <ul class="denovo-posts" ng-repeat="post in currentJourney.posts">
+              <!-- <li>{{post.post_type}}</li>  -->
             <li>
               <span class="post-title" ng-show="!post.editable">{{post.title}}</span>
              <!--  <input ng-show="post.editable" ng-model="post.title" type="text"> -->
             </li>
             <!-- TEXT -->
-            <li ng-show="post.post_type === 'text'" >
-              Body:
+            <li class="novo-post" ng-show="post.post_type === 'text'" >
               <span ng-show="!post.editable">{{post.text}}</span>
               <textarea ng-show="post.editable" ng-model="post.text"></textarea>
             </li>
 
             <!-- VIDEO -->
-            <li ng-show="post.post_type === 'video'" id="{{post.video}}"> 
+            <li class="novo-post" ng-show="post.post_type === 'video'" id="{{post.video}}" style="width: 400px; height: 300px;"> 
               <input ng-show="post.editable" ng-model="post.video" type="text">
             </li>
 
             <!-- PHOTO -->
-            <li ng-show="post.post_type === 'photo'">
-              <img src="{{post.photo}}">
+            <li class="novo-post" ng-show="post.post_type === 'photo'">
+              <img src="{{post.photo}}" style="width: 400px; height: 300px;">
               <input ng-show="post.editable" ng-model="post.photo" type="text">
             </li>
             <li ng-show="post.post_type !== 'text'">
@@ -90,7 +69,7 @@
               <span class="caption" ng-show="!post.editable">{{post.caption}}</span>
               <input ng-show="post.editable" ng-model="post.caption" type="text">
             </li>
-            <li>
+           <!--  <li>
               <button id="edit-post" ng-show="!post.editable" ng-click="edit(post)">
                 edit this post
               </button>
@@ -105,7 +84,7 @@
               <button ng-show="post.editable" ng-click="cancelEdit(post)">
                 cancel
               </button>
-            </li>
+            </li> -->
           </ul> 
        </div>
 

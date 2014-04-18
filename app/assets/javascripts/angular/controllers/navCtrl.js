@@ -1,12 +1,18 @@
- journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+
+  $scope.navClass = function (page) {
+      var currentRoute = $location.path().substring(1) || 'home';
+      return page === currentRoute ? 'active' : '';
+  };  
+
+}]);
 
 
-    $scope.navClass = function (page) {
-        var currentRoute = $location.path().substring(1) || 'home';
-        return page === currentRoute ? 'active' : '';
-    };  
+journeyAppCtrls.controller('ProfileNavCtrl', ['$scope', '$location', function ($scope, $location) {
 
-
-     //$scope.showPageHero = $location.path() === '/';
+	$scope.navClass = function(page) {
+		var currentRoute = $location.path().substring(1) || 'home';
+		return page === currentRoute ? 'active' : '';
+	};
 
 }]);

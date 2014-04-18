@@ -1,12 +1,16 @@
-<div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
-<div class="container">
-  <div class="row">
-    <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
-			<div class="ProfilePage">
-				{{ profile }}
-				<img src="/assets/james.jpg" alt="">
-			</div>
-		</div>
-	</div>
+
+    <!-- USER PROFILE HEADER  -->
+<div ng-controller="PostCtrl">
+  <div class="user-profile">
+    <div class="user-header" ng-init="getCurrentUser()">
+      <img id="user-image"src="/assets/james.jpg" ng-model="currentUser.photo">
+      <h1 class="user-name">{{currentUser.full_name}} </h1>
+     <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
+      <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
+      <div class="journeys-count">{{journeys_count}} <span id="journey-number">Journeys</span></div>
+      <div class="profile-followers">{{followers_count}} <span id="follower-count">Followers</span></div>
+    </div>
+  </div>
 </div>
+
 

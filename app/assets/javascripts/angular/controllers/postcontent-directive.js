@@ -2,6 +2,7 @@ appDirective = angular.module('appDirective', []);
 
 appDirective.directive('contentItem', ['$compile', '$http', '$templateCache', function($compile, $http, $templateCache) {
 
+		$scope.test = "hello directive";
 
 		var getTemplate = function(contentType) {
 			var templateLoader, 
