@@ -1,14 +1,22 @@
 journeyAppCtrls.factory('Post', ['$resource', function($resource){
-  return $resource("/journeys/:journey_id/posts/:id.json", {journey_id: "@journey_id", id: "@id"}, {update: {method: "PATCH"}});
+  return $resource(
+    "/journeys/:journey_id/posts/:id.json",
+    {journey_id: "@journey_id", id: "@id"},
+    {update: {method: "PATCH"}
+  });
 }]);
 
 journeyAppCtrls.factory('Journey', ['$resource', function($resource){
-  return $resource("/journeys/:id.json", { id: "@id"}, {update: {method: "PATCH"}});
+  return $resource(
+    "/journeys.json",
+    {update: {method: "PATCH"}
+  });
 }]);
 
 
-journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$location",
-  function($scope, $http, Post, $upload, $location){
+journeyAppCtrls.controller(
+  'PostCtrl', ['$scope', '$http', "Post", "Journey", "$upload", "$location", "$routeParams",
+  function($scope, $http, Post, Journey, $upload, $location, $routeParams){
 
   $scope.newPost  = {};
   $scope.journeys = {};
@@ -31,15 +39,22 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.fetchContent();
 
 
+  //RESTful refactor
 
+  // refactor of getUserJourneys
+  $scope.getJourneys = function() {
+    $scope.journeys = Journey.query();
+  };
+  //end RESTful refactor
 
-
-
+  //sets type to text, photo or video
+  //this is required to save the post + determines which create form is shown
   $scope.setPostType = function(post_type){
     $scope.newPost.post_type = post_type;
   };
 
   // sets $scope.videoMethod to either 'url' or 'record'
+  // this determines if use is shown the YT record wiget or an input box
   $scope.setVideoMethod = function(method){
     $scope.videoMethod = method;
   };
@@ -83,8 +98,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   // creates a post given a journey id and an unsaved post object
   $scope.createPost = function(journeyId, post){
     // if $scope.videoMethod = 'url', parse for id and save from form
-    // if post.post_type !== video, videoId will not have been set,
-    // so nil will be passed in, which is the expected behavior
     if (post.post_type === 'video'){
       if ($scope.videoMethod === 'record'){
         post.video = videoId;
@@ -93,9 +106,9 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       }
     }
 
-      if (post.post_type === 'photo'){
-        post.photo = $scope.imageUrl;
-      }
+    if (post.post_type === 'photo'){
+      post.photo = $scope.imageUrl;
+    }
 
     // TODO: add logic - if video id is nil don't allow create
 

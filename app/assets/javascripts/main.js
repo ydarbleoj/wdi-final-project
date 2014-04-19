@@ -2,7 +2,7 @@ var journeyApp = angular.module('journeyApp', [
 	'journeyRouter',
 	'angularFileUpload',
 	'journeyAppCtrls',
-	'ngResource', 
+	'ngResource',
 	'appDirective'
 	]);
 
@@ -50,8 +50,12 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/my_journeys.html',
 			controller: 'PostCtrl'
 		})
+		.when('/test-journeys', {
+			templateUrl: '../templates/kai_test.html',
+			controller: 'PostCtrl'
+		})
 		.when('/picture', {
-			templateUrl: '../templates/posts/picture.html', 
+			templateUrl: '../templates/posts/picture.html',
 			controller: ''
 		})
 		.otherwise({
@@ -60,4 +64,3 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 		});
 		// $locationProvider.html5Mode(true);
 }]);
-
