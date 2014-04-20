@@ -4,13 +4,16 @@
     <div class="small-8 small-centered medium-6 medium-center large-6 large-centered columns">
       <div ng-controller="PostCtrl">
 
-          <div ng-init="getUserJourneys(true)">
+          <div>
             <h3>select a journey</h3>
             <div class="new-journey">
               <button class="create-post"
                 ng-repeat="journey in journeys"
                 ng-click="setCurrentJourney(journey)">
                 {{journey.title}}
+              </button>
+              <button class="create-post" ng-click="setCurrentJourney(emptyJourney)">
+                {{emptyJourney.title}}
               </button>
               <div><strong>current journey: </strong>{{currentJourney.title}}</div>
             </div>

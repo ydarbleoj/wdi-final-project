@@ -3,8 +3,9 @@ journeyAppCtrls.controller(
   function($scope, $http, Journey, $upload, $location, $routeParams){
 
   $scope.newPost  = {};
-  $scope.journeys = {};
+  $scope.journeys = Journey.query();
   $scope.newJourney = {};
+  $scope.emptyJourney = { title: "Create a New Journey" };
   $scope.videoMethod = 'record';
   $scope.currentJourney = {};
   $scope.imageUrl = null;
@@ -22,40 +23,25 @@ journeyAppCtrls.controller(
   };
   $scope.fetchContent();
 
-
-  //RESTful refactor
-
-  // refactor of getUserJourneys
-  $scope.getJourneys = function() {
-    $scope.journeys = Journey.query();
-  };
-  //end RESTful refactor
-
+  //CREATE POST:
   //sets type to text, photo or video
   //this is required to save the post + determines which create form is shown
   $scope.setPostType = function(post_type){
     $scope.newPost.post_type = post_type;
   };
 
+  //CREATE POST
   // sets $scope.videoMethod to either 'url' or 'record'
   // this determines if use is shown the YT record wiget or an input box
   $scope.setVideoMethod = function(method){
     $scope.videoMethod = method;
   };
 
-  // returns JSON object of user's journeys. pass in true to include an empty
-  // journey w/ title 'Create a New Journey' - for populating a dropdown list.
-  $scope.getUserJourneys = function(addNew){
-    $http({
-      method: 'GET',
-      url: '/journeys.json'
-    }).success(function(response){
-      $scope.journeys = response.current_user_journeys;
-      if(addNew) {
-        $scope.journeys.push({ title: "Create a New Journey" });
-      }
-    });
-  };
+  //CREATE POST: adds an empty journey to $scope.journeys so user can create new
+  //TODO: accomplish the 'create new journey' button some other way
+  $scope.addEmptyJourney = function(){
+    $scope.journeys.push({ title: "Create a New Journey" });
+  }
 
   // adds journey.posts array to a journey object
   $scope.getPosts = function(journey){
