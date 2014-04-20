@@ -1,22 +1,6 @@
-journeyAppCtrls.factory('Post', ['$resource', function($resource){
-  return $resource(
-    "/journeys/:journey_id/posts/:id.json",
-    {journey_id: "@journey_id", id: "@id"},
-    {update: {method: "PATCH"}
-  });
-}]);
-
-journeyAppCtrls.factory('Journey', ['$resource', function($resource){
-  return $resource(
-    "/journeys.json",
-    {update: {method: "PATCH"}
-  });
-}]);
-
-
 journeyAppCtrls.controller(
-  'PostCtrl', ['$scope', '$http', "Post", "Journey", "$upload", "$location", "$routeParams",
-  function($scope, $http, Post, Journey, $upload, $location, $routeParams){
+  'PostCtrl', ['$scope', '$http', "Journey", "$upload", "$location", "$routeParams",
+  function($scope, $http, Journey, $upload, $location, $routeParams){
 
   $scope.newPost  = {};
   $scope.journeys = {};

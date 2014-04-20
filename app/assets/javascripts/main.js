@@ -2,13 +2,30 @@ var journeyApp = angular.module('journeyApp', [
 	'journeyRouter',
 	'angularFileUpload',
 	'journeyAppCtrls',
-	'ngResource',
+	'journeyAppServices',
 	'appDirective'
 	]);
 
 var journeyAppCtrls = angular.module('journeyAppCtrls', []);
 
 var appDirective = angular.module('appDirective', []);
+
+var journeyAppServices = angular.module('journeyAppServices', ['ngResource']);
+
+//	journeyAppServices.factory('Post', ['$resource', function($resource){
+//		return $resource(
+//			"/journeys/:journey_id/posts/:id.json",
+//			{journey_id: "@journey_id", id: "@id"},
+//			{update: {method: "PATCH"}
+//		});
+//	}]);
+
+journeyAppServices.factory('Journey', ['$resource', function($resource){
+	return $resource('/journeys.json', {}, {
+		query: {method: 'GET', isArray: true }
+	});
+}]);
+
 
 
 
