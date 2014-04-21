@@ -79,4 +79,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def followed_journeys
+    all_journeys = []
+    self.following.includes(:journeys).each do |user|
+      all_journeys << user.journeys
+    end
+    all_journeys.flatten
+  end
 end

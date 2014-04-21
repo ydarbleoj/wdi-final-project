@@ -4,10 +4,11 @@ journeyAppCtrls.controller(
 
   $scope.newPost  = {};
   $scope.journeys = Journey.query();
+  $scope.currentJourney = {};
+  // $scope.setCurrentJourney($scope.journeys.last);
   $scope.newJourney = {};
   $scope.emptyJourney = { title: "Create a New Journey" };
   $scope.videoMethod = 'record';
-  $scope.currentJourney = {};
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
   $scope.content = [];
@@ -37,12 +38,7 @@ journeyAppCtrls.controller(
     $scope.videoMethod = method;
   };
 
-  //CREATE POST: adds an empty journey to $scope.journeys so user can create new
-  //TODO: accomplish the 'create new journey' button some other way
-  $scope.addEmptyJourney = function(){
-    $scope.journeys.push({ title: "Create a New Journey" });
-  }
-
+  // SHOW PAGE
   // adds journey.posts array to a journey object
   $scope.getPosts = function(journey){
     $.get('/journeys/' + journey.id + '/posts.json')

@@ -22,8 +22,12 @@ var journeyAppServices = angular.module('journeyAppServices', ['ngResource']);
 
 journeyAppServices.factory('Journey', ['$resource', function($resource){
 	return $resource('/journeys.json', {}, {
-		query: {method: 'GET', isArray: true }
+		query: { method: 'GET', isArray: true },
 	});
+}]);
+
+journeyAppServices.factory('User', ['$resource', function($resource){
+	query: { }
 }]);
 
 
