@@ -50,9 +50,25 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/my_journeys.html',
 			controller: 'PostCtrl'
 		})
-		.when('/picture', {
-			templateUrl: '../templates/posts/picture.html', 
-			controller: ''
+		.when('/index-picture', {
+			templateUrl: '../templates/index/index_picture.html', 
+			controller: 'IndexCtrl'
+		})
+		.when('/index-video', {
+			templateUrl: '../templates/index/index_video.html', 
+			controller: 'IndexCtrl'
+		})
+		.when('/index-follow', {
+			templateUrl: '../templates/index/index_follow.html', 
+			controller: 'IndexCtrl'
+		})
+		.when('/index-text', {
+			templateUrl: '../templates/index/index_text.html', 
+			controller: 'IndexCtrl'
+		})
+		.when('/my-denovo', {
+			templateUrl: '../templates/my_denovo.html', 
+			controller: 'PostCtrl'
 		})
 		.otherwise({
 			templateUrl: '../templates/nav.html',

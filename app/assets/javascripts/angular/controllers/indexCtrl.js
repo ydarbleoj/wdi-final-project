@@ -9,7 +9,7 @@ journeyAppCtrls.controller('IndexCtrl', ['$scope', function($scope){
 			} else {
 				$scope.video = true;
 			}
-			// $scope.showPhoto();
+			 //$scope.showPhoto();
 		};
 
 		$scope.showPhoto = function(){
