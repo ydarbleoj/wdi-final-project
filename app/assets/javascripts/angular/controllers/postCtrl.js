@@ -17,23 +17,9 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   $scope.currentJourney = {};
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
-  $scope.content = [];
   $scope.journeys_count = 12;
   $scope.followers_count = 23;
   var posts;
-
-  $scope.fetchContent = function() {
-    $http.get($scope.journeys).then(function(result){
-      $scope.content = result.data;
-    });
-
-  };
-  $scope.fetchContent();
-
-
-
-
-
 
   $scope.setPostType = function(post_type){
     $scope.newPost.post_type = post_type;

@@ -5,12 +5,12 @@
 <!-- END PARTIALS -->
 <div class="container-my-journeys">
   <div class="row">
-    <button class="create-post" id="journey_select"
+   <!--  <button class="create-post" id="journey_select"
     ng-repeat="journey in journeys"
     ng-init="getPosts(journey)"
     ng-click="setCurrentJourney(journey)">
     {{journey.title}}
-  </button>
+  </button> -->
 
 
       <div class="journey-title">
@@ -41,6 +41,7 @@
             </ul>
           </div>
 
+
         <div ng-show="currentJourney.id">
           <ul class="denovo-posts" ng-repeat="post in currentJourney.posts">
               <!-- <li>{{post.post_type}}</li>  -->
@@ -50,18 +51,18 @@
             </li>
             <!-- TEXT -->
             <li class="novo-post" ng-show="post.post_type === 'text'" >
-              <span ng-show="!post.editable">{{post.text}}</span>
+              <span id="post-text" ng-show="!post.editable">{{post.text}}</span>
               <textarea ng-show="post.editable" ng-model="post.text"></textarea>
             </li>
 
             <!-- VIDEO -->
-            <li class="novo-post" ng-show="post.post_type === 'video'" id="{{post.video}}" style="width: 400px; height: 300px;">
+            <li class="novo-post" ng-show="post.post_type === 'video'" id="{{post.video}}" style="width: 380px; height: 300px;">
               <input ng-show="post.editable" ng-model="post.video" type="text">
             </li>
 
             <!-- PHOTO -->
             <li class="novo-post" ng-show="post.post_type === 'photo'">
-              <img src="{{post.photo}}" style="width: 400px; height: 300px;">
+              <img id="post-image" src="{{post.photo}}" style="width: 400px; height: 300px;">
               <input ng-show="post.editable" ng-model="post.photo" type="text">
             </li>
             <li ng-show="post.post_type !== 'text'">

@@ -1,6 +1,8 @@
 /*////// LOGIN //////*/
 
-
+input {
+	outline: none;
+}
 .container-login {
 	width: 91%;
 	height: 100%;

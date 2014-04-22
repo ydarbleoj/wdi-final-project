@@ -1,0 +1,76 @@
+<!-- START PARTIALS  -->
+<div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
+<div class="profile-partial ng-include" src="'../templates/profile.html'"></div>
+<div class="profile-nav-partial ng-include" src="'../templates/profile_nav.html'"></div>
+<!-- END PARTIALS -->
+
+<div class="container-mynovo">
+        <!-- TESTING DIRECTIVE -->
+          <div id="container" ng-controller="PostCtrl">
+            <ul>
+              <li ng-repeat="post in currentJourney.posts">
+                <content-item post="post"></content-item>
+              </li>
+            </ul>
+          </div>
+  <div class="novo-titles">      
+		<button class="display-novo" id="journey_select"
+	    ng-repeat="journey in journeys"
+	    ng-init="getPosts(journey)"
+	    ng-click="setCurrentJourney(journey)">
+	    {{journey.title}}
+	  </button>
+	</div>
+	
+
+  <div class="current-novo-title" ng-show="currentJourney.id"> 
+    <ul class="denovo-posts" ng-repeat="post in currentJourney.posts">
+          <!-- <li>{{post.post_type}}</li>  -->
+      <!-- TEXT -->
+
+      <li class="novo-post" ng-show="post.post_type === 'text'" >
+        <span id="post-text" ng-show="!post.editable">{{post.text}}</span>
+        <textarea ng-show="post.editable" ng-model="post.text"></textarea>
+      </li>
+
+      <!-- VIDEO -->
+      <li class="novo-post" ng-show="post.post_type === 'video'" id="{{post.video}}" style="width: 360px; height: 300px;"> 
+        <input ng-show="post.editable" ng-model="post.video" type="text">
+      </li>
+
+      <!-- PHOTO -->
+      <li class="novo-post" ng-show="post.post_type === 'photo'">
+        <img id="post-image" src="{{post.photo}}" style="width: 400px; height: 300px;">
+        <input ng-show="post.editable" ng-model="post.photo" type="text">
+      </li>
+      <li ng-show="post.post_type !== 'text'">
+
+        <span class="caption" ng-show="!post.editable">{{post.caption}}</span>
+        <input ng-show="post.editable" ng-model="post.caption" type="text">
+      </li>    
+      <li>
+        <span class="post-title" ng-show="!post.editable">{{post.title}}</span>
+      	<input ng-show="post.editable" ng-model="post.title" type="text"> 
+      </li>
+       <!--  <li>
+          <button id="edit-post" ng-show="!post.editable" ng-click="edit(post)">
+            edit this post
+          </button>
+          <button ng-show="post.editable"
+                  ng-click="updatePost(currentJourney.id, post)">
+            submit
+          </button>
+          <button ng-show="post.editable"
+                  ng-click="deletePost(currentJourney.id, post)">
+            delete
+          </button>
+          <button ng-show="post.editable" ng-click="cancelEdit(post)">
+            cancel
+          </button>
+        </li> -->
+        <div class="favorite-icon">
+	      	<img src="/assets/hearts24.png" alt="">
+	      </div>
+	    </ul> 
+	  </div>
+	</div>
