@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
+  before_save :add_full_name
 
   def following?(other_user)
     follows.find_by(followed_id: other_user.id)
@@ -71,7 +72,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def full_name
+  def define_full_name
     if f_name
       "#{f_name} #{l_name}"
     else
@@ -79,4 +80,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  def add_full_name
+    self.full_name = define_full_name
+  end
+
+  def followed_journeys
+    all_journeys = []
+    following.includes(:journeys).each do |user|
+      all_journeys << user.journeys
+    end
+    all_journeys.flatten
+  end
+
+  def all_posts
+    posts = []
+    journeys.includes(:posts).each do |journey|
+      posts << journey.posts
+    end
+
+    posts.flatten
+  end
 end

@@ -1,49 +1,51 @@
-journeyAppCtrls.factory('Post', ['$resource', function($resource){
-  return $resource("/journeys/:journey_id/posts/:id.json", {journey_id: "@journey_id", id: "@id"}, {update: {method: "PATCH"}});
-}]);
-
-journeyAppCtrls.factory('Journey', ['$resource', function($resource){
-  return $resource("/journeys/:id.json", { id: "@id"}, {update: {method: "PATCH"}});
-}]);
-
-
-journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$location",
-  function($scope, $http, Post, $upload, $location){
+journeyAppCtrls.controller(
+  'PostCtrl', ['$scope', '$http', "API", "$upload", "$location", "$routeParams",
+  function($scope, $http, API, $upload, $location, $routeParams){
 
   $scope.newPost  = {};
-  $scope.journeys = {};
-  $scope.newJourney = {};
-  $scope.videoMethod = 'record';
+  // $scope.followed_journeys = FollowedJourney.query();
+  $scope.journeys = API.Journey.query();
+
   $scope.currentJourney = {};
+  $scope.newJourney = {};
+  $scope.emptyJourney = { title: "Create a New Journey" };
+  $scope.videoMethod = 'record';
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
   $scope.journeys_count = 12;
   $scope.followers_count = 23;
-  var posts;
+  $scope.currentUser = {};
 
+  API.CurrentUser.query(function(response){
+    $scope.currentUser = response[0];
+
+  });
+
+  var posts;
+  // $scope.getCurrentUser = function(){
+  //   $.get('/current-user').success(function(response){
+  //     $scope.currentUser = response.user;
+  //     $scope.currentUser.full_name = response.full_name;
+  //   });
+  // };
+  //
+  // $scope.getCurrentUser();
+
+  //CREATE POST:
+  //sets type to text, photo or video
+  //this is required to save the post + determines which create form is shown
   $scope.setPostType = function(post_type){
     $scope.newPost.post_type = post_type;
   };
 
+  //CREATE POST
   // sets $scope.videoMethod to either 'url' or 'record'
+  // this determines if user is shown the YT record wiget or a text input box
   $scope.setVideoMethod = function(method){
     $scope.videoMethod = method;
   };
 
-  // returns JSON object of user's journeys. pass in true to include an empty
-  // journey w/ title 'Create a New Journey' - for populating a dropdown list.
-  $scope.getUserJourneys = function(addNew){
-    $http({
-      method: 'GET',
-      url: '/journeys.json'
-    }).success(function(response){
-      $scope.journeys = response.current_user_journeys;
-      if(addNew) {
-        $scope.journeys.push({ title: "Create a New Journey" });
-      }
-    });
-  };
-
+  // SHOW PAGE
   // adds journey.posts array to a journey object
   $scope.getPosts = function(journey){
     $.get('/journeys/' + journey.id + '/posts.json')
@@ -69,8 +71,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   // creates a post given a journey id and an unsaved post object
   $scope.createPost = function(journeyId, post){
     // if $scope.videoMethod = 'url', parse for id and save from form
-    // if post.post_type !== video, videoId will not have been set,
-    // so nil will be passed in, which is the expected behavior
     if (post.post_type === 'video'){
       if ($scope.videoMethod === 'record'){
         post.video = videoId;
@@ -79,9 +79,9 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       }
     }
 
-      if (post.post_type === 'photo'){
-        post.photo = $scope.imageUrl;
-      }
+    if (post.post_type === 'photo'){
+      post.photo = $scope.imageUrl;
+    }
 
     // TODO: add logic - if video id is nil don't allow create
 
@@ -201,13 +201,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
         });
       }(file, i));
     }
-  };
-
-  $scope.getCurrentUser = function(){
-    $.get('/currentUser').success(function(response){
-      $scope.currentUser = response.user;
-      $scope.currentUser.full_name = response.full_name;
-    });
   };
 
   $scope.updateUserPhoto = function(user){

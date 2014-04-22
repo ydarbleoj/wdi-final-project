@@ -2,7 +2,7 @@
     <!-- USER PROFILE HEADER  -->
 <div ng-controller="PostCtrl">
   <div class="user-profile">
-    <div class="user-header" ng-init="getCurrentUser()">
+    <div class="user-header" >
       <img id="user-image"src="/assets/james.jpg" ng-model="currentUser.photo">
       <h1 class="user-name">{{currentUser.full_name}} </h1>
      <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
@@ -12,5 +12,3 @@
     </div>
   </div>
 </div>
-
-
