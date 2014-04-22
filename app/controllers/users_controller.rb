@@ -15,9 +15,7 @@ class UsersController < ApplicationController
   end
 
   def get_current_user
-    user = current_user.as_json
-    user["full_name"] = current_user.full_name
-    respond_with [ user ]
+    respond_with [ current_user ]
   end
 
 

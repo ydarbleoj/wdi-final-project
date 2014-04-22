@@ -89,16 +89,13 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/new_post.html',
 			controller: 'PostCtrl'
 		})
-		.when('/my-journeys', {
-			templateUrl: '../templates/my_journeys.html',
+		.when('/users/:id', {
+			templateUrl: '../templates/user.html',
+			// TODO: build out UserCtrl and change controller here
 			controller: 'PostCtrl'
 		})
-		.when('/my-novos', {
-			templateUrl: '../templates/my_novos.html',
-			controller: 'NovosCtrl'
-		})
-		.when('/test-journeys/:id', {
-			templateUrl: '../templates/kai_test.html',
+		.when('/my-journeys', {
+			templateUrl: '../templates/my_journeys.html',
 			controller: 'PostCtrl'
 		})
 		.when('/picture', {

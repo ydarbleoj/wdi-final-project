@@ -2,7 +2,7 @@
   <ul class="nav nav-list">
     <li id="newPost" ng-class="navClass('new-post')"><a href='#/new-post'><img src="/assets/plus32.png" alt=""></a></li>
     <li id="newsfeed" ng-class="navClass('newsfeed')"><a href='#/newsfeed'><img src="/assets/square32.png" alt=""></a></li>
-    <li id="profile" ng-class="navClass('profile')"><a href='#/my-journeys'><img src="/assets/user32.png" alt=""></a></li>
+    <li id="profile" ng-class="navClass('profile')"><a href='#/users/{{currentUser.id}}'><img src="/assets/user32.png" alt=""></a></li>
     <li id="logout"><a ng-click="logout()" ng-controller="LoginCtrl" href='#/logout'><img src="/assets/logout32.png" alt=""></a></li>
   </ul>
 </div>
