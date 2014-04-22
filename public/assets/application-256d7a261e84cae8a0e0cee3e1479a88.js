@@ -12909,17 +12909,48 @@ var journeyApp = angular.module('journeyApp', [
 	'journeyRouter',
 	'angularFileUpload',
 	'journeyAppCtrls',
-	'ngResource'
+	'journeyAppServices',
+	'appDirective'
 	]);
 
 var journeyAppCtrls = angular.module('journeyAppCtrls', []);
 
+var appDirective = angular.module('appDirective', []);
+
+var journeyAppServices = angular.module('journeyAppServices', ['ngResource']);
+
+//	journeyAppServices.factory('Journey', ['$resource', function($resource){
+//		return $resource('/journeys.json', {
+//			query: { method: 'GET', isArray: true },
+//		});
+//	}]);
+
+
+journeyAppServices.factory('API', ['$resource', function($resource){
+	return {
+		Journey: $resource('/journeys/:id.json', {
+			query: { method: 'GET', url: '/journeys.json', isArray: true },
+			update: { method: 'PUT' }
+		}),
+		Post: $resource('/journeys/:journey_id/posts/:id', {
+			query: {method: 'GET',
+							url: '/journeys/:journey_id/posts',
+							params: { journey_id: this.id },
+							isArray: true
+						},
+			update: {method: 'PUT'}
+		}),
+		User: $resource('/users/:id.json', {
+			query: { method: 'GET', url: '/users.json', isArray: true },
+			update: { method: 'PUT' }
+		}),
+		CurrentUser: $resource('/current-user.json')
+	};
+}]);
 
 
 
-journeyRouter = angular.module("journeyRouter", [
-	"ngRoute"
-]);
+journeyRouter = angular.module("journeyRouter", ["ngRoute"]);
 
 journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	$routeProvider
@@ -12951,8 +12982,33 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/new_post.html',
 			controller: 'PostCtrl'
 		})
+		.when('/users/:id', {
+			templateUrl: '../templates/user.html',
+			// TODO: build out UserCtrl and change controller here
+			controller: 'PostCtrl'
+		})
 		.when('/my-journeys', {
 			templateUrl: '../templates/my_journeys.html',
+			controller: 'PostCtrl'
+		})
+		.when('/index-picture', {
+			templateUrl: '../templates/index/index_picture.html',
+			controller: 'IndexCtrl'
+		})
+		.when('/index-video', {
+			templateUrl: '../templates/index/index_video.html',
+			controller: 'IndexCtrl'
+		})
+		.when('/index-follow', {
+			templateUrl: '../templates/index/index_follow.html',
+			controller: 'IndexCtrl'
+		})
+		.when('/index-text', {
+			templateUrl: '../templates/index/index_text.html',
+			controller: 'IndexCtrl'
+		})
+		.when('/my-denovo', {
+			templateUrl: '../templates/my_denovo.html',
 			controller: 'PostCtrl'
 		})
 		.otherwise({
@@ -12961,7 +13017,6 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 		});
 		// $locationProvider.html5Mode(true);
 }]);
-
 // 2. Asynchronously load the Upload Widget and Player API code.
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -12989,10 +13044,10 @@ function onYouTubeIframeAPIReady() {
 
   if(typeof posts === 'undefined'){
     return;
-  }
+  };
 
   for(var i = 0; i < posts.length; i++){
-    var thisplayer = createPlayer(posts[i]);
+    createPlayer(posts[i]);
   }
 }
 
@@ -13013,7 +13068,7 @@ function createPlayer(post){
 
 // 4. This function is called when a video has been successfully uploaded.
 function onUploadSuccess(event) {
-  // try to git this without the hidden input field
+  // try to get this without the hidden input field
   videoId = event.data.videoId;
 }
 
@@ -13032,7 +13087,53 @@ function parseVideoUrl(url) {
   // need to implement this. just returning the url for now.
   return url;
 }
+
 ;
+$(document).ready(function(){
+
+	var nav = $('.profile-nav-partial').offset();
+
+	var stickyNav = function(){
+
+		var scrollTop = $(window).scrollTop();
+
+		if( scrollTop > nav ) {
+			$('.profile-nav-partial').addClass('fixedTop');
+		} else {
+			$('.profile-nav-partial').removeClass('fixedTop');
+		}
+	};
+
+	stickyNav();
+
+	$(window).scroll(function() {
+		stickyNav();
+	});
+
+});
+
+
+$(document).ready(function(){
+	console.log('begin');
+	var followText = [
+		"Follow Those Who Inspire",
+		"Will Follow Your Lead",
+		"Can See How Others Experience Transformation"
+	];
+
+	function RandomText() {
+		var ranText = Math.floor(Math.random() * followText.length);
+
+		$('#random-follow').fadeOut('fast', function(){
+			$(this).text(followText[ranText]).fadeIn('fast');
+		});
+	}
+	$(function() {
+		RandomText();
+	});
+	var interval = setInterval(function() { RandomText();}, 3000);
+
+});
 /*
  * Foundation Responsive Library
  * http://foundation.zurb.com
@@ -13642,9 +13743,23 @@ journeyAppCtrls.controller('IndexCtrl', ['$scope', function($scope){
 	$scope.foo = 'bar';
 	var nav;
 
-	// $scope.showNav = funciton(boolean){
-	// 	nav = false;
-	// }
+		$scope.showVideo = function() {
+			if ($scope.video) {
+				$scope.video = false;
+			} else {
+				$scope.video = true;
+			}
+			 //$scope.showPhoto();
+		};
+
+		$scope.showPhoto = function(){
+			if($scope.photo){
+				$scope.photo = false;
+			} else {
+				$scope.photo = true;
+			}
+			// $scope.showVideo();
+		}
 
 }]);
 journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
@@ -13719,13 +13834,7 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 		$scope.submit({
 			method: 'POST',
 			url: '../users.json',
-			data: {
-				user: { username: $scope.register_user.username,
-								email: $scope.register_user.email,
-								password: $scope.register_user.password,
-								password_confirmation: $scope.register_user.password_confirmation
-				}
-			},
+			data: { user: $scope.register_user },
 			success_message: "You have been registered and logged in.  A confirmation e-mail has been sent to your e-mail address, your access will terminate in 2 days if you do not use the link in that e-mail.",
 			error_entity: $scope.register_error
 		}, function(){
@@ -13800,16 +13909,26 @@ journeyAppCtrls.controller('LoginCtrl', ['$scope', '$http', '$location', functio
 		$scope.register_user.password_confirmation = null;
 	};
 }]);
- journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+
+  $scope.navClass = function (page) {
+      var currentRoute = $location.path().substring(1) || 'home';
+      return page === currentRoute ? 'active' : '';
+  };
+
+}]);
 
 
-    $scope.navClass = function (page) {
-        var currentRoute = $location.path().substring(1) || 'home';
-        return page === currentRoute ? 'active' : '';
-    };  
+journeyAppCtrls.controller('ProfileNavCtrl', ['$scope', '$location', function ($scope, $location) {
 
+	$scope.navClass = function(page) {
+		var currentRoute = $location.path().substring(1) || 'home';
+		return page === currentRoute ? 'active' : '';
+	};
 
-     //$scope.showPageHero = $location.path() === '/';
+  API.CurrentUser.query(function(response){
+    $scope.currentUser = response[0];
+  });
 
 }]);
 journeyAppCtrls.controller('NewsFeedCtrl', ['$scope', function($scope){
@@ -13830,57 +13949,54 @@ journeyAppCtrls.controller('NewsFeedCtrl', ['$scope', function($scope){
 
 	];
 }]);
-
-journeyAppCtrls.factory('Post', ['$resource', function($resource){
-  return $resource("/journeys/:journey_id/posts/:id.json", {journey_id: "@journey_id", id: "@id"}, {update: {method: "PATCH"}});
-}]);
-
-journeyAppCtrls.factory('Journey', ['$resource', function($resource){
-  return $resource("/journeys/:id.json", { id: "@id"}, {update: {method: "PATCH"}});
-}]);
-
-
-journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$location",
-  function($scope, $http, Post, $upload, $location){
+journeyAppCtrls.controller(
+  'PostCtrl', ['$scope', '$http', "API", "$upload", "$location", "$routeParams",
+  function($scope, $http, API, $upload, $location, $routeParams){
 
   $scope.newPost  = {};
-  $scope.journeys = {};
-  $scope.newJourney = {};
-  $scope.videoMethod = 'record';
+  // $scope.followed_journeys = FollowedJourney.query();
+  $scope.journeys = API.Journey.query();
+
   $scope.currentJourney = {};
+  $scope.newJourney = {};
+  $scope.emptyJourney = { title: "Create a New Journey" };
+  $scope.videoMethod = 'record';
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
   $scope.journeys_count = 12;
   $scope.followers_count = 23;
+  $scope.currentUser = {};
+
+  API.CurrentUser.query(function(response){
+    $scope.currentUser = response[0];
+
+  });
+
   var posts;
+  // $scope.getCurrentUser = function(){
+  //   $.get('/current-user').success(function(response){
+  //     $scope.currentUser = response.user;
+  //     $scope.currentUser.full_name = response.full_name;
+  //   });
+  // };
+  //
+  // $scope.getCurrentUser();
 
-
-
+  //CREATE POST:
+  //sets type to text, photo or video
+  //this is required to save the post + determines which create form is shown
   $scope.setPostType = function(post_type){
     $scope.newPost.post_type = post_type;
   };
 
+  //CREATE POST
   // sets $scope.videoMethod to either 'url' or 'record'
+  // this determines if user is shown the YT record wiget or a text input box
   $scope.setVideoMethod = function(method){
     $scope.videoMethod = method;
   };
 
-  // returns JSON object of user's journeys. pass in true to include an empty
-  // journey w/ title 'Create a New Journey' - for populating a dropdown list.
-  $scope.getUserJourneys = function(addNew){
-    $http({
-      method: 'GET',
-      url: '/journeys.json'
-    }).success(function(response){
-      $scope.journeys = response.current_user_journeys;
-      if(addNew) {
-        $scope.journeys.push({ title: "Create a New Journey" });
-      }
-    }).error(function(){
-      $location.path('/home');
-    });
-  };
-
+  // SHOW PAGE
   // adds journey.posts array to a journey object
   $scope.getPosts = function(journey){
     $.get('/journeys/' + journey.id + '/posts.json')
@@ -13899,19 +14015,13 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
 
   $scope.setCurrentJourney = function(journey){
     $scope.currentJourney = journey;
-  };
-
-  $scope.displayJourney = function(journey){
-    $scope.currentJourney = journey;
-    $scope.getPosts(journey);
     $scope.renderIframes();
+
   };
 
   // creates a post given a journey id and an unsaved post object
   $scope.createPost = function(journeyId, post){
     // if $scope.videoMethod = 'url', parse for id and save from form
-    // if post.post_type !== video, videoId will not have been set,
-    // so nil will be passed in, which is the expected behavior
     if (post.post_type === 'video'){
       if ($scope.videoMethod === 'record'){
         post.video = videoId;
@@ -13920,9 +14030,9 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       }
     }
 
-      if (post.post_type === 'photo'){
-        post.photo = $scope.imageUrl;
-      }
+    if (post.post_type === 'photo'){
+      post.photo = $scope.imageUrl;
+    }
 
     // TODO: add logic - if video id is nil don't allow create
 
@@ -13978,9 +14088,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
       }
     }).success(function(response){
       $scope.createPost(response.id);
-      // $('#file_upload').find('input[name=key]').val(retdata.key);
-      // $('#file_upload').find('input[name=policy]').val(retdata.policy);
-      // $('#file_upload').find('input[name=signature]').val(retdata.signature);
     });
   };
 
@@ -14047,12 +14154,6 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
     }
   };
 
-  $scope.getCurrentUser = function(){
-    $.get('/currentUser').success(function(response){
-      $scope.currentUser = response;
-    });
-  };
-
   $scope.updateUserPhoto = function(user){
     user.photo = $scope.imageUrl;
     $http({
@@ -14064,6 +14165,55 @@ journeyAppCtrls.controller('PostCtrl', ['$scope', '$http', "Post", "$upload", "$
   };
 
 }]);
+appDirective = angular.module('appDirective', []);
+
+appDirective.directive('contentItem', ['$compile', '$http', '$templateCache', function($compile, $http, $templateCache) {
+
+		$scope.test = "hello directive";
+
+		var getTemplate = function(contentType) {
+			var templateLoader, 
+			baseUrl = '../templates/posts', 
+			templateMap = {
+				text: 'text.html', 
+				picture: 'picture.html', 
+				video: 'video.html'
+			};
+
+			
+			var templateUrl = baseUrl + templateMap[contentType];
+			templateLoader = $http.get(templateUrl, {cache: $templateCache});
+
+			return templateLoader;
+		};
+
+		var linker = function(scope, element, attrs) { 
+
+			var loader = getTemplate(scope.post.post_type); 
+
+			var promise = loader.success(function(html) {
+				element.html(html);
+			}).then(function(reponse){
+				element.replaceWith($compile(element.html())(scope));
+			});
+		}
+
+		return {
+			restrict: 'E', 
+			scope: {
+				post: '='
+			},
+			link: linker
+		}; 
+
+	}]);
+
+
+
+
+
+
+
 
 
 journeyAppCtrls.controller('ProfileCtrl', ['$scope', function($scope){
@@ -14108,4 +14258,9 @@ journeyAppCtrls.controller("SignupFormCtrl", ['$scope', function($scope){
 
 
 
+
 $(document).foundation();
+
+
+
+
