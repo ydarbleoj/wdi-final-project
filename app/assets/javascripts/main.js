@@ -89,10 +89,10 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/new_post.html',
 			controller: 'PostCtrl'
 		})
-		.when('/my-journeys'){
+		.when('/my-journeys', {
 			templateUrl: '../templates/my_journeys.html',
 			controller: 'PostCtrl'
-		}
+		})
 		.when('/my-novos', {
 			templateUrl: '../templates/my_novos.html',
 			controller: 'NovosCtrl'
