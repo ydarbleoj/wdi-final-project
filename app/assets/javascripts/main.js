@@ -20,22 +20,44 @@ var journeyAppServices = angular.module('journeyAppServices', ['ngResource']);
 //		});
 //	}]);
 
-journeyAppServices.factory('Journey', ['$resource', function($resource){
-	return $resource('/journeys.json', {}, {
-		query: { method: 'GET', isArray: true },
-	});
+//	journeyAppServices.factory('Journey', ['$resource', function($resource){
+//		return $resource('/journeys.json', {
+//			query: { method: 'GET', isArray: true },
+//		});
+//	}]);
+
+//	journeyAppServices.factory('User', ['$resource', function($resource){
+//		return $resource('/users/:id.json', {
+//			query: { method: 'GET', params },
+//			update: { method: 'PATCH' }
+//		});
+//	}]);
+
+journeyAppServices.factory('API', ['$resource', function($resource){
+	return {
+		Journey: $resource('/journeys/:id.json', {
+			query: { method: 'GET', url: '/journeys.json', isArray: true },
+			update: { method: 'PUT' }
+		}),
+		Post: $resource('/journeys/:journey_id/posts/:id', {
+			query: {method: 'GET',
+							url: '/journeys/:journey_id/posts',
+							params: { journey_id: this.id },
+							isArray: true
+						},
+			update: {method: 'PUT'}
+		}),
+		User: $resource('/users/:id.json', {
+			query: { method: 'GET', url: '/users.json', isArray: true },
+			update: { method: 'PUT' }
+		}),
+		CurrentUser: $resource('/current-user.json')
+	};
 }]);
 
-journeyAppServices.factory('User', ['$resource', function($resource){
-	query: { }
-}]);
 
 
-
-
-journeyRouter = angular.module("journeyRouter", [
-	"ngRoute"
-]);
+journeyRouter = angular.module("journeyRouter", ["ngRoute"]);
 
 journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	$routeProvider
@@ -67,11 +89,15 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/new_post.html',
 			controller: 'PostCtrl'
 		})
-		.when('/my-journeys', {
+		.when('/my-journeys'){
 			templateUrl: '../templates/my_journeys.html',
 			controller: 'PostCtrl'
+		}
+		.when('/my-novos', {
+			templateUrl: '../templates/my_novos.html',
+			controller: 'NovosCtrl'
 		})
-		.when('/test-journeys', {
+		.when('/test-journeys/:id', {
 			templateUrl: '../templates/kai_test.html',
 			controller: 'PostCtrl'
 		})

@@ -1,11 +1,12 @@
 journeyAppCtrls.controller(
-  'PostCtrl', ['$scope', '$http', "Journey", "$upload", "$location", "$routeParams",
-  function($scope, $http, Journey, $upload, $location, $routeParams){
+  'PostCtrl', ['$scope', '$http', "API", "$upload", "$location", "$routeParams",
+  function($scope, $http, API, $upload, $location, $routeParams){
 
   $scope.newPost  = {};
-  $scope.journeys = Journey.query();
+  // $scope.followed_journeys = FollowedJourney.query();
+  $scope.journeys = API.Journey.query();
+
   $scope.currentJourney = {};
-  // $scope.setCurrentJourney($scope.journeys.last);
   $scope.newJourney = {};
   $scope.emptyJourney = { title: "Create a New Journey" };
   $scope.videoMethod = 'record';
@@ -14,7 +15,23 @@ journeyAppCtrls.controller(
   $scope.content = [];
   $scope.journeys_count = 12;
   $scope.followers_count = 23;
+  $scope.currentUser = {};
+
+  API.CurrentUser.query(function(response){
+    $scope.currentUser = response[0];
+
+  });
+
   var posts;
+
+  // $scope.getCurrentUser = function(){
+  //   $.get('/current-user').success(function(response){
+  //     $scope.currentUser = response.user;
+  //     $scope.currentUser.full_name = response.full_name;
+  //   });
+  // };
+  //
+  // $scope.getCurrentUser();
 
   $scope.fetchContent = function() {
     $http.get($scope.journeys).then(function(result){
@@ -33,7 +50,7 @@ journeyAppCtrls.controller(
 
   //CREATE POST
   // sets $scope.videoMethod to either 'url' or 'record'
-  // this determines if use is shown the YT record wiget or an input box
+  // this determines if user is shown the YT record wiget or a text input box
   $scope.setVideoMethod = function(method){
     $scope.videoMethod = method;
   };
@@ -194,13 +211,6 @@ journeyAppCtrls.controller(
         });
       }(file, i));
     }
-  };
-
-  $scope.getCurrentUser = function(){
-    $.get('/currentUser').success(function(response){
-      $scope.currentUser = response.user;
-      $scope.currentUser.full_name = response.full_name;
-    });
   };
 
   $scope.updateUserPhoto = function(user){
