@@ -1,6 +1,10 @@
-journeyAppCtrls.controller('ProfileCtrl', ['$scope', function($scope){
+journeyAppCtrls.controller('ProfileCtrl', ['$scope', 'API', '$routeParams', function($scope, API, $routeParams){
 
-	$scope.profile = "James Franco";
+	$scope.profileUser = {};
+
+	API.User.get({ "id": $routeParams.id }, function(response){
+		$scope.profileUser = response.user;
+	});
 
 
 }]);

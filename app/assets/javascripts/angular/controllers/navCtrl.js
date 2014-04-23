@@ -1,4 +1,4 @@
-journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+journeyAppCtrls.controller('NavCtrl', ['$scope', '$location','API', function ($scope, $location, API) {
 
   $scope.navClass = function (page) {
       var currentRoute = $location.path().substring(1) || 'home';
@@ -8,7 +8,7 @@ journeyAppCtrls.controller('NavCtrl', ['$scope', '$location', function ($scope, 
 }]);
 
 
-journeyAppCtrls.controller('ProfileNavCtrl', ['$scope', '$location', function ($scope, $location) {
+journeyAppCtrls.controller('ProfileNavCtrl', ['$scope', '$location', 'API', function ($scope, $location, API) {
 
 	$scope.navClass = function(page) {
 		var currentRoute = $location.path().substring(1) || 'home';

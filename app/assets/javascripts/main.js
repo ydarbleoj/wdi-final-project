@@ -23,7 +23,8 @@ journeyAppServices.factory('API', ['$resource', function($resource){
 	return {
 		Journey: $resource('/journeys/:id.json', {
 			query: { method: 'GET', url: '/journeys.json', isArray: true },
-			update: { method: 'PUT' }
+			update: { method: 'PUT' },
+			get: { method: 'GET', params: {'id': this.id}}
 		}),
 		Post: $resource('/journeys/:journey_id/posts/:id', {
 			query: {method: 'GET',

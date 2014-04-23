@@ -1,10 +1,10 @@
 
     <!-- USER PROFILE HEADER  -->
-<div ng-controller="PostCtrl">
+<div ng-controller="ProfileCtrl">
   <div class="user-profile">
     <div class="user-header" >
       <img id="user-image"src="/assets/james.jpg" ng-model="currentUser.photo">
-      <h1 class="user-name">{{currentUser.full_name}} </h1>
+      <h1 class="user-name">{{profileUser.full_name}} </h1>
      <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
       <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
       <div class="journeys-count">{{journeys_count}} <span id="journey-number">Journeys</span></div>
