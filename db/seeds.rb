@@ -74,7 +74,7 @@ journeys = [
   # journeys for james franco
   users[0].journeys.create([
     {
-      title: "This is a big deal",
+      title: "This is big",
       start_date: Time.now
     }
   ]),
@@ -93,7 +93,7 @@ journeys = [
   # journeys for Demo Brown
   users[2].journeys.create([
     {
-      title: "Growing my hair out",
+      title: "Growing up",
       start_date: Time.new(2014, 6, 10),
       end_date: Time.new(2015, 8, 10)
     }
@@ -107,7 +107,7 @@ journeys = [
       end_date: Time.new(2018, 8, 10)
     },
     {
-      title: "Doin' fewer thangs",
+      title: "More thangs",
       start_date: Time.new(2013, 7, 20),
       end_date: Time.new(2014, 6, 20)
     }
@@ -124,7 +124,7 @@ journeys = [
 ]
 
 posts = [
-  # posts for james franco > "This is a big deal"
+  # posts for james franco > "This is big"
   journeys[0][0].posts.create([
     {
       post_type: "text",
