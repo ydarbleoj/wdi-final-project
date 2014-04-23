@@ -15,4 +15,8 @@ journeyAppCtrls.controller('ProfileCtrl', ['$scope', 'API', '$routeParams', func
 		});
 	});
 
+	$scope.followUser = function(user){
+		API.UserFollowers.save({'id': user.id});
+	};
+
 }]);

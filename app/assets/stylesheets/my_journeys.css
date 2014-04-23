@@ -39,6 +39,10 @@ img#user-image {
 	font-size: 2em;
 }
 
+#follow-me{
+	width: 20px;
+}
+
 span {
 	margin-left: 5px;
 	font-size: .85em;

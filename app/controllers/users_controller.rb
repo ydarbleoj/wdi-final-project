@@ -31,6 +31,25 @@ class UsersController < ApplicationController
     respond_with this_user.followers
   end
 
+  def follow
+    # this is cheap error handling
+    # TODO: do something more legit
+
+    if current_user.following?(this_user)
+      respond_with { "error: already following this user" }
+    elsif current_user == this_user
+      respond_with { "error: can't follow yourself"}
+    else
+      respond_with current_user.follow!(this_user)
+    end
+  end
+
+  def unfollow
+    unless current_user == this_user
+      respond_with current_user.unfollow!(this_user)
+    end
+  end
+
   private
 
     def this_user

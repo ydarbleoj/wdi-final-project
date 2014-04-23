@@ -34,17 +34,13 @@ journeyAppServices.factory('API', ['$resource', function($resource){
 						},
 			update: {method: 'PUT'}
 		}),
-		User: $resource('/users/:id.json', {
+		User: $resource('/users/:id.json', { id: '@id' }, {
 			query: { method: 'GET', url: '/users.json', isArray: true },
 			update: { method: 'PUT' }
 		}),
 		CurrentUser: $resource('/current-user.json'),
-		UserFollowing: $resource('/users/:id/following.json', {
-			query: { method: 'GET', params: {'id': this.id}, isArray: true }
-		}),
-		UserFollowers: $resource('/users/:id/followers.json', {
-			query: { method: 'GET', params: {'id': this.id}, isArray: true }
-		})
+		UserFollowing: $resource('/users/:id/following.json', { id: '@id' }),
+		UserFollowers: $resource('/users/:id/followers.json', { id: '@id' })
 	};
 }]);
 

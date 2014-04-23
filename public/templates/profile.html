@@ -4,7 +4,7 @@
   <div class="user-profile">
     <div class="user-header" >
       <img id="user-image"src="{{profileUser.photo}}" ng-model="currentUser.photo">
-      <h1 class="user-name">{{profileUser.full_name}} </h1>
+      <h1 class="user-name">{{profileUser.full_name}} <a ng-click="followUser(profileUser)"><img id="follow-me" src="../assets/adduser64_black.png"></a></h1>
      <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
       <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
       <ul class="profile-follow-counts">
