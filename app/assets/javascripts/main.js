@@ -35,6 +35,7 @@ journeyAppServices.factory('API', ['$resource', function($resource){
 			update: {method: 'PUT'}
 		}),
 		User: $resource('/users/:id.json', { id: '@id' }, {
+			get: { method: 'get', params: { id: this.id }},
 			query: { method: 'GET', url: '/users.json', isArray: true },
 			update: { method: 'PUT' }
 		}),

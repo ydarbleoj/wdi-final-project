@@ -8,7 +8,7 @@
             <h3>select a journey</h3>
             <div class="new-journey">
               <button class="create-post"
-                ng-repeat="journey in journeys"
+                ng-repeat="journey in currentUserJourneys"
                 ng-click="setCurrentJourney(journey)">
                 {{journey.title}}
               </button>

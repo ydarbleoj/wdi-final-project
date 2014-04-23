@@ -6,6 +6,7 @@ journeyAppCtrls.controller(
 
 
   $scope.journeys = {};
+  $scope.currentUserJourneys = {}
   $scope.newPost  = {};
   // $scope.followed_journeys = FollowedJourney.query();
   $scope.currentJourney = {};
@@ -18,6 +19,10 @@ journeyAppCtrls.controller(
 
   API.CurrentUser.query(function(response){
     $scope.currentUser = response[0];
+
+    API.User.get({"id": response[0].id}, function(response){
+      $scope.currentUserJourneys = response.journeys;
+    });
   });
 
   API.User.get({"id": $routeParams.id}, function(response){
