@@ -18,10 +18,10 @@ journeyAppCtrls.controller(
 
   API.CurrentUser.query(function(response){
     $scope.currentUser = response[0];
+  });
 
-    API.User.get({"id": response[0].id}, function(UsrResponse){
-      $scope.journeys = UsrResponse.journeys;
-    });
+  API.User.get({"id": $routeParams.id}, function(response){
+    $scope.journeys = response.journeys;
   });
 
   //CREATE POST:

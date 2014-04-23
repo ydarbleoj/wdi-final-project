@@ -3,7 +3,7 @@
 <div class="profile-partial ng-include" src="'../templates/profile.html'"></div>
 <div class="profile-nav-partial ng-include" src="'../templates/profile_nav.html'"></div>
 <!-- END PARTIALS -->
-<h1 class="profile-header">{{profileUser.f_name}}'s followers:</h1>
+<h1 class="profile-header">{{profileUser.f_name || profileUser.username}}'s followers:</h1>
 <div class="container-my-journeys">
   <div class="row">
     <ul>

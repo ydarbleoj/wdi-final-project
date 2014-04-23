@@ -13,7 +13,8 @@ users = User.create([
     password: "password",
     username: "jfranco",
     f_name: "james",
-    l_name: "franco"
+    l_name: "franco",
+    photo: "/assets/james.jpg"
   },
   # users[1]
   {
@@ -21,7 +22,8 @@ users = User.create([
     password: "password",
     username: "dummy",
     f_name: "Dummy",
-    l_name: "User"
+    l_name: "User",
+    photo: "http://kaihofi.us/img/zia_arm.jpg"
   },
   # users[2]
   {
@@ -29,19 +31,24 @@ users = User.create([
     password: "password",
     username: "demo",
     f_name: "Demo",
-    l_name: "Brown"
+    l_name: "Brown",
+    photo: "http://kaihofi.us/img/me_dapper.jpg"
+
   },
   # users[3]
   {
     email: "person@hotmail.com",
     password: "password",
-    username: "personifyme"
+    username: "personifyme",
+    photo: "http://kaihofi.us/img/dolo.jpg"
+
   },
   # users[4]
   {
     email: "yourbuddy@gmail.com",
     password: "password",
     username: "buddyolpal",
+    photo: "http://kaihofi.us/img/little_kai.jpg"
   },
 ])
 
