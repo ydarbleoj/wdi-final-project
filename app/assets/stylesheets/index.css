@@ -4,53 +4,26 @@
 	top: 0em;
 }
 
-.header-index {
-	width: 100%;
-	height: 6em;
-	margin-top: -1.25em;
-	background-color: rgba(44,57,73, .1); 
-	border-left: 10px solid rgba(255,127,102, 1);
-	
-}
-
 .nav-index {
-	width: 20%;
-	height: 1em;
-	margin: auto 0;
+	width: 50px;
+	height: inherit;
+	margin-right: 1em;
 	float: right;
 }
 
-
-
-li#signup-index {
-	/*right: 50%;*/
-	margin-left: 2.5em;
-	margin-top: 2.5em;
+li#login-index a {
+	margin-top: 5%;
+	color: white;
 	position: relative;
 	text-align: center;
 	display: block;
-}
-
-li#login-index {
-	/*left: 50%;*/
-	margin-left: -7em;
-	margin-top: -3.75em;
-	position: relative;
-	text-align: center;
-	display: block;
-}
-
-li#login-index:hover {
-/*	
-	box-shadow: 10px 9px 53px #000000;
-	transition: ease-in-out .75;*/
 }
 
 .content {
 	width: 100%;
 	height: 37em;
 	margin-top: -1.25em;
-	background: transparent url(/assets/transitionsBW.jpg) center center no-repeat;
+	background: transparent url(/assets/newadv_opt.png) center center no-repeat;
 	background-size: cover;
 }
 
@@ -66,10 +39,42 @@ li#login-index:hover {
 #landing-camera-link {
 	width: 100%;
 	height: 100%;
-	/*background: transparent url(/assets/denovolanding_opt.jpg) center center no-repeat;
-	background-size: cover;*/
 }
 
+/* LANDING PAGE */
+.landing-title {
+	width: 550px;
+	height: 200px;
+	margin-left: -12%;
+	margin-top: 13%;
+}
+
+.landing-title h2 {
+	font-family: Lato;
+	font-weight: 100;
+	font-size: 5.5em;
+	color: white;	
+}
+
+.landing-section {
+	width: 100%;
+}
+
+.landing-section h3 {
+	text-align: center;
+	font-family: Lato, Arial;
+	font-size: 1.7em;
+	font-weight: 100;
+	color: white;
+	padding: 2px;
+	background-color: #333;
+	opacity: .7;
+}
+
+.landing-section span {
+	font-weight: 300;
+	color: rgba(255,127,102, 1);
+}
 
 
 /* FOOTER */
@@ -224,30 +229,174 @@ img#signup-link:hover {
 	float: left;
 }
 
+/* INDEX-VIDEO */
+
 .landing-video {
 	width: 100%;
 	height: 37em;
 	margin-top: 0em;
-	background: transparent url(/assets/hike.jpg) center center no-repeat;
+	position: relative;
+	float: left;
+	background: transparent url(/assets/videoimage_opt.jpg) center center no-repeat;
 	background-size: cover;
 }
 
+.title-video {
+	width: 550px;
+	height: 200px;
+	margin-left: 10%;
+	margin-top: 7%;
+}
+
+.title-video h2 a {
+	font-family: Lato;
+	font-weight: 100;
+	font-size: 2.5em;
+	color: #333;
+	opacity: .7;	
+}
+
+.title-video a:hover {
+	color: #333;
+}
+
+.video-section {
+	width: 40%;
+	margin-top: 2%;
+	margin-left: 30%;
+}
+
+.video-section h3 {
+	text-align: center;
+	font-family: Lato, Arial;
+	font-size: 1.7em;
+	font-weight: 100;
+	color: white;
+	padding: 2px;
+	background-color: #333;
+	opacity: .7;
+}
+
+.video-section span {
+	font-weight: 300;
+	font-size: 1em;
+	color: rgba(255,127,102, 1);
+}
+
+/* INDEX-PICTURE */
 .landing-picture {
 	width: 100%;
 	height: 37em;
 	margin-top: 0em;
+	position: relative;
+	float: left;
 	background: transparent url(/assets/denovolanding_opt.jpg) center center no-repeat;
 	background-size: cover;
 }
 
+.title-picture {
+	width: 550px;
+	height: 200px;
+	margin-left: 10%;
+	margin-top: 7%;
+}
+
+.title-picture h2 a {
+	font-family: Lato;
+	font-weight: 100;
+	font-size: 2.5em;
+	color: white;
+	opacity: .7;	
+}
+
+.title-picture a:hover {
+	color: #333;
+}
+
+.picture-section {
+	width: 40%;
+	margin-top: 2%;
+	margin-left: 30%;
+}
+
+.picture-section h3 {
+	text-align: center;
+	font-family: Lato, Arial;
+	font-size: 1.7em;
+	font-weight: 100;
+	color: white;
+	padding: 20px 2px;
+	background-color: #333;
+	opacity: .7;
+}
+
+.picture-section span {
+	font-weight: 300;
+	font-size: 1em;
+	color: rgba(255,127,102, 1);
+}
+
+.title-picture a:hover {
+	color: white;
+}
+
+/* INDEX-TEXT */
 .landing-text {
 	width: 100%;
 	height: 37em;
 	margin-top: 0em;
+	position: relative;
+	float: left;
 	background: transparent url(/assets/blogit_opt.jpg) center center no-repeat;
 	background-size: cover;
-
 }
+
+.title-text {
+	width: 550px;
+	height: 200px;
+	margin-left: 10%;
+	margin-top: 7%;
+}
+
+.title-text h2 a {
+	font-family: Lato;
+	font-weight: 100;
+	font-size: 2.5em;
+	color: white;
+	opacity: .7;	
+}
+
+.title-text a:hover {
+	color: #333;
+}
+
+.text-section {
+	width: 40%;
+	margin-top: 2%;
+	margin-left: 30%;
+}
+
+.text-section h3 {
+	text-align: center;
+	font-family: Lato, Arial;
+	font-size: 1.7em;
+	font-weight: 100;
+	color: white;
+	padding: 20px 2px;
+	background-color: #333;
+	opacity: .7;
+}
+
+.text-section span {
+	font-weight: 300;
+	font-size: 1em;
+	color: rgba(255,127,102, 1);
+}
+
+.title-text a:hover {
+	color: white;
+}
+
 
 /* INDEX-FOLLOW */
 
@@ -261,18 +410,49 @@ img#signup-link:hover {
 	background-size: cover;
 }
 
-.title-follow {
-	width: 200px;
-	height: 100px;
-	margin-left: 15%;
-	margin-top: 10%;
+.title {
+	width: 550px;
+	height: 200px;
+	margin-left: 10%;
+	margin-top: 7%;
 }
 
-.title-follow h2 {
+.title h2 a {
 	font-family: Lato;
+	font-weight: 100;
+	font-size: 2.5em;
+	color: white;
+	opacity: .7;	
+}
+
+.title a:hover {
+	color: white;
+}
+
+.follow-section {
+	width: 40%;
+	margin-left: 30%;
+}
+
+.follow-section h3 {
+	text-align: center;
+	font-family: Lato, Arial;
+	font-size: 1.7em;
+	font-weight: 100;
+	color: white;
+	padding: 20px 2px;
+	background-color: #333;
+	opacity: .7;
+}
+
+.follow-section span {
 	font-weight: 300;
-	font-size: 4.5em;
-	color: white;	
+	font-size: 1em;
+	color: rgba(255,127,102, 1);
+}
+
+.random-follow {
+	padding: 0px 2px; 
 }
 
 

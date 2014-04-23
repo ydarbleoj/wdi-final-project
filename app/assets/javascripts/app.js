@@ -27,7 +27,9 @@ $(document).ready(function(){
 	var followText = [
 		"Follow Those Who Inspire",
 		"Will Follow Your Lead",
-		"Can See How Others Experience Transformation"
+		"Can See How Others Experience Transformation", 
+		"Find New Ways To Change Our Lives", 
+		"Help Others See The Power In Change"
 	];
 
 	function RandomText() {
@@ -40,6 +42,6 @@ $(document).ready(function(){
 	$(function() {
 		RandomText();
 	});
-	var interval = setInterval(function() { RandomText();}, 3000);
+	var interval = setInterval(function() { RandomText();}, 4000);
 
 });
