@@ -2,34 +2,27 @@ journeyAppCtrls.controller(
   'PostCtrl', ['$scope', '$http', "API", "$upload", "$location", "$routeParams",
   function($scope, $http, API, $upload, $location, $routeParams){
 
+  $scope.currentUser = {};
+
+
+  $scope.journeys = {};
   $scope.newPost  = {};
   // $scope.followed_journeys = FollowedJourney.query();
-  $scope.journeys = API.Journey.query();
-
   $scope.currentJourney = {};
   $scope.newJourney = {};
   $scope.emptyJourney = { title: "Create a New Journey" };
   $scope.videoMethod = 'record';
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
-  $scope.journeys_count = 12;
-  $scope.followers_count = 23;
-  $scope.currentUser = {};
+  var posts;
 
   API.CurrentUser.query(function(response){
     $scope.currentUser = response[0];
-
   });
 
-  var posts;
-  // $scope.getCurrentUser = function(){
-  //   $.get('/current-user').success(function(response){
-  //     $scope.currentUser = response.user;
-  //     $scope.currentUser.full_name = response.full_name;
-  //   });
-  // };
-  //
-  // $scope.getCurrentUser();
+  API.User.get({"id": $routeParams.id}, function(response){
+    $scope.journeys = response.journeys;
+  });
 
   //CREATE POST:
   //sets type to text, photo or video

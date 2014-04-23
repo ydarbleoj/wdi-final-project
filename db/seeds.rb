@@ -13,7 +13,8 @@ users = User.create([
     password: "password",
     username: "jfranco",
     f_name: "james",
-    l_name: "franco"
+    l_name: "franco",
+    photo: "/assets/james.jpg"
   },
   # users[1]
   {
@@ -21,7 +22,8 @@ users = User.create([
     password: "password",
     username: "dummy",
     f_name: "Dummy",
-    l_name: "User"
+    l_name: "User",
+    photo: "http://kaihofi.us/img/zia_arm.jpg"
   },
   # users[2]
   {
@@ -29,19 +31,24 @@ users = User.create([
     password: "password",
     username: "demo",
     f_name: "Demo",
-    l_name: "Brown"
+    l_name: "Brown",
+    photo: "http://kaihofi.us/img/me_dapper.jpg"
+
   },
   # users[3]
   {
     email: "person@hotmail.com",
     password: "password",
-    username: "personifyme"
+    username: "personifyme",
+    photo: "http://kaihofi.us/img/dolo.jpg"
+
   },
   # users[4]
   {
     email: "yourbuddy@gmail.com",
     password: "password",
     username: "buddyolpal",
+    photo: "http://kaihofi.us/img/little_kai.jpg"
   },
 ])
 
@@ -74,7 +81,7 @@ journeys = [
   # journeys for james franco
   users[0].journeys.create([
     {
-      title: "This is a big deal",
+      title: "This is big",
       start_date: Time.now
     }
   ]),
@@ -93,7 +100,7 @@ journeys = [
   # journeys for Demo Brown
   users[2].journeys.create([
     {
-      title: "Growing my hair out",
+      title: "Growing up",
       start_date: Time.new(2014, 6, 10),
       end_date: Time.new(2015, 8, 10)
     }
@@ -107,7 +114,7 @@ journeys = [
       end_date: Time.new(2018, 8, 10)
     },
     {
-      title: "Doin' fewer thangs",
+      title: "More thangs",
       start_date: Time.new(2013, 7, 20),
       end_date: Time.new(2014, 6, 20)
     }
@@ -124,7 +131,7 @@ journeys = [
 ]
 
 posts = [
-  # posts for james franco > "This is a big deal"
+  # posts for james franco > "This is big"
   journeys[0][0].posts.create([
     {
       post_type: "text",
@@ -142,7 +149,8 @@ posts = [
     {
       post_type: "text",
       title: "Let's get started!",
-      text: "Selfies Banksy Marfa,blasf local herba hardorevore fanny pack American Apparel next level Schlitz lomo. Fixie Tumblr you probably haven't heard of them, +1 Wes Anderson fingerstache ethical butcher mixtape Godard 8-bit Banksy skateboard chia. Paleo tofu direct trade, PBR&B photo booth Brooklyn lomo church-key selfies master cleanse raw denim Tumblr. Fap tattooed brunch retro Etsy Austin literally. Meggings biodiesel Brooklyn hashtag. Pop-up swag wolf art party.\nCred ethical chambray fingerstache. Sartorial street art fanny pack, fingerstache photo booth organic small batch single-origin coffee seitan swag next level sriracha pour-over. Disrupt cred master cleanse American Apparel whatever biodiesel synth, shabby chic you probably haven't heard of them banjo roof party put a bird on it actually craft beer. Freegan pour-over selvage, paleo direct trade messenger bag drinking vinegar seitan small batch fashion axe. Master cleanse tousled occupy +1, chillwave biodiesel letterpress fingerstache forage chambray ethical slow-carb roof party hella bitters. Direct trade mustache cornhole asymmetrical fashion axe. Gastropub gluten-free polaroid, meh mixtape street art Odd Future XOXO bespoke art party fap fixie photo booth umami chillwave."
+      #TODO: truncate text on show page until user clicks the post. Shortening seeded text for now.
+      text: "Selfies Banksy Marfa,blasf local herba hardorevore fanny pack American Apparel" # next level Schlitz lomo. Fixie Tumblr you probably haven't heard of them, +1 Wes Anderson fingerstache ethical butcher mixtape Godard 8-bit Banksy skateboard chia. Paleo tofu direct trade, PBR&B photo booth Brooklyn lomo church-key selfies master cleanse raw denim Tumblr. Fap tattooed brunch retro Etsy Austin literally. Meggings biodiesel Brooklyn hashtag. Pop-up swag wolf art party.\nCred ethical chambray fingerstache. Sartorial street art fanny pack, fingerstache photo booth organic small batch single-origin coffee seitan swag next level sriracha pour-over. Disrupt cred master cleanse American Apparel whatever biodiesel synth, shabby chic you probably haven't heard of them banjo roof party put a bird on it actually craft beer. Freegan pour-over selvage, paleo direct trade messenger bag drinking vinegar seitan small batch fashion axe. Master cleanse tousled occupy +1, chillwave biodiesel letterpress fingerstache forage chambray ethical slow-carb roof party hella bitters. Direct trade mustache cornhole asymmetrical fashion axe. Gastropub gluten-free polaroid, meh mixtape street art Odd Future XOXO bespoke art party fap fixie photo booth umami chillwave."
     },
     {
       post_type: "video",
@@ -156,7 +164,8 @@ posts = [
     {
       post_type: "text",
       title: "Let's get started!",
-      text: "Selfies Banksy Marfa, High Life hella tattooed plaid pork belly ethical Pinterest Godard meggings you probably haven't heard of them. Locavore fanny pack American Apparel next level Schlitz lomo. Fixie Tumblr you probably haven't heard of them, +1 Wes Anderson fingerstache ethical butcher mixtape Godard 8-bit Banksy skateboard chia. Paleo tofu direct trade, PBR&B photo booth Brooklyn lomo church-key selfies master cleanse raw denim Tumblr. Fap tattooed brunch retro Etsy Austin literally. Meggings biodiesel Brooklyn hashtag. Pop-up swag wolf art party.\nCred ethical chambray fingerstache. Sartorial street art fanny pack, fingerstache photo booth organic small batch single-origin coffee seitan swag next level sriracha pour-over. Disrupt cred master cleanse American Apparel whatever biodiesel synth, shabby chic you probably haven't heard of them banjo roof party put a bird on it actually craft beer. Freegan pour-over selvage, paleo direct trade messenger bag drinking vinegar seitan small batch fashion axe. Master cleanse tousled occupy +1, chillwave biodiesel letterpress fingerstache forage chambray ethical slow-carb roof party hella bitters. Direct trade mustache cornhole asymmetrical fashion axe. Gastropub gluten-free polaroid, meh mixtape street art Odd Future XOXO bespoke art party fap fixie photo booth umami chillwave."
+      # TODO: see above. shortening seeded post for now.
+      text: "Selfies Banksy Marfa, High Life hella tattooed plaid pork belly ethical" #Pinterest Godard meggings you probably haven't heard of them. Locavore fanny pack American Apparel next level Schlitz lomo. Fixie Tumblr you probably haven't heard of them, +1 Wes Anderson fingerstache ethical butcher mixtape Godard 8-bit Banksy skateboard chia. Paleo tofu direct trade, PBR&B photo booth Brooklyn lomo church-key selfies master cleanse raw denim Tumblr. Fap tattooed brunch retro Etsy Austin literally. Meggings biodiesel Brooklyn hashtag. Pop-up swag wolf art party.\nCred ethical chambray fingerstache. Sartorial street art fanny pack, fingerstache photo booth organic small batch single-origin coffee seitan swag next level sriracha pour-over. Disrupt cred master cleanse American Apparel whatever biodiesel synth, shabby chic you probably haven't heard of them banjo roof party put a bird on it actually craft beer. Freegan pour-over selvage, paleo direct trade messenger bag drinking vinegar seitan small batch fashion axe. Master cleanse tousled occupy +1, chillwave biodiesel letterpress fingerstache forage chambray ethical slow-carb roof party hella bitters. Direct trade mustache cornhole asymmetrical fashion axe. Gastropub gluten-free polaroid, meh mixtape street art Odd Future XOXO bespoke art party fap fixie photo booth umami chillwave."
     },
     {
       post_type: "video",

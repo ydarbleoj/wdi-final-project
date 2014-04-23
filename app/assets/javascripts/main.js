@@ -23,7 +23,8 @@ journeyAppServices.factory('API', ['$resource', function($resource){
 	return {
 		Journey: $resource('/journeys/:id.json', {
 			query: { method: 'GET', url: '/journeys.json', isArray: true },
-			update: { method: 'PUT' }
+			update: { method: 'PUT' },
+			get: { method: 'GET', params: {'id': this.id} }
 		}),
 		Post: $resource('/journeys/:journey_id/posts/:id', {
 			query: {method: 'GET',
@@ -33,11 +34,13 @@ journeyAppServices.factory('API', ['$resource', function($resource){
 						},
 			update: {method: 'PUT'}
 		}),
-		User: $resource('/users/:id.json', {
+		User: $resource('/users/:id.json', { id: '@id' }, {
 			query: { method: 'GET', url: '/users.json', isArray: true },
 			update: { method: 'PUT' }
 		}),
-		CurrentUser: $resource('/current-user.json')
+		CurrentUser: $resource('/current-user.json'),
+		UserFollowing: $resource('/users/:id/following.json', { id: '@id' }),
+		UserFollowers: $resource('/users/:id/followers.json', { id: '@id' })
 	};
 }]);
 
@@ -79,6 +82,14 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			templateUrl: '../templates/user.html',
 			// TODO: build out UserCtrl and change controller here
 			controller: 'PostCtrl'
+		})
+		.when('/users/:id/following', {
+			templateUrl: '../templates/following.html',
+			controller: 'ProfileCtrl'
+		})
+		.when('/users/:id/followers', {
+			templateUrl: '../templates/followers.html',
+			controller: 'ProfileCtrl'
 		})
 		.when('/my-journeys', {
 			templateUrl: '../templates/my_journeys.html',

@@ -1,14 +1,29 @@
 
     <!-- USER PROFILE HEADER  -->
-<div ng-controller="PostCtrl">
+<div ng-controller="ProfileCtrl">
   <div class="user-profile">
     <div class="user-header" >
-      <img id="user-image"src="/assets/james.jpg" ng-model="currentUser.photo">
-      <h1 class="user-name">{{currentUser.full_name}} </h1>
+      <img id="user-image"src="{{profileUser.photo}}" ng-model="currentUser.photo">
+      <h1 class="user-name">{{profileUser.full_name}} <a ng-click="followUser(profileUser)"><img id="follow-me" src="../assets/adduser64_black.png"></a></h1>
      <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
       <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
-      <div class="journeys-count">{{journeys_count}} <span id="journey-number">Journeys</span></div>
-      <div class="profile-followers">{{followers_count}} <span id="follower-count">Followers</span></div>
-    </div>
+      <ul class="profile-follow-counts">
+        <li>{{profileUser.journeys_count}}
+          <a href="#/users/{{profileUser.id}}">
+            <span id="journey-number">Journeys</span>
+          </a>
+        </li>
+        <li>{{profileUser.followers_count}}
+          <a href="#/users/{{profileUser.id}}/followers">
+            <span id="follower-count">Followers</span>
+          </a>
+        </li>
+        <li>{{profileUser.following_count }}
+          <a href="#/users/{{profileUser.id}}/following">
+            <span id="following-count">Following</span>
+          </a>
+        </li>
+      </ul>
+</div>
   </div>
 </div>
