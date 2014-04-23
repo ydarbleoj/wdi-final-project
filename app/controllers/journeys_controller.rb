@@ -5,7 +5,7 @@ class JourneysController < ApplicationController
   def index
     # TODO: batch this or something.
     # TODO: integrate privacy settings into this.
-    respond_with Journey.all
+    respond_with Journey.all_with_username
   end
 
   def friends_journeys

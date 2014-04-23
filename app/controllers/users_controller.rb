@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   respond_to :json
 
   def show
-    user = User.find(params[:id])
+    user = this_user
     journeys = user.journeys
     posts = user.all_posts
 
@@ -17,6 +17,20 @@ class UsersController < ApplicationController
   def get_current_user
     respond_with [ current_user ]
   end
+
+  def following
+    respond_with this_user.following
+  end
+
+  def followers
+    respond_with this_user.followers
+  end
+
+  private
+
+    def this_user
+      User.find(params[:id])
+    end
 
 
 end
