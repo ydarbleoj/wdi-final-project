@@ -14,8 +14,6 @@ journeyAppCtrls.controller(
   $scope.videoMethod = 'record';
   $scope.imageUrl = null;
   $scope.post_types = ['text', 'photo', 'video'];
-  $scope.journeys_count = 12;
-  $scope.followers_count = 23;
   var posts;
 
   API.CurrentUser.query(function(response){

@@ -6,5 +6,4 @@ journeyAppCtrls.controller('ProfileCtrl', ['$scope', 'API', '$routeParams', func
 		$scope.profileUser = response.user;
 	});
 
-
 }]);

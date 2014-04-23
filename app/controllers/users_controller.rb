@@ -5,11 +5,14 @@ class UsersController < ApplicationController
 
   def show
     user = this_user
+    profile_user = user.as_json
+    profile_user["journeys_count"] = user.journeys.count
+    profile_user["followers_count"] = user.followers.count
     journeys = user.journeys
     posts = user.all_posts
 
     respond_to do |f|
-      f.json {render json: { user: user, journeys: journeys, posts: posts }}
+      f.json {render json: { user: profile_user, journeys: journeys, posts: posts }}
     end
 
   end

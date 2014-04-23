@@ -81,6 +81,14 @@ journeyRouter.config(['$routeProvider', '$locationProvider', function($routeProv
 			// TODO: build out UserCtrl and change controller here
 			controller: 'PostCtrl'
 		})
+		.when('/users/:id/following', {
+			templateUrl: '../templates/following.html',
+			controller: 'ProfileCtrl'
+		})
+		.when('/users/:id/followers', {
+			templateUrl: '../templates/followers.html',
+			controller: 'ProfileCtrl'
+		})
 		.when('/my-journeys', {
 			templateUrl: '../templates/my_journeys.html',
 			controller: 'PostCtrl'
