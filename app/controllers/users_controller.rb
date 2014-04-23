@@ -4,10 +4,12 @@ class UsersController < ApplicationController
   respond_to :json
 
   def show
-    user = this_user
+    user = User.includes(:journeys, :followers, :following).find(params[:id])
     profile_user = user.as_json
     profile_user["journeys_count"] = user.journeys.count
     profile_user["followers_count"] = user.followers.count
+    profile_user["following_count"] = user.following.count
+
     journeys = user.journeys
     posts = user.all_posts
 

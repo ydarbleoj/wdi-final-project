@@ -31,18 +31,39 @@ img#user-image {
 	font-size: 3em;
 }
 
+.profile-header{
+	margin-left: 215px;
+	margin-bottom: 20px;
+	font-family: Lato;
+	font-weight: 300;
+	font-size: 2em;
+}
+
+span {
+	margin-left: 5px;
+	font-size: .85em;
+	color: rgba(44,57,73, .6);
+}
+
+.profile-follow-counts {
+	margin-left: 280px;
+}
+.profile-follow-counts li, a {
+	display: inline;
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 1.15em;
+	margin-right: 20px;
+	color: rgba(255,127,102, 1);
+}
+
+/* replaced by .profile-follow-counts (KH) */
 .journeys-count {
 	margin: 30px 0 0 280px;
 	font-family: Lato;
 	font-weight: 400;
 	font-size: 1.15em;
 	color: rgba(255,127,102, 1);
-}
-
-span {
-	margin-left: 20px;
-	font-size: .85em;
-	color: rgba(44,57,73, .6);
 }
 
 .profile-followers {
@@ -52,6 +73,15 @@ span {
 	font-size: 1.15em;
 	color: rgba(255,127,102, 1);
 }
+
+.profile-following {
+	margin: -20px 0 0 550px;
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 1.15em;
+	color: rgba(255,127,102, 1);
+}
+/* /replaced */
 
 /*//////PROFILE NAVBAR-LINKS//////*/
 
@@ -174,10 +204,3 @@ span#post-text{
 	float: right;
 	position: relative;
 }
-
-
-
-
-
-
-

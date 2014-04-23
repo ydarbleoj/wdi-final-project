@@ -1,1 +1,19 @@
-<div>{{test}}</div>
+<!-- START PARTIALS  -->
+<div class="slide-animate ng-include" src="'../templates/nav.html'"></div>
+<div class="profile-partial ng-include" src="'../templates/profile.html'"></div>
+<div class="profile-nav-partial ng-include" src="'../templates/profile_nav.html'"></div>
+<!-- END PARTIALS -->
+<h1 class="profile-header">{{profileUser.f_name}} is following:</h1>
+<div class="container-my-journeys">
+  <div class="row">
+    <ul>
+      <li ng-repeat="user in profileUser.following">
+        <!-- need to impliment followUser() -->
+        <span ng-click="followUser(user)"> + </span>
+        <a href="#/users/{{user.id}}">
+          {{user.full_name}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

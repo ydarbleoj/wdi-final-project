@@ -7,8 +7,23 @@
       <h1 class="user-name">{{profileUser.full_name}} </h1>
      <!-- <input placeholder="photo url" type="file" ng-file-select="onFileSelect($files)" ng-model="currentUser.photo">
       <button ng-click="updateUserPhoto(currentUser)">Submit Photo</button>  -->
-      <div class="journeys-count">{{profileUser.journeys_count}} <span id="journey-number">Journeys</span></div>
-      <div class="profile-followers">{{profileUser.followers_count}} <span id="follower-count">Followers</span></div>
-    </div>
+      <ul class="profile-follow-counts">
+        <li>{{profileUser.journeys_count}}
+          <a href="#/users/{{profileUser.id}}">
+            <span id="journey-number">Journeys</span>
+          </a>
+        </li>
+        <li>{{profileUser.followers_count}}
+          <a href="#/users/{{profileUser.id}}/followers">
+            <span id="follower-count">Followers</span>
+          </a>
+        </li>
+        <li>{{profileUser.following_count }}
+          <a href="#/users/{{profileUser.id}}/following">
+            <span id="following-count">Following</span>
+          </a>
+        </li>
+      </ul>
+</div>
   </div>
 </div>

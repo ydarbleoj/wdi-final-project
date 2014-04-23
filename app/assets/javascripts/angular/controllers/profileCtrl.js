@@ -4,6 +4,15 @@ journeyAppCtrls.controller('ProfileCtrl', ['$scope', 'API', '$routeParams', func
 
 	API.User.get({ "id": $routeParams.id }, function(response){
 		$scope.profileUser = response.user;
+
+		API.UserFollowing.query({ "id": $routeParams.id }, function(response){
+			$scope.profileUser.following = response;
+
+		});
+
+		API.UserFollowers.query({ "id": $routeParams.id }, function(response){
+			$scope.profileUser.followers = response;
+		});
 	});
 
 }]);

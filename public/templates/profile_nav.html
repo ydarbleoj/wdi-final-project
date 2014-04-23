@@ -1,10 +1,10 @@
-<div class="profile-nav" ng-controller="ProfileNavCtrl" >
+<div class="profile-nav" ng-controller="ProfileCtrl" >
   <!-- fetch current_user.journeys array when this div loads -->
   <ul class="profile-nav-link">
-    <li id="nav-my-novos"><a href="#/users/{{currentUser.id}}">My Novos</a></li>
-    <li id="nav-following"><a href="#">Following</a></li>
-    <li id="nav-trending"><a href="#">Trending</a></li>
-    <li id="nav-everyone"><a href="#">Everyone</a></li>
-    <li id="nav-categories"><a href="#">Categories</a></li>
+    <li id="nav-my-novos"><a href="#/users/{{profileUser.id}}">My Novos</a></li>
+    <li id="nav-following"><a href="#/users/{{profileUser.id}}">Following</a></li>
+    <li id="nav-trending"><a href="#/users/{{profileUser.id}}">Trending</a></li>
+    <li id="nav-everyone"><a href="#/users/{{profileUser.id}}">Everyone</a></li>
+    <li id="nav-categories"><a href="#/users/{{profileUser.id}}">Categories</a></li>
   </ul>
 </div>
